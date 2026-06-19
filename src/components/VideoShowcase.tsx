@@ -49,19 +49,25 @@ export function VideoShowcase() {
     }
   };
 
-  // 3D Perspective Scroll Logic
+  // Scroll-in reveal — 2D transforms only.
+  //
+  // We deliberately avoid rotateX/rotateY/perspective here. In Chrome (and
+  // other Chromium-based browsers) any <video> whose ancestor establishes a
+  // 3D rendering context is composited in software, which kills
+  // hardware-accelerated video decoding and causes stuttering. Keeping the
+  // entrance effect 2D (translateY + scale + opacity) lets the GPU
+  // compositor render the video on a fast hardware overlay.
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "center center"]
   });
 
-  const rotateX = useTransform(scrollYProgress, [0, 1], [10, 0]);
-  const rotateY = useTransform(scrollYProgress, [0, 1], [-10, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [60, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
   const opacity = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
 
   return (
-    <section ref={containerRef} className="py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-zinc-950 relative z-10 overflow-hidden perspective-[2000px]">
+    <section ref={containerRef} className="py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-zinc-950 relative z-10 overflow-hidden">
        {/* Background ambient accents */}
        <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-red-600/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
        <div className="absolute bottom-0 left-0 w-[40vw] h-[40vw] bg-zinc-800/20 rounded-full blur-[100px] pointer-events-none translate-y-1/3 -translate-x-1/3"></div>
@@ -117,9 +123,9 @@ export function VideoShowcase() {
              </motion.div>
           </div>
 
-          {/* Vertical 3D Video Container */}
+          {/* Vertical Video Container (2D-only transforms — see comment above) */}
           <motion.div 
-             style={{ rotateX, rotateY, scale, opacity, transformStyle: 'flat' }}
+             style={{ y, scale, opacity }}
              className="lg:col-span-5 lg:col-start-8 relative w-full max-w-[450px] mx-auto lg:ml-auto lg:mr-0 order-1 lg:order-2"
           >
              {/*
