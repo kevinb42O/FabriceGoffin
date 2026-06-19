@@ -7,7 +7,7 @@ export function HomeGallery() {
   const yGalleryRight = useTransform(scrollY, [500, 2000], [200, -200]);
 
   return (
-      <section className="hidden lg:block py-24 px-6 md:px-12 lg:px-24 bg-white relative z-10 border-t border-zinc-100">
+      <section className="hidden lg:block py-24 px-6 md:px-12 lg:px-24 bg-white relative z-0 overflow-hidden border-t border-zinc-100">
          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 lg:gap-20">
             <motion.div 
                initial={{ opacity: 0, y: 30 }}

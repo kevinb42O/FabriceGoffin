@@ -75,11 +75,37 @@ export function HomeHeroMobile() {
           className="absolute inset-0 w-full h-full object-cover object-[center_32%]"
         />
 
-        {/* Top fade — keeps navbar contrast against the photo */}
-        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-zinc-950/45 to-transparent pointer-events-none" />
+        {/* Top fade — denser near the navbar, then quickly feathered out */}
+        <div
+          className="absolute inset-x-0 top-0 h-32 pointer-events-none"
+          style={{
+            background:
+              'linear-gradient(to bottom, rgba(9, 9, 11, 0.58) 0%, rgba(9, 9, 11, 0.34) 42%, rgba(9, 9, 11, 0.14) 72%, rgba(9, 9, 11, 0) 100%)',
+          }}
+        />
 
-        {/* Bottom fade — bleeds the photo into the dark content area for a continuous feel */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-zinc-950 via-zinc-950/85 to-transparent pointer-events-none" />
+        {/* Bottom transition stack — layered stops + vignette + slight diffusion for a premium blend */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-[48%] pointer-events-none"
+          style={{
+            background:
+              'linear-gradient(to top, rgba(9, 9, 11, 0.99) 0%, rgba(9, 9, 11, 0.95) 22%, rgba(9, 9, 11, 0.82) 42%, rgba(9, 9, 11, 0.56) 62%, rgba(9, 9, 11, 0.24) 80%, rgba(9, 9, 11, 0) 100%)',
+          }}
+        />
+        <div
+          className="absolute inset-x-0 bottom-0 h-[52%] pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(120% 85% at 50% 100%, rgba(9, 9, 11, 0.34) 0%, rgba(9, 9, 11, 0.18) 45%, rgba(9, 9, 11, 0.06) 68%, rgba(9, 9, 11, 0) 100%)',
+          }}
+        />
+        <div
+          className="absolute inset-x-0 bottom-0 h-24 pointer-events-none blur-[8px]"
+          style={{
+            background:
+              'linear-gradient(to top, rgba(9, 9, 11, 0.58) 0%, rgba(9, 9, 11, 0) 100%)',
+          }}
+        />
 
         {/* Floating eyebrow on the photo — sits in the bottom-fade so it never collides with the face */}
         <motion.div

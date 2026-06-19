@@ -47,30 +47,36 @@ export function HomeStandpuntenPreview() {
               key={item.nummer}
               to={`/standpunten?p=${item.nummer}`}
               aria-label={`Lees meer over standpunt ${item.nummer}: ${item.titel}`}
-              className="group flex-none w-[85vw] md:w-[460px] flex flex-col bg-white p-12 border border-zinc-200 shadow-sm hover:shadow-xl transition-all duration-500 relative cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-600 focus-visible:ring-offset-2"
+              className="group flex-none relative w-[82vw] lg:w-[420px] xl:w-[460px] h-[480px] rounded-3xl overflow-hidden bg-zinc-900 shadow-[0_20px_40px_-20px_rgba(0,0,0,0.35)] active:scale-[0.99] transition-transform focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-600 focus-visible:ring-offset-2"
             >
-              <div className="absolute top-0 left-0 w-0 h-1 bg-red-600 group-hover:w-full transition-all duration-500"></div>
+              <img
+                src={item.image}
+                alt={item.titel}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/55 to-zinc-950/15" />
+              <div className="absolute inset-0 bg-gradient-to-br from-red-600/0 via-transparent to-red-600/15" />
 
-              <div className="flex items-center justify-between mb-6">
-                <span className="text-sm font-black uppercase tracking-widest text-red-600">
+              <div className="absolute top-5 left-5 flex items-center gap-2.5">
+                <span className="text-red-400 font-black text-xs tracking-[0.25em]">
                   {item.nummer}
                 </span>
-                <span className="w-10 h-10 rounded-full bg-zinc-100 group-hover:bg-zinc-900 text-zinc-500 group-hover:text-white flex items-center justify-center transition-all duration-300">
-                  <ArrowUpRight className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                </span>
+                <div className="w-8 h-[2px] bg-red-500/80" />
               </div>
 
-              <h3 className="text-3xl font-black uppercase tracking-tight text-zinc-900 mb-6 pr-4 leading-[0.95]">
-                {item.titel}
-              </h3>
-              <p className="text-zinc-600 text-lg leading-relaxed mb-6 flex-1 font-medium">
-                {item.kort}
-              </p>
+              <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center text-white">
+                <ArrowUpRight className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+              </div>
 
-              <span className="mt-auto inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.22em] text-zinc-900 group-hover:text-red-600 transition-colors">
-                Lees meer
-                <span className="w-8 h-[2px] bg-zinc-900 group-hover:bg-red-600 group-hover:w-14 transition-all"></span>
-              </span>
+              <div className="absolute inset-x-0 bottom-0 p-6">
+                <h3 className="text-white font-black uppercase tracking-tight leading-[0.95] mb-3 break-words text-[clamp(22px,2.2vw,34px)]">
+                  {item.titel}
+                </h3>
+                <p className="text-zinc-200 text-[17px] leading-relaxed font-medium">
+                  {item.kort}
+                </p>
+              </div>
             </Link>
           ))}
         </motion.div>

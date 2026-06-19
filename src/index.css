@@ -8,6 +8,31 @@
   body {
     @apply bg-zinc-50 text-zinc-900 font-sans antialiased overflow-x-hidden selection:bg-teal-500 selection:text-white;
   }
+
+  /*
+   * Desktop typografie/spacing op 67% (i.p.v. browserzoom).
+   *
+   * Door alleen `font-size` op <html> aan te passen schalen automatisch alle
+   * rem-gebaseerde Tailwind-utilities mee: text-*, p-*/m-*/gap-*, max-w-*,
+   * space-*, etc. — wat 95% van de visuele "tightness" oplevert van 67%
+   * browserzoom.
+   *
+   * Belangrijk: vh/vw en arbitraire px-waardes (w-[460px], h-[450vh], …)
+   * blijven ONGEMOEID. Daardoor:
+   *   - Scroll-secties (Speerpunten 450vh, Hero parallax, VideoShowcase)
+   *     houden exact dezelfde scroll-lengte → useScroll & sticky werken
+   *     onveranderd.
+   *   - Cards behouden hun fysieke breedte → horizontale scroll-math
+   *     (calc(-100% + 100vw)) blijft kloppen.
+   *
+   * Alleen op desktop (>=1024px) — mobile components zijn al voor native
+   * weergave ontworpen.
+   */
+  @media (min-width: 1024px) {
+    html {
+      font-size: 67%;
+    }
+  }
 }
 
 @layer utilities {

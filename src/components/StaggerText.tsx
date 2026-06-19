@@ -1,14 +1,15 @@
 import { motion, useReducedMotion } from 'motion/react';
+import type { ElementType } from 'react';
 
 const spring = { type: 'spring', stiffness: 400, damping: 30 } as const;
 
 interface StaggerTextProps {
   text: string;
   className?: string;
-  el?: any;
+  el?: ElementType;
 }
 
-export function StaggerText({ text, className = "", el: Wrapper = 'h1', delay = 0 }: StaggerTextProps & { delay?: number }) {
+export function StaggerText({ text, className = "", el: Wrapper = 'span', delay = 0 }: StaggerTextProps & { delay?: number }) {
   const words = text.split(' ');
   const shouldReduceMotion = useReducedMotion();
 
