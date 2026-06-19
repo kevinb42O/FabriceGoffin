@@ -8,8 +8,7 @@ import { MagneticButton } from './MagneticButton';
 export function VideoShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const ambientVideoRef = useRef<HTMLVideoElement>(null);
-  
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
 
@@ -17,35 +16,27 @@ export function VideoShowcase() {
 
   // Auto-play/pause based on viewport intersection
   useEffect(() => {
-    if (!videoRef.current || !ambientVideoRef.current) return;
-    
+    if (!videoRef.current) return;
+
     if (isInView) {
       const playPromise = videoRef.current.play();
-      const ambientPromise = ambientVideoRef.current.play();
-      
       if (playPromise !== undefined) {
         playPromise.then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
       }
-      if (ambientPromise !== undefined) {
-        ambientPromise.catch(() => {});
-      }
     } else {
       videoRef.current.pause();
-      ambientVideoRef.current.pause();
       setIsPlaying(false);
     }
   }, [isInView]);
 
   const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (!videoRef.current || !ambientVideoRef.current) return;
+    if (!videoRef.current) return;
     if (isPlaying) {
       videoRef.current.pause();
-      ambientVideoRef.current.pause();
       setIsPlaying(false);
     } else {
       videoRef.current.play();
-      ambientVideoRef.current.play();
       setIsPlaying(true);
     }
   };
@@ -128,37 +119,46 @@ export function VideoShowcase() {
 
           {/* Vertical 3D Video Container */}
           <motion.div 
-             style={{ rotateX, rotateY, scale, opacity }}
+             style={{ rotateX, rotateY, scale, opacity, transformStyle: 'flat' }}
              className="lg:col-span-5 lg:col-start-8 relative w-full max-w-[450px] mx-auto lg:ml-auto lg:mr-0 order-1 lg:order-2"
           >
-             {/* Ambient Blur Background */}
-             <div className="absolute inset-0 scale-105 blur-[60px] opacity-60 saturate-[1.5] pointer-events-none z-0 mix-blend-screen transition-opacity duration-1000">
-                <video 
-                  ref={ambientVideoRef}
-                  src="/videos/gemeenteraad.mp4" 
-                  className="w-full h-full object-cover rounded-[3rem]"
-                  muted
-                  playsInline
-                  loop
-                  preload="none"
-                  poster="/images/werkbezoek.jpg"
-                />
-             </div>
+             {/*
+               Ambient Blur Background — static image instead of a 2nd <video>.
+               Why: a blurred + mix-blend-screen <video> forces Chrome to drop
+               GPU video decoding (software compositing path), causing the
+               main player to stutter. A blurred poster gives the same look
+               at zero per-frame cost.
+             */}
+             <div
+               aria-hidden="true"
+               className="absolute inset-0 scale-105 blur-[60px] opacity-50 saturate-150 pointer-events-none z-0 rounded-[3rem] bg-cover bg-center"
+               style={{ backgroundImage: 'url(/images/werkbezoek.jpg)' }}
+             />
 
              {/* Main Vertical Video Player */}
              <div 
-                className="aspect-[11/16] w-full rounded-[2.5rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] bg-zinc-950 border border-white/20 ring-4 ring-zinc-900 relative z-10 group [transform:translateZ(0)]"
-                style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+                className="aspect-[11/16] w-full rounded-[2.5rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] bg-zinc-950 border border-white/20 ring-4 ring-zinc-900 relative z-10 group isolate"
              >
-                <video 
-                  ref={videoRef}
-                  src="/videos/gemeenteraad.mp4" 
-                  className={`absolute top-0 left-0 w-full h-full object-cover transition-transform duration-700 ${isPlaying ? 'scale-100' : 'scale-105 group-hover:scale-100'}`}
-                  playsInline
-                  muted={isMuted}
-                  loop
-                  poster="/images/werkbezoek.jpg"
-                />
+                {/*
+                  Wrapper handles the hover-scale so the <video> itself never
+                  carries a CSS transform. Chrome software-composites any
+                  <video> with `transform` inside a 3D-transformed ancestor,
+                  which kills hardware-accelerated video decode.
+                */}
+                <div
+                  className={`absolute inset-0 transition-transform duration-700 will-change-transform ${isPlaying ? 'scale-100' : 'scale-105 group-hover:scale-100'}`}
+                >
+                  <video
+                    ref={videoRef}
+                    src="/videos/gemeenteraad.mp4"
+                    className="block w-full h-full object-cover"
+                    playsInline
+                    muted={isMuted}
+                    loop
+                    preload="metadata"
+                    poster="/images/werkbezoek.jpg"
+                  />
+                </div>
                 
                 {/* A11y: Toegankelijke verborgen overlay knop voor keyboard control */}
                 <button
