@@ -11,6 +11,36 @@ export function HomeHero() {
   return (
       <section className="hidden lg:flex relative min-h-screen pt-32 lg:pt-48 pb-24 px-6 md:px-12 lg:px-24 flex-col justify-center overflow-hidden bg-white">
         
+        {/* Kaart van Oostende — geanimeerde achtergrond (ken-burns / drift), identiek aan footer */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 0.3 }}
+          className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
+          aria-hidden="true"
+        >
+          <motion.div
+            className="absolute inset-0 opacity-[0.09]"
+            style={{
+              backgroundImage: 'url(/images/kaartoostende.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              filter: 'blur(0.5px)',
+            }}
+            animate={{
+              scale: [1, 1.12, 1.06, 1],
+              x: ['0%', '-2%', '2%', '0%'],
+              y: ['0%', '1.5%', '-1.5%', '0%'],
+            }}
+            transition={{
+              duration: 40,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        </motion.div>
+
         {/* Oostende Watermark */}
         <motion.div 
           style={{ y: yWatermark }}

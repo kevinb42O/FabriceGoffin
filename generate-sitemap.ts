@@ -10,7 +10,6 @@ const routes = [
   '/over',
   '/contact',
   '/standpunten',
-  '/doelen',
   '/nieuws',
   '/privacy',
   '/voorwaarden',

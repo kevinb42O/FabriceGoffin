@@ -6,7 +6,6 @@ const links = [
   { path: '/', label: 'Home' },
   { path: '/over', label: 'Over Mij' },
   { path: '/standpunten', label: 'Standpunten' },
-  { path: '/doelen', label: 'Doelen' },
   { path: '/nieuws', label: 'Nieuws' },
   { path: '/contact', label: 'Contact' },
 ];

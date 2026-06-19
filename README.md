@@ -38,7 +38,7 @@ npm run dev          # http://localhost:3000
 `npm run build` produceert in `dist/`:
 
 - gehashte JS/CSS-assets
-- per route een `index.html` (`/`, `/over`, `/standpunten`, `/doelen`, `/nieuws`, `/nieuws/:slug`, `/contact`) zodat elke route direct serveerbaar is door statische hosts (Netlify, Vercel, Apache, Nginx)
+- per route een `index.html` (`/`, `/over`, `/standpunten`, `/nieuws`, `/nieuws/:slug`, `/contact`) zodat elke route direct serveerbaar is door statische hosts (Netlify, Vercel, Apache, Nginx)
 - `sitemap.xml`
 - `robots.txt`
 

@@ -30,6 +30,36 @@ export function HomeHeroMobile() {
       ref={ref}
       className="relative w-full bg-zinc-950 text-white overflow-hidden lg:hidden flex flex-col min-h-dvh"
     >
+      {/* Kaart van Oostende — geanimeerde achtergrond (ken-burns / drift), identiek aan footer */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.8, delay: 0.5 }}
+        className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
+        aria-hidden="true"
+      >
+        <motion.div
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: 'url(/images/kaartoostende.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            filter: 'blur(1px)',
+          }}
+          animate={{
+            scale: [1, 1.12, 1.06, 1],
+            x: ['0%', '-2%', '2%', '0%'],
+            y: ['0%', '1.5%', '-1.5%', '0%'],
+          }}
+          transition={{
+            duration: 40,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      </motion.div>
+
       {/* Photo block — fixed proportional height, capped on tall phones.
           Sized generously so that the navbar (~60px fixed white strip) only
           occludes the very top of the frame; combined with object-position
@@ -50,9 +80,6 @@ export function HomeHeroMobile() {
 
         {/* Bottom fade — bleeds the photo into the dark content area for a continuous feel */}
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-zinc-950 via-zinc-950/85 to-transparent pointer-events-none" />
-
-        {/* Side vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(9,9,11,0.45)_100%)] pointer-events-none" />
 
         {/* Floating eyebrow on the photo — sits in the bottom-fade so it never collides with the face */}
         <motion.div

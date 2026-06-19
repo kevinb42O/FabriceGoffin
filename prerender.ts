@@ -25,7 +25,6 @@ const server = app.listen(PORT, async () => {
     '/over',
     '/contact',
     '/standpunten',
-    '/doelen',
     '/nieuws',
     '/privacy',
     '/voorwaarden',

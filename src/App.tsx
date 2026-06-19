@@ -4,13 +4,12 @@
  */
 
 import { AnimatePresence, MotionConfig } from 'motion/react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 import { ScrollToTop } from './components/ScrollToTop';
 import Home from './pages/Home';
 import Standpunten from './pages/Standpunten';
-import Doelen from './pages/Doelen';
 import Nieuws from './pages/Nieuws';
 import Article from './pages/Article';
 import Over from './pages/Over';
@@ -46,7 +45,8 @@ export default function App() {
               <Route path="/over" element={<Over />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/standpunten" element={<Standpunten />} />
-              <Route path="/doelen" element={<Doelen />} />
+              {/* /doelen content lives on /standpunten now — redirect old URLs */}
+              <Route path="/doelen" element={<Navigate to="/standpunten" replace />} />
               <Route path="/nieuws" element={<Nieuws />} />
               <Route path="/nieuws/:slug" element={<Article />} />
               <Route path="/privacy" element={<Privacy />} />
