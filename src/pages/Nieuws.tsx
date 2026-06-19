@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import PageTransition from '../components/PageTransition';
 import { ArrowRight } from 'lucide-react';
@@ -7,8 +8,11 @@ import { StaggerText } from '../components/StaggerText';
 import { SEO } from '../components/SEO';
 
 export default function Nieuws() {
+  const [visibleCount, setVisibleCount] = useState(3);
   const featuredArticle = articles.find(a => a.featured) || articles[0];
   const otherArticles = featuredArticle ? articles.filter(a => a.slug !== featuredArticle.slug) : articles;
+  const visibleArticles = otherArticles.slice(0, visibleCount);
+  const canShowMore = visibleCount < otherArticles.length;
 
   if (!featuredArticle) {
     return (
@@ -99,7 +103,7 @@ export default function Nieuws() {
 
           {/* Grid for older articles */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {otherArticles.map((article, index) => (
+            {visibleArticles.map((article, index) => (
                <motion.article 
                  key={article.slug}
                  initial={{ opacity: 0, y: 30 }}
@@ -133,6 +137,19 @@ export default function Nieuws() {
                </motion.article>
             ))}
           </div>
+
+          {canShowMore && (
+            <div className="mt-12 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setVisibleCount(count => Math.min(count + 3, otherArticles.length))}
+                className="group inline-flex items-center gap-3 rounded-full bg-zinc-900 px-8 py-4 text-sm font-black uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-red-600 hover:shadow-xl"
+              >
+                Toon meer nieuws
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </button>
+            </div>
+          )}
 
         </div>
       </div>
