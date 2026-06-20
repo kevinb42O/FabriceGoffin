@@ -18,8 +18,8 @@ export default function Over() {
               className="w-full h-full object-cover object-center lg:object-[center_30%]"
               fetchPriority="high"
             />
-            {/* Subtle gradient on the right side to ensure text readability */}
-            <div className="absolute inset-0 bg-gradient-to-l from-zinc-900/90 via-zinc-900/30 to-transparent"></div>
+            {/* Subtle gradient on the right side to ensure text readability, leaving the left clear */}
+            <div className="absolute inset-y-0 right-0 w-full lg:w-2/3 bg-gradient-to-l from-zinc-900/90 via-zinc-900/40 to-transparent"></div>
             {/* Bottom gradient to blend into the next section smoothly */}
             <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent"></div>
           </div>
@@ -85,9 +85,9 @@ export default function Over() {
                </div>
                <div className="md:col-span-5">
                   <div className="relative shadow-xl group rounded-2xl overflow-hidden aspect-[4/5] w-full">
-                    <ImageReveal src="/images/overfabrice.webp" alt="Fabrice en Nova" />
+                    <ImageReveal src="/images/fabriceennova.webp" alt="Fabrice en Nova" />
                     <div className="absolute z-10 bottom-0 left-0 w-full p-4 bg-gradient-to-t from-zinc-900/80 to-transparent">
-                      <p className="text-white text-sm font-bold tracking-widest uppercase m-0">Fabrice & Nova</p>
+                      <p className="text-white text-sm font-bold tracking-widest uppercase m-0 font-heading">Fabrice & Nova</p>
                     </div>
                   </div>
                </div>
@@ -104,6 +104,24 @@ export default function Over() {
             <p>
               Ik zet me vol enthousiasme in voor het verbeteren van dierenwelzijn, voor een optimale bescherming van dieren en om van Oostende de diervriendelijkste stad van Vlaanderen te maken. Ik smijt mij dagelijks om mensen samen te brengen in onze Oostendse wijken, en ben een luisterend oor voor iedereen die het nodig heeft. En ik engageer me om van Oostende een sterke digitale stad te maken ten dienste van haar inwoners en iedereen die onze stad bezoekt.
             </p>
+
+            {/* Afsluitende Foto (Opkomst) */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8 }}
+              className="mt-16 w-full relative rounded-2xl overflow-hidden shadow-lg border border-zinc-100 group"
+            >
+              <img 
+                src="/images/opkomst.webp" 
+                alt="Opkomst Fabrice Goffin" 
+                className="w-full h-auto object-contain transition-transform duration-[2s] ease-out group-hover:scale-105"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl pointer-events-none"></div>
+            </motion.div>
+
           </motion.div>
           </div>
         </div>
