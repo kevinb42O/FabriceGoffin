@@ -16,7 +16,7 @@ export function SEO({
   type = 'website',
 }: SEOProps) {
   // Voor absolute URL's
-  const siteUrl = 'https://fabricegoffin.be'; // Pas dit aan naar het échte domein als het bekend is.
+  const siteUrl = 'https://fabricegoffin.vercel.app'; // Pas dit aan naar het échte domein als het bekend is.
   const fullUrl = url ? `${siteUrl}${url}` : siteUrl;
   const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
 
