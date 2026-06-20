@@ -18,7 +18,7 @@
    * Desktop typografie/spacing op 67% (i.p.v. browserzoom).
    *
    * Door alleen `font-size` op <html> aan te passen schalen automatisch alle
-   * rem-gebaseerde Tailwind-utilities mee: text-*, p-*/m-*/gap-*, max-w-*,
+   * rem-gebaseerde Tailwind-utilities mee: text-*, p-\*/m-\*/gap-*, max-w-*,
    * space-*, etc. — wat 95% van de visuele "tightness" oplevert van 67%
    * browserzoom.
    *
