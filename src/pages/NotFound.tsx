@@ -10,7 +10,7 @@ export default function NotFound() {
       <div className="min-h-screen flex flex-col items-center justify-center px-6 bg-white relative overflow-hidden">
         {/* Large 404 Background */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-          <span className="text-[30vw] font-medium text-zinc-50 leading-none tracking-tighter">404</span>
+          <span className="text-[30vw] font-medium text-zinc-50 leading-none tracking-tighter font-heading">404</span>
         </div>
 
         <div className="relative z-10 text-center max-w-lg">
@@ -24,7 +24,7 @@ export default function NotFound() {
               <div className="w-12 h-[2px] bg-red-600"></div>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-medium uppercase tracking-tighter text-zinc-900 mb-6">
+            <h1 className="text-5xl md:text-7xl font-medium uppercase tracking-tighter text-zinc-900 mb-6 font-heading">
               Oeps.
             </h1>
 

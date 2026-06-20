@@ -71,7 +71,7 @@ export default function Contact() {
                 <span className="text-red-600 font-bold uppercase tracking-[0.2em] text-xs">Contact</span>
               </div>
               
-              <h1 className="text-5xl md:text-7xl font-medium uppercase tracking-tighter text-zinc-900 leading-none mb-6">
+              <h1 className="text-5xl md:text-7xl font-medium uppercase tracking-tighter text-zinc-900 leading-none mb-6 font-heading">
                 Samen voor <br />
                 <span className="text-red-600">Oostende</span>
               </h1>
@@ -103,7 +103,7 @@ export default function Contact() {
                     >
                       <CheckCircle2 className="w-24 h-24 text-green-500 mb-6 mx-auto" />
                     </motion.div>
-                    <h3 className="text-3xl font-medium uppercase tracking-tight text-zinc-900 mb-4">Bericht Klaargezet!</h3>
+                    <h3 className="text-3xl font-medium uppercase tracking-tight text-zinc-900 mb-4 font-heading">Bericht Klaargezet!</h3>
                     <p className="text-zinc-500 font-medium text-lg">Je e-mailprogramma is geopend om het bericht te versturen.</p>
                   </motion.div>
                 ) : (

@@ -115,7 +115,7 @@ export function HomeHeroMobile() {
           className="absolute left-6 right-6 bottom-6 flex items-center gap-3"
         >
           <div className="w-8 h-[2px] bg-red-500" />
-          <span className="text-red-400 font-medium uppercase tracking-[0.22em] text-[10px] drop-shadow-md">
+          <span className="text-red-400 font-medium uppercase tracking-[0.22em] text-[10px] drop-shadow-md font-heading">
             Vooruit Plus — Oostende
           </span>
         </motion.div>
@@ -127,7 +127,7 @@ export function HomeHeroMobile() {
         style={{ paddingBottom: 'max(env(safe-area-inset-bottom), 1.25rem)' }}
       >
         {/* Headline — overflow-hidden mask drives the y-reveal */}
-        <h1 className="font-medium tracking-tighter leading-[0.85] uppercase mb-5">
+        <h1 className="font-medium tracking-tighter leading-[0.85] uppercase mb-5 font-heading">
           <span className="block overflow-hidden">
             <motion.span
               initial={{ y: '110%' }}
@@ -155,7 +155,7 @@ export function HomeHeroMobile() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.7 }}
-          className="text-zinc-300 text-[15px] leading-relaxed font-medium max-w-md"
+          className="text-zinc-300 text-[15px] leading-relaxed font-medium max-w-md font-heading"
         >
           Schepen van Oostende, bevoegd voor{' '}
           <span className="text-white font-bold border-b-2 border-red-500/60">
@@ -206,7 +206,7 @@ export function HomeHeroMobile() {
             transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
             className="flex items-center gap-2"
           >
-            <span className="text-[10px] font-medium uppercase tracking-[0.3em]">
+            <span className="text-[10px] font-medium uppercase tracking-[0.3em] font-heading">
               Scroll
             </span>
             <ChevronDown className="w-3.5 h-3.5" />

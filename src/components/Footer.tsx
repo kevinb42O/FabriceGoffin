@@ -59,7 +59,7 @@ export function Footer() {
           {/* Identity label — eyebrow uit de hero */}
           <div className="md:col-span-5 flex items-center gap-4">
             <div className="w-12 h-[2px] bg-red-600" />
-            <span className="text-red-600 font-medium uppercase tracking-[0.2em] text-[11px]">
+            <span className="text-red-600 font-medium uppercase tracking-[0.2em] text-[11px] font-heading">
               Oostende — 8400
             </span>
           </div>
@@ -83,10 +83,10 @@ export function Footer() {
                 <div className="absolute bottom-0 right-0 w-2 h-2 bg-red-600 group-hover:bg-white transition-colors duration-500" />
               </div>
               <div className="flex flex-col justify-center">
-                <span className="text-[13px] font-medium tracking-[0.2em] uppercase leading-none text-zinc-900">
+                <span className="text-[13px] font-medium tracking-[0.2em] uppercase leading-none text-zinc-900 font-heading">
                   Fabrice Goffin
                 </span>
-                <span className="text-[9px] font-medium tracking-[0.2em] uppercase leading-none mt-1.5 text-red-600">
+                <span className="text-[9px] font-medium tracking-[0.2em] uppercase leading-none mt-1.5 text-red-600 font-heading">
                   Schepen — Stad Oostende
                 </span>
               </div>

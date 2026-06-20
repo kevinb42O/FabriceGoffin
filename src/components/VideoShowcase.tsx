@@ -86,7 +86,7 @@ export function VideoShowcase() {
                <span className="text-red-500 font-black uppercase tracking-[0.2em] text-xs">In de kijker</span>
              </motion.div>
 
-             <h2 className="text-5xl lg:text-6xl xl:text-7xl font-medium uppercase tracking-tighter text-white mb-8 leading-[0.85]">
+             <h2 className="text-5xl lg:text-6xl xl:text-7xl font-medium uppercase tracking-tighter text-white mb-8 leading-[0.85] font-heading">
                <StaggerText text="Actie in de" /><br />
                <span className="text-red-600 drop-shadow-[0_0_30px_rgba(220,38,38,0.3)]">
                  <StaggerText text="Gemeenteraad" delay={0.2} />
@@ -181,7 +181,7 @@ export function VideoShowcase() {
                    <div className="w-full p-6 sm:p-8 flex justify-between items-start">
                      <div className="flex items-center gap-3 px-4 py-2.5 bg-black/40 backdrop-blur-md rounded-full border border-white/10">
                        <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
-                       <span className="text-white text-[10px] sm:text-xs font-medium uppercase tracking-widest drop-shadow-md">
+                       <span className="text-white text-[10px] sm:text-xs font-medium uppercase tracking-widest drop-shadow-md font-heading">
                          {isPlaying ? 'Aan het afspelen' : 'Klaar om te spelen'}
                        </span>
                      </div>

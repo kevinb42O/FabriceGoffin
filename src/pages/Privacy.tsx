@@ -48,7 +48,7 @@ export default function Privacy() {
               <div className="w-12 h-[3px] bg-red-600" />
               <span className="text-red-500 font-black uppercase tracking-[0.2em] text-xs">Juridisch</span>
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium uppercase tracking-tighter text-white leading-[0.85] mb-8">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium uppercase tracking-tighter text-white leading-[0.85] mb-8 font-heading">
               Privacy<br />beleid
             </h1>
             <p className="text-lg md:text-xl text-zinc-300 font-medium leading-relaxed max-w-3xl">
@@ -86,7 +86,7 @@ export default function Privacy() {
           </aside>
 
           {/* Content */}
-          <article className="lg:col-span-8 prose prose-zinc prose-lg max-w-none font-medium leading-relaxed prose-headings:font-medium prose-headings:uppercase prose-headings:tracking-tight prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mt-16 prose-h2:mb-6 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-a:text-red-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-zinc-900">
+          <article className="lg:col-span-8 prose prose-zinc prose-lg max-w-none font-medium leading-relaxed prose-headings:font-heading prose-headings:font-medium prose-headings:uppercase prose-headings:tracking-tight prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mt-16 prose-h2:mb-6 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-a:text-red-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-zinc-900 font-heading">
 
             <p className="text-xl text-zinc-700 leading-relaxed">
               Dit privacybeleid beschrijft op welke manier persoonsgegevens worden verzameld en verwerkt via de website <strong>fabricegoffin.be</strong>. Wij hechten het grootste belang aan de bescherming van uw persoonlijke levenssfeer en behandelen uw gegevens met de zorg en de discretie die u van een Belgische mandataris mag verwachten.

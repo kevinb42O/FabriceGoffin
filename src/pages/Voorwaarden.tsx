@@ -50,7 +50,7 @@ export default function Voorwaarden() {
               <div className="w-12 h-[3px] bg-red-600" />
               <span className="text-red-500 font-black uppercase tracking-[0.2em] text-xs">Juridisch</span>
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium uppercase tracking-tighter text-white leading-[0.85] mb-8">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium uppercase tracking-tighter text-white leading-[0.85] mb-8 font-heading">
               Algemene<br />Voorwaarden
             </h1>
             <p className="text-lg md:text-xl text-zinc-300 font-medium leading-relaxed max-w-3xl">
@@ -88,7 +88,7 @@ export default function Voorwaarden() {
           </aside>
 
           {/* Content */}
-          <article className="lg:col-span-8 prose prose-zinc prose-lg max-w-none font-medium leading-relaxed prose-headings:font-medium prose-headings:uppercase prose-headings:tracking-tight prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mt-16 prose-h2:mb-6 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-a:text-red-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-zinc-900">
+          <article className="lg:col-span-8 prose prose-zinc prose-lg max-w-none font-medium leading-relaxed prose-headings:font-heading prose-headings:font-medium prose-headings:uppercase prose-headings:tracking-tight prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mt-16 prose-h2:mb-6 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-a:text-red-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-zinc-900 font-heading">
 
             <p className="text-xl text-zinc-700 leading-relaxed">
               Deze algemene voorwaarden zijn van toepassing op elk bezoek aan en elk gebruik van de website <strong>fabricegoffin.be</strong>. Lees ze zorgvuldig door. Door de website te raadplegen, erkent u kennis te hebben genomen van deze voorwaarden en stemt u uitdrukkelijk in met de inhoud ervan.

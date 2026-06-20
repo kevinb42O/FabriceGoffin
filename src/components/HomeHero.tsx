@@ -63,10 +63,10 @@ export function HomeHero() {
             </motion.div>
             
             <div className="flex flex-col mb-8 z-10 relative">
-               <h1 className="text-[70px] md:text-[100px] lg:text-[130px] xl:text-[150px] font-medium tracking-tighter leading-none uppercase text-zinc-900">
+               <h1 className="text-[70px] md:text-[100px] lg:text-[130px] xl:text-[150px] font-medium tracking-tighter leading-none uppercase text-zinc-900 font-heading">
                  <StaggerText text="IK BEN" />
                </h1>
-               <span className="text-[70px] md:text-[100px] lg:text-[130px] xl:text-[150px] font-medium tracking-tighter leading-none uppercase text-red-600 drop-shadow-sm -mt-2 lg:-mt-6 block" aria-hidden="true">
+               <span className="text-[70px] md:text-[100px] lg:text-[130px] xl:text-[150px] font-medium tracking-tighter leading-none uppercase text-red-600 drop-shadow-sm -mt-2 lg:-mt-6 block font-heading" aria-hidden="true">
                  <StaggerText text="FABRICE" delay={0.2} />
                </span>
             </div>

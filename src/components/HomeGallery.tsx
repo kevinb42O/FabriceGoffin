@@ -22,7 +22,7 @@ export function HomeGallery() {
                 />
                 <div className="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-zinc-900/90 to-transparent">
                    <div className="w-12 h-1 bg-red-600 mb-4"></div>
-                   <h3 className="text-white text-2xl md:text-3xl font-medium uppercase tracking-tight">Nieuw Centrum voor Dierenwelzijn</h3>
+                   <h3 className="text-white text-2xl md:text-3xl font-medium uppercase tracking-tight font-heading">Nieuw Centrum voor Dierenwelzijn</h3>
                    <p className="text-zinc-300 mt-2 font-medium">Toekomstige visualisatie van het asiel</p>
                 </div>
               </motion.div>
