@@ -121,7 +121,7 @@ export function HomeHero() {
           >
              <div className="relative w-full aspect-[4/5] object-cover bg-zinc-100 shadow-2xl overflow-hidden rounded-sm">
                <img 
-                 src="/images/fabrice-hero.webp" 
+                 src="/images/ORIGINEELfabrice-hero.webp" 
                  alt="Fabrice Goffin"
                  className="w-full h-full object-cover object-center transition-all duration-700 hover:scale-105" 
                  fetchPriority="high"

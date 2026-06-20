@@ -69,7 +69,7 @@ export function HomeHeroMobile() {
         className="relative w-full h-[60svh] min-h-[400px] max-h-[560px] shrink-0 overflow-hidden"
       >
         <img
-          src="/images/fabrice-hero.webp"
+          src="/images/ORIGINEELfabrice-hero.webp"
           alt="Fabrice Goffin"
           fetchPriority="high"
           className="absolute inset-0 w-full h-full object-cover object-[center_32%]"
