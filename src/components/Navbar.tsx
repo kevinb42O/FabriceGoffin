@@ -1,6 +1,7 @@
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import FocusTrap from 'focus-trap-react';
 
 const links = [
   { path: '/', label: 'Home' },
@@ -117,6 +118,7 @@ export function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}
+              aria-controls="mobile-menu"
               aria-label={isOpen ? 'Navigatiemenu sluiten' : 'Navigatiemenu openen'}
               className={`group flex items-center gap-3 text-xs font-bold tracking-[0.2em] uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 rounded-sm ${isOpen ? 'text-white' : 'text-zinc-900'}`}
             >
@@ -165,15 +167,18 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ clipPath: 'circle(0% at calc(100% - 3rem) 3rem)' }}
             animate={{ clipPath: 'circle(150% at calc(100% - 3rem) 3rem)' }}
             exit={{ clipPath: 'circle(0% at calc(100% - 3rem) 3rem)' }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-zinc-950 text-white flex flex-col items-center justify-center p-8"
+            className="fixed inset-0 z-40 bg-zinc-950 text-white"
             role="dialog"
             aria-modal="true"
             aria-label="Navigatiemenu"
           >
+            <FocusTrap focusTrapOptions={{ allowOutsideClick: true }}>
+              <div tabIndex={-1} className="w-full h-full flex flex-col items-center justify-center p-8 outline-none">
             {/* Background Texture / Abstract Element for high-end feel */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
                <motion.div 
@@ -231,6 +236,8 @@ export function Navbar() {
               <div className="leading-relaxed max-w-[200px] md:max-w-none">Schepen van Dierenwelzijn & Digitalisering — Oostende</div>
               <div className="hidden md:block" aria-hidden="true" />
             </motion.div>
+              </div>
+            </FocusTrap>
           </motion.div>
         )}
       </AnimatePresence>

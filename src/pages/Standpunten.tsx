@@ -5,6 +5,7 @@ import { Shield, Rocket, Link2, Heart } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import { StaggerText } from '../components/StaggerText';
 import { SEO } from '../components/SEO';
+import FocusTrap from 'focus-trap-react';
 
 import { standpunten } from '../data/standpunten';
 
@@ -215,8 +216,13 @@ export default function Standpunten() {
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: '100%', opacity: 0 }}
                 transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-                className="fixed inset-y-0 right-0 w-full md:w-[90vw] xl:w-[1200px] bg-white z-[110] shadow-2xl flex flex-col md:flex-row overflow-hidden"
+                className="fixed inset-y-0 right-0 w-full md:w-[90vw] xl:w-[1200px] bg-white z-[110] shadow-2xl overflow-hidden"
+                role="dialog"
+                aria-modal="true"
+                aria-label={standpunten[selectedStandpunt]!.titel}
               >
+                <FocusTrap focusTrapOptions={{ allowOutsideClick: true }}>
+                  <div tabIndex={-1} className="w-full h-full flex flex-col md:flex-row outline-none">
                 {/* Drawer Left (Image) */}
                 <div className="relative h-[40vh] md:h-full w-full md:w-5/12 lg:w-1/2 shrink-0">
                   <img 
@@ -269,6 +275,8 @@ export default function Standpunten() {
                     ))}
                   </div>
                 </div>
+                  </div>
+                </FocusTrap>
               </motion.div>
             </>
           )}
