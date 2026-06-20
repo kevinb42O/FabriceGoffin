@@ -2,11 +2,16 @@
 
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Montserrat", ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
   body {
     @apply bg-zinc-50 text-zinc-900 font-sans antialiased overflow-x-hidden selection:bg-teal-500 selection:text-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
   }
 
   /*
