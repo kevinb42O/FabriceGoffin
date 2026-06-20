@@ -14,7 +14,7 @@ export function HomeBio() {
               className="relative aspect-[4/5] md:aspect-[4/5] lg:aspect-[3/4] w-full rounded-[1.5rem] lg:rounded-[2rem] overflow-hidden shadow-2xl lg:col-span-6 xl:col-span-5 order-2 lg:order-1 border-[6px] lg:border-8 border-white"
             >
               <img 
-                src="/images/overfabrice.png" 
+                src="/images/overfabrice.webp" 
                 alt="Fabrice Goffin en hond" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 loading="lazy"

@@ -56,7 +56,7 @@ export default function Contact() {
             animate={{ opacity: 1, scale: 1 }}
             className="lg:col-span-5 w-full relative rounded-3xl overflow-hidden shadow-2xl min-h-[400px]"
           >
-            <img src="/images/contacteermij.jpg" alt="Contacteer Fabrice Goffin" className="absolute inset-0 w-full h-full object-cover object-center" loading="lazy" />
+            <img src="/images/contacteermij.webp" alt="Contacteer Fabrice Goffin" className="absolute inset-0 w-full h-full object-cover object-center" loading="lazy" />
           </motion.div>
 
           {/* Right Column: Context & Form */}

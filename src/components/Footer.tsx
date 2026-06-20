@@ -24,7 +24,7 @@ export function Footer() {
       <motion.div
         className="absolute inset-0 z-0 opacity-[0.09] pointer-events-none"
         style={{
-          backgroundImage: 'url(/images/kaartoostende.png)',
+          backgroundImage: 'url(/images/kaartoostende.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',

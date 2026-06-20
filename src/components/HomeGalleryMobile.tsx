@@ -35,7 +35,7 @@ export function HomeGalleryMobile() {
           className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_20px_40px_-20px_rgba(0,0,0,0.3)]"
         >
           <ImageReveal
-            src="/images/asiel-render.jpg"
+            src="/images/asiel-render.webp"
             alt="Centrum voor Dierenwelzijn"
           />
           <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-transparent pointer-events-none" />
@@ -61,7 +61,7 @@ export function HomeGalleryMobile() {
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_20px_40px_-20px_rgba(0,0,0,0.3)]"
         >
-          <ImageReveal src="/images/werkbezoek.jpg" alt="Werkbezoek" />
+          <ImageReveal src="/images/werkbezoek.webp" alt="Werkbezoek" />
           <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-transparent pointer-events-none" />
           <div className="absolute inset-x-0 bottom-0 p-6">
             <div className="w-10 h-1 bg-red-500 mb-4" />

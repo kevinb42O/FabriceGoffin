@@ -41,7 +41,7 @@ export function HomeHeroMobile() {
         <motion.div
           className="absolute inset-0 opacity-[0.06]"
           style={{
-            backgroundImage: 'url(/images/kaartoostende.png)',
+            backgroundImage: 'url(/images/kaartoostende.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -69,7 +69,7 @@ export function HomeHeroMobile() {
         className="relative w-full h-[60svh] min-h-[400px] max-h-[560px] shrink-0 overflow-hidden"
       >
         <img
-          src="/images/fabrice-hero.jpg"
+          src="/images/fabrice-hero.webp"
           alt="Fabrice Goffin"
           fetchPriority="high"
           className="absolute inset-0 w-full h-full object-cover object-[center_32%]"

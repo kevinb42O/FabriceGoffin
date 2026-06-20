@@ -138,7 +138,7 @@ export function VideoShowcase() {
              <div
                aria-hidden="true"
                className="absolute inset-0 scale-105 blur-[60px] opacity-50 saturate-150 pointer-events-none z-0 rounded-[3rem] bg-cover bg-center"
-               style={{ backgroundImage: 'url(/images/werkbezoek.jpg)' }}
+               style={{ backgroundImage: 'url(/images/werkbezoek.webp)' }}
              />
 
              {/* Main Vertical Video Player */}
@@ -162,7 +162,7 @@ export function VideoShowcase() {
                     muted={isMuted}
                     loop
                     preload="metadata"
-                    poster="/images/werkbezoek.jpg"
+                    poster="/images/werkbezoek.webp"
                   />
                 </div>
                 

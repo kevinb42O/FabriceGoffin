@@ -288,7 +288,7 @@ export default function Standpunten() {
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.5, ease: 'easeOut' }}
-              src="/images/asiel-render.jpg"
+              src="/images/asiel-render.webp"
               alt="Centrum voor Dierenwelzijn Render"
               className="w-full h-full object-cover object-center"
               loading="lazy"

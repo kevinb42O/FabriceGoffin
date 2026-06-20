@@ -13,7 +13,7 @@ export default function Over() {
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <img 
-              src="/images/shotstrand.png" 
+              src="/images/shotstrand.webp" 
               alt="Fabrice Goffin op het strand" 
               className="w-full h-full object-cover object-center lg:object-[center_30%]"
               fetchPriority="high"
@@ -85,7 +85,7 @@ export default function Over() {
                </div>
                <div className="md:col-span-5">
                   <div className="relative shadow-xl group rounded-2xl overflow-hidden aspect-[4/5] w-full">
-                    <ImageReveal src="/images/overfabrice.png" alt="Fabrice en Nova" />
+                    <ImageReveal src="/images/overfabrice.webp" alt="Fabrice en Nova" />
                     <div className="absolute z-10 bottom-0 left-0 w-full p-4 bg-gradient-to-t from-zinc-900/80 to-transparent">
                       <p className="text-white text-sm font-bold tracking-widest uppercase m-0">Fabrice & Nova</p>
                     </div>

@@ -17,7 +17,7 @@ export function HomeGallery() {
             >
               <motion.div style={{ y: yGalleryLeft }} className="aspect-video relative shadow-xl rounded-sm h-full w-full">
                 <ImageReveal 
-                  src="/images/asiel-render.jpg" 
+                  src="/images/asiel-render.webp" 
                   alt="Centrum voor Dierenwelzijn" 
                 />
                 <div className="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-zinc-900/90 to-transparent">
@@ -37,7 +37,7 @@ export function HomeGallery() {
             >
               <motion.div style={{ y: yGalleryRight }} className="aspect-auto md:aspect-[3/4] relative shadow-xl rounded-sm h-full w-full">
                 <ImageReveal 
-                  src="/images/werkbezoek.jpg" 
+                  src="/images/werkbezoek.webp" 
                   alt="Werkbezoek" 
                 />
               </motion.div>

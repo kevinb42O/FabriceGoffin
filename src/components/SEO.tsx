@@ -11,7 +11,7 @@ interface SEOProps {
 export function SEO({
   title,
   description = 'Ontdek de visie, standpunten en realisaties van Fabrice Goffin, Schepen in Oostende.',
-  image = '/images/og-image.jpg', // Default OG image (should be an absolute URL in prod ideally, or a relative one if handled by crawler correctly)
+  image = '/images/og-image.webp', // Default OG image (should be an absolute URL in prod ideally, or a relative one if handled by crawler correctly)
   url,
   type = 'website',
 }: SEOProps) {
