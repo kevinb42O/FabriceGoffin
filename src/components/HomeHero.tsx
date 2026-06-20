@@ -123,7 +123,7 @@ export function HomeHero() {
                <img 
                  src="/images/ORIGINEELfabrice-hero.webp" 
                  alt="Fabrice Goffin"
-                 className="w-full h-full object-cover object-[35%_center] transition-all duration-700 hover:scale-105" 
+                 className="w-full h-full object-cover object-[43%_center] transition-all duration-700 hover:scale-105" 
                  fetchPriority="high"
                />
              </div>
