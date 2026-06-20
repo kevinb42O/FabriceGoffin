@@ -19,7 +19,7 @@ export default function Over() {
               fetchPriority="high"
             />
             {/* Subtle gradient on the right side to ensure text readability, leaving the left clear */}
-            <div className="absolute inset-y-0 right-0 w-full lg:w-2/3 bg-gradient-to-l from-zinc-900/90 via-zinc-900/40 to-transparent"></div>
+            <div className="absolute inset-y-0 right-0 w-full lg:w-1/2 bg-gradient-to-l from-zinc-900/90 to-transparent"></div>
             {/* Bottom gradient to blend into the next section smoothly */}
             <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent"></div>
           </div>

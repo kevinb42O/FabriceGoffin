@@ -28,7 +28,7 @@ export function HomeHeroMobile() {
   return (
     <section
       ref={ref}
-      className="relative w-full bg-zinc-950 text-white overflow-hidden lg:hidden flex flex-col min-h-dvh"
+      className="relative w-full bg-zinc-50 text-zinc-900 overflow-hidden lg:hidden flex flex-col min-h-dvh"
     >
       {/* Kaart van Oostende — geanimeerde achtergrond (ken-burns / drift), identiek aan footer */}
       <motion.div
@@ -80,7 +80,7 @@ export function HomeHeroMobile() {
           className="absolute inset-x-0 top-0 h-32 pointer-events-none"
           style={{
             background:
-              'linear-gradient(to bottom, rgba(9, 9, 11, 0.58) 0%, rgba(9, 9, 11, 0.34) 42%, rgba(9, 9, 11, 0.14) 72%, rgba(9, 9, 11, 0) 100%)',
+              'linear-gradient(to bottom, rgba(250, 250, 250, 0.58) 0%, rgba(250, 250, 250, 0.34) 42%, rgba(250, 250, 250, 0.14) 72%, rgba(250, 250, 250, 0) 100%)',
           }}
         />
 
@@ -89,21 +89,21 @@ export function HomeHeroMobile() {
           className="absolute inset-x-0 bottom-0 h-[48%] pointer-events-none"
           style={{
             background:
-              'linear-gradient(to top, rgba(9, 9, 11, 0.99) 0%, rgba(9, 9, 11, 0.95) 22%, rgba(9, 9, 11, 0.82) 42%, rgba(9, 9, 11, 0.56) 62%, rgba(9, 9, 11, 0.24) 80%, rgba(9, 9, 11, 0) 100%)',
+              'linear-gradient(to top, rgba(250, 250, 250, 0.99) 0%, rgba(250, 250, 250, 0.95) 22%, rgba(250, 250, 250, 0.82) 42%, rgba(250, 250, 250, 0.56) 62%, rgba(250, 250, 250, 0.24) 80%, rgba(250, 250, 250, 0) 100%)',
           }}
         />
         <div
           className="absolute inset-x-0 bottom-0 h-[52%] pointer-events-none"
           style={{
             background:
-              'radial-gradient(120% 85% at 50% 100%, rgba(9, 9, 11, 0.34) 0%, rgba(9, 9, 11, 0.18) 45%, rgba(9, 9, 11, 0.06) 68%, rgba(9, 9, 11, 0) 100%)',
+              'radial-gradient(120% 85% at 50% 100%, rgba(250, 250, 250, 0.34) 0%, rgba(250, 250, 250, 0.18) 45%, rgba(250, 250, 250, 0.06) 68%, rgba(250, 250, 250, 0) 100%)',
           }}
         />
         <div
           className="absolute inset-x-0 bottom-0 h-24 pointer-events-none blur-[8px]"
           style={{
             background:
-              'linear-gradient(to top, rgba(9, 9, 11, 0.58) 0%, rgba(9, 9, 11, 0) 100%)',
+              'linear-gradient(to top, rgba(250, 250, 250, 0.58) 0%, rgba(250, 250, 250, 0) 100%)',
           }}
         />
 
@@ -115,7 +115,7 @@ export function HomeHeroMobile() {
           className="absolute left-6 right-6 bottom-6 flex items-center gap-3"
         >
           <div className="w-8 h-[2px] bg-red-500" />
-          <span className="text-red-400 font-medium uppercase tracking-[0.22em] text-[10px] drop-shadow-md font-heading">
+          <span className="text-red-600 font-medium uppercase tracking-[0.22em] text-[10px] drop-shadow-sm font-heading">
             Vooruit Plus — Oostende
           </span>
         </motion.div>
@@ -133,7 +133,7 @@ export function HomeHeroMobile() {
               initial={{ y: '110%' }}
               animate={{ y: 0 }}
               transition={{ delay: 0.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="block text-white text-[clamp(48px,14vw,80px)]"
+              className="block text-zinc-900 text-[clamp(48px,14vw,80px)]"
             >
               IK BEN
             </motion.span>
@@ -155,18 +155,18 @@ export function HomeHeroMobile() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.7 }}
-          className="text-zinc-300 text-[15px] leading-relaxed font-medium max-w-md font-heading"
+          className="text-zinc-600 text-[15px] leading-relaxed font-medium max-w-md font-heading"
         >
           Schepen van Oostende, bevoegd voor{' '}
-          <span className="text-white font-bold border-b-2 border-red-500/60">
+          <span className="text-zinc-900 font-bold border-b-2 border-red-500/60">
             Dierenwelzijn
           </span>
           ,{' '}
-          <span className="text-white font-bold border-b-2 border-red-500/60">
+          <span className="text-zinc-900 font-bold border-b-2 border-red-500/60">
             Digitalisering
           </span>{' '}
           en{' '}
-          <span className="text-white font-bold border-b-2 border-red-500/60">
+          <span className="text-zinc-900 font-bold border-b-2 border-red-500/60">
             Ontmoeting
           </span>
           .
@@ -188,7 +188,7 @@ export function HomeHeroMobile() {
           </Link>
           <Link
             to="/over"
-            className="w-full h-[52px] rounded-full bg-white/[0.08] backdrop-blur-md border border-white/15 text-white font-black uppercase tracking-widest text-[13px] flex items-center justify-center active:scale-[0.98] transition-transform"
+            className="w-full h-[52px] rounded-full bg-zinc-900/[0.03] backdrop-blur-md border border-zinc-900/10 text-zinc-900 font-black uppercase tracking-widest text-[13px] flex items-center justify-center active:scale-[0.98] transition-transform"
           >
             Over Fabrice
           </Link>
