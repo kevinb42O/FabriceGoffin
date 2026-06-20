@@ -18,7 +18,7 @@ export default function Article() {
     return (
       <PageTransition>
         <div className="min-h-screen pt-48 flex flex-col items-center justify-center bg-zinc-50">
-          <h1 className="text-4xl font-black uppercase text-zinc-900 mb-4">Artikel niet gevonden</h1>
+          <h1 className="text-4xl font-medium uppercase text-zinc-900 mb-4">Artikel niet gevonden</h1>
           <Link to="/nieuws" className="text-red-600 font-bold hover:underline">Terug naar Nieuws</Link>
         </div>
       </PageTransition>
@@ -48,7 +48,7 @@ export default function Article() {
             {article.datum}
           </span>
 
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9] text-zinc-900 mb-12">
+          <h1 className="text-4xl md:text-6xl font-medium uppercase tracking-tighter leading-[0.9] text-zinc-900 mb-12">
             <StaggerText text={article.titel} delay={0.1} />
           </h1>
           

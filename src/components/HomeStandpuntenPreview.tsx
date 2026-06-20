@@ -24,7 +24,7 @@ export function HomeStandpuntenPreview() {
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
         <div className="px-6 md:px-12 lg:px-24 flex flex-col md:flex-row justify-between md:items-end mb-16 gap-8 shrink-0">
-          <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-zinc-900">
+          <h2 className="text-5xl md:text-7xl font-medium uppercase tracking-tighter text-zinc-900">
             <StaggerText text="Speerpunten" />
           </h2>
           <MagneticButton>
@@ -70,7 +70,7 @@ export function HomeStandpuntenPreview() {
               </div>
 
               <div className="absolute inset-x-0 bottom-0 p-6">
-                <h3 className="text-white font-black uppercase tracking-tight leading-[0.95] mb-3 break-words text-[clamp(22px,2.2vw,34px)]">
+                <h3 className="text-white font-medium uppercase tracking-tight leading-[0.95] mb-3 break-words text-[clamp(22px,2.2vw,34px)]">
                   {item.titel}
                 </h3>
                 <p className="text-zinc-200 text-[17px] leading-relaxed font-medium">

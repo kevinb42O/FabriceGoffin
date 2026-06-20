@@ -30,7 +30,7 @@ export function HomeBio() {
                  viewport={{ once: true }}
                  className="mb-8 lg:mb-10"
                >
-                  <h2 className="text-[clamp(32px,8vw,42px)] md:text-5xl lg:text-6xl font-black tracking-tighter leading-[0.85] uppercase text-zinc-900 drop-shadow-sm flex flex-col">
+                  <h2 className="text-[clamp(32px,8vw,42px)] md:text-5xl lg:text-6xl font-medium tracking-tighter leading-[0.85] uppercase text-zinc-900 drop-shadow-sm flex flex-col">
                      <span><StaggerText text="Een hart voor dieren," /></span>
                      <span className="text-red-600"><StaggerText text="een blik op de toekomst." delay={0.2} /></span>
                   </h2>

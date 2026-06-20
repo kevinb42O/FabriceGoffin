@@ -25,7 +25,7 @@ export function SocialWall() {
              <span className="text-red-600 font-bold uppercase tracking-[0.2em] text-xs">Volg mee online</span>
           </motion.div>
 
-          <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-zinc-900 leading-none">
+          <h3 className="text-4xl md:text-5xl font-medium uppercase tracking-tighter text-zinc-900 leading-none">
             <StaggerText text="@goffinfabrice" />
           </h3>
         </div>

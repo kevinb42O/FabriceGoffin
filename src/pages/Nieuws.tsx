@@ -52,7 +52,7 @@ export default function Nieuws() {
           </motion.div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
-            <h1 className="text-6xl md:text-8xl lg:text-[100px] font-black uppercase tracking-tighter leading-[0.85] text-zinc-900 drop-shadow-sm max-w-3xl">
+            <h1 className="text-6xl md:text-8xl lg:text-[100px] font-medium uppercase tracking-tighter leading-[0.85] text-zinc-900 drop-shadow-sm max-w-3xl">
               <StaggerText text="Nieuws & Updates" />
             </h1>
             <motion.div 
@@ -85,7 +85,7 @@ export default function Nieuws() {
                 <span className="inline-block px-3 py-1 bg-zinc-100 text-red-600 font-black text-xs uppercase tracking-widest rounded-sm mb-6 w-max">
                   Uitgelicht — {featuredArticle.datum}
                 </span>
-                <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-none text-zinc-900 mb-6 group-hover:text-red-600 transition-colors">
+                <h2 className="text-3xl md:text-5xl font-medium tracking-tight leading-none text-zinc-900 mb-6 group-hover:text-red-600 transition-colors">
                   {featuredArticle.titel}
                 </h2>
                 <p className="text-zinc-600 text-lg md:text-xl font-medium leading-relaxed mb-10 line-clamp-3 md:line-clamp-4">
@@ -121,7 +121,7 @@ export default function Nieuws() {
                    </div>
 
                    <div className="p-8 flex flex-col flex-1">
-                     <h3 className="text-xl font-black tracking-tight leading-snug text-zinc-900 mb-4 group-hover:text-red-600 transition-colors line-clamp-2">
+                     <h3 className="text-xl font-medium tracking-tight leading-snug text-zinc-900 mb-4 group-hover:text-red-600 transition-colors line-clamp-2">
                        {article.titel}
                      </h3>
                      <p className="text-zinc-600 text-sm font-medium leading-relaxed mb-8 flex-1 line-clamp-3">

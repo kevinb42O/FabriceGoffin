@@ -239,7 +239,7 @@ export default function Standpunten() {
                       STANDPUNT {standpunten[selectedStandpunt]!.nummer}
                     </span>
                     <h2 
-                      className="text-3xl md:text-4xl lg:text-[2.5rem] xl:text-5xl font-black text-white leading-[1.1] uppercase tracking-tight break-words hyphens-auto"
+                      className="text-3xl md:text-4xl lg:text-[2.5rem] xl:text-5xl font-medium text-white leading-[1.1] uppercase tracking-tight break-words hyphens-auto"
                       lang="nl"
                     >
                       {standpunten[selectedStandpunt]!.titel}
@@ -315,7 +315,7 @@ export default function Standpunten() {
               <span className="w-16 h-[2px] bg-red-500"></span>
               Onze Missie
             </motion.p>
-            <h2 className="text-6xl md:text-7xl lg:text-9xl font-black tracking-tighter leading-[0.9] text-white uppercase drop-shadow-2xl">
+            <h2 className="text-6xl md:text-7xl lg:text-9xl font-medium tracking-tighter leading-[0.9] text-white uppercase drop-shadow-2xl">
               <StaggerText el="span" className="block" text="Voor Nu &" />
               <StaggerText el="span" className="block whitespace-nowrap" text="De Toekomst." />
             </h2>
@@ -360,7 +360,7 @@ export default function Standpunten() {
                   <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-red-100 text-red-600 font-black mb-8 group-hover:scale-110 transition-transform">
                     01
                   </span>
-                  <h3 className="text-4xl lg:text-5xl font-black uppercase tracking-tight text-zinc-900 mb-6">Meest Diervriendelijke Stad</h3>
+                  <h3 className="text-4xl lg:text-5xl font-medium uppercase tracking-tight text-zinc-900 mb-6">Meest Diervriendelijke Stad</h3>
                   <p className="text-xl text-zinc-600 font-medium leading-relaxed max-w-2xl">
                     We beschermen dieren met strikte maatregelen en introduceren het Ethisch Certificaat voor dierenartsen die niet samenwerken met broodfokkers. Zo bannen we illegale praktijken uit Oostende en zorgen we voor een warm nest voor elk dier.
                   </p>
@@ -383,7 +383,7 @@ export default function Standpunten() {
                 <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/20 text-white font-black mb-8 backdrop-blur-md">
                   02
                 </span>
-                <h3 className="text-3xl lg:text-4xl font-black uppercase tracking-tight mb-6">Veilige Feesten</h3>
+                <h3 className="text-3xl lg:text-4xl font-medium uppercase tracking-tight mb-6">Veilige Feesten</h3>
                 <p className="text-lg text-white/90 font-medium leading-relaxed">
                   Een absolute stop op traditioneel knalvuurwerk dat dieren in paniek brengt. We maken de overstap naar spectaculaire droneshows en geluidsarm vuurwerk voor alle grote evenementen in de stad.
                 </p>
@@ -405,7 +405,7 @@ export default function Standpunten() {
                 <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 text-white font-black mb-8 backdrop-blur-md group-hover:bg-red-600 transition-colors">
                   03
                 </span>
-                <h3 className="text-3xl lg:text-4xl font-black uppercase tracking-tight mb-6">Smart City</h3>
+                <h3 className="text-3xl lg:text-4xl font-medium uppercase tracking-tight mb-6">Smart City</h3>
                 <p className="text-lg text-zinc-400 font-medium leading-relaxed">
                   Door in te zetten op een echte Smart City maken we van Oostende een technologische hub. Een digitale toekomst ten dienste van ons allen. Een transparante en verbonden stadsomgeving met slimme mobiliteit.
                 </p>
@@ -428,7 +428,7 @@ export default function Standpunten() {
                   <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-zinc-200 text-zinc-900 font-black mb-8 group-hover:scale-110 transition-transform">
                     04
                   </span>
-                  <h3 className="text-3xl lg:text-4xl font-black uppercase tracking-tight text-zinc-900 mb-6">Samenwerking Versterken</h3>
+                  <h3 className="text-3xl lg:text-4xl font-medium uppercase tracking-tight text-zinc-900 mb-6">Samenwerking Versterken</h3>
                   <p className="text-lg text-zinc-600 font-medium leading-relaxed max-w-xl">
                     Beleid maak je niet alleen. Dat begint bij een stevige versterking van de samenwerking met organisaties die zich inzetten voor dierenwelzijn, geluidsarm vuurwerk en een vernieuwend jeugdbeleid. We slaan de handen in elkaar.
                   </p>

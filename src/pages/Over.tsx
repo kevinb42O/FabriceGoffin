@@ -37,7 +37,7 @@ export default function Over() {
                 <div className="w-16 h-[3px] bg-red-600"></div>
               </div>
               
-              <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-black uppercase tracking-tighter text-white leading-[0.85] mb-8 drop-shadow-2xl">
+              <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-medium uppercase tracking-tighter text-white leading-[0.85] mb-8 drop-shadow-2xl">
                 Over<br />Fabrice
               </h1>
               
@@ -68,7 +68,7 @@ export default function Over() {
             </div>
 
             <div className="my-12 py-8 border-y-2 border-zinc-100">
-               <h3 className="text-2xl font-black uppercase tracking-tight text-zinc-900 mb-4">Zorabots & Talemate</h3>
+               <h3 className="text-2xl font-medium uppercase tracking-tight text-zinc-900 mb-4">Zorabots & Talemate</h3>
                <p className="text-zinc-600 text-base m-0">
                  In 2011 werkte ik samen met een van mijn beste vrienden, Tommy, het idee uit voor een robot gericht op het verbeteren van mensenlevens. Zo is ‘Zora’ geboren, een zorgrobot ontstaan uit onze gedeelde passie voor ‘Star Wars’. En zo was ook ‘Zorabots’ een feit, als roboticabedrijf.
                </p>

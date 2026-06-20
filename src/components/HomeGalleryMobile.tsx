@@ -20,7 +20,7 @@ export function HomeGalleryMobile() {
         className="flex items-center gap-3 mb-6"
       >
         <div className="w-8 h-[2px] bg-red-600" />
-        <span className="text-red-600 font-black uppercase tracking-[0.22em] text-[10px]">
+        <span className="text-red-600 font-medium uppercase tracking-[0.22em] text-[10px]">
           In de praktijk
         </span>
       </motion.div>
@@ -41,10 +41,10 @@ export function HomeGalleryMobile() {
           <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-transparent pointer-events-none" />
           <div className="absolute inset-x-0 bottom-0 p-6">
             <div className="w-10 h-1 bg-red-500 mb-4" />
-            <span className="text-red-400 font-black uppercase tracking-[0.22em] text-[10px] mb-3 block">
+            <span className="text-red-400 font-medium uppercase tracking-[0.22em] text-[10px] mb-3 block">
               Toekomst
             </span>
-            <h3 className="text-white text-2xl font-black uppercase tracking-tight leading-[0.95]">
+            <h3 className="text-white text-2xl font-medium uppercase tracking-tight leading-[0.95]">
               Nieuw Centrum voor Dierenwelzijn
             </h3>
             <p className="text-zinc-300 mt-2 text-sm font-medium">
@@ -65,10 +65,10 @@ export function HomeGalleryMobile() {
           <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-transparent pointer-events-none" />
           <div className="absolute inset-x-0 bottom-0 p-6">
             <div className="w-10 h-1 bg-red-500 mb-4" />
-            <span className="text-red-400 font-black uppercase tracking-[0.22em] text-[10px] mb-3 block">
+            <span className="text-red-400 font-medium uppercase tracking-[0.22em] text-[10px] mb-3 block">
               Op het terrein
             </span>
-            <h3 className="text-white text-2xl font-black uppercase tracking-tight leading-[0.95]">
+            <h3 className="text-white text-2xl font-medium uppercase tracking-tight leading-[0.95]">
               Werkbezoek
             </h3>
             <p className="text-zinc-300 mt-2 text-sm font-medium">

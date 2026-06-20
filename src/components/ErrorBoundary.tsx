@@ -41,7 +41,7 @@ export class ErrorBoundary extends Component<Props, State> {
               <div className="w-12 h-[2px] bg-red-600"></div>
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-zinc-900 mb-6">
+            <h1 className="text-4xl md:text-6xl font-medium uppercase tracking-tighter text-zinc-900 mb-6">
               Onverwachte Fout
             </h1>
 

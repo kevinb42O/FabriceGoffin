@@ -77,7 +77,7 @@ export function HomeStandpuntenMobile() {
           className="flex items-center gap-3 mb-4"
         >
           <div className="w-8 h-[2px] bg-red-600" />
-          <span className="text-red-600 font-black uppercase tracking-[0.22em] text-[10px]">
+          <span className="text-red-600 font-medium uppercase tracking-[0.22em] text-[10px]">
             Mijn programma
           </span>
         </motion.div>
@@ -146,7 +146,7 @@ export function HomeStandpuntenMobile() {
                 {/* Bottom content block */}
                 <div className="absolute inset-x-0 bottom-0 p-6">
                   <h3
-                    className="text-white font-black uppercase tracking-tight leading-[0.95] mb-3 break-words text-[clamp(19px,5.8vw,30px)]"
+                    className="text-white font-medium uppercase tracking-tight leading-[0.95] mb-3 break-words text-[clamp(19px,5.8vw,30px)]"
                   >
                     {item.titel}
                   </h3>
