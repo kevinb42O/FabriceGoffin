@@ -72,7 +72,7 @@ export function HomeHeroMobile() {
           src="/images/ORIGINEELfabrice-hero.webp"
           alt="Fabrice Goffin"
           fetchPriority="high"
-          className="absolute inset-0 w-full h-full object-cover object-[center_32%]"
+          className="absolute inset-0 w-full h-full object-cover object-[35%_32%]"
         />
 
         {/* Top fade — denser near the navbar, then quickly feathered out */}
