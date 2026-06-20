@@ -135,18 +135,7 @@ export function VideoShowcase() {
              style={{ y, scale, opacity }}
              className="lg:col-span-5 lg:col-start-1 relative w-full max-w-[450px] mx-auto lg:ml-0 lg:mr-auto order-1 lg:order-1 z-20"
           >
-             {/*
-               Ambient Blur Background — static image instead of a 2nd <video>.
-               Why: a blurred + mix-blend-screen <video> forces Chrome to drop
-               GPU video decoding (software compositing path), causing the
-               main player to stutter. A blurred poster gives the same look
-               at zero per-frame cost.
-             */}
-             <div
-               aria-hidden="true"
-               className="absolute inset-0 scale-105 blur-[60px] opacity-50 saturate-150 pointer-events-none z-0 rounded-[3rem] bg-cover bg-center"
-               style={{ backgroundImage: 'url(/images/werkbezoek.webp)' }}
-             />
+
 
              {/* Main Vertical Video Player */}
              <div 
@@ -169,7 +158,6 @@ export function VideoShowcase() {
                     muted={isMuted}
                     loop
                     preload="metadata"
-                    poster="/images/werkbezoek.webp"
                   />
                 </div>
                 
