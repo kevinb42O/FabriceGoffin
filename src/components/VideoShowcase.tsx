@@ -67,15 +67,22 @@ export function VideoShowcase() {
   const opacity = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
 
   return (
-    <section ref={containerRef} className="py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-zinc-950 relative z-10 overflow-hidden">
+    <section ref={containerRef} className="py-24 md:py-32 px-6 md:px-12 lg:px-24 relative z-10 overflow-hidden">
+       {/* Background Image with Overlay */}
+       <div 
+         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+         style={{ backgroundImage: 'url(/images/gemeenteraad.webp)' }}
+       />
+       <div className="absolute inset-0 z-0 bg-zinc-950/85 backdrop-blur-[2px]" />
+
        {/* Background ambient accents */}
-       <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-red-600/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
-       <div className="absolute bottom-0 left-0 w-[40vw] h-[40vw] bg-zinc-800/20 rounded-full blur-[100px] pointer-events-none translate-y-1/3 -translate-x-1/3"></div>
+       <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-red-600/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3 z-0"></div>
+       <div className="absolute bottom-0 left-0 w-[40vw] h-[40vw] bg-zinc-800/20 rounded-full blur-[100px] pointer-events-none translate-y-1/3 -translate-x-1/3 z-0"></div>
 
        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Typography */}
-          <div className="lg:col-span-6 flex flex-col justify-center order-2 lg:order-1 relative z-20 py-12">
+          <div className="lg:col-span-6 lg:col-start-7 flex flex-col justify-center order-2 lg:order-2 relative z-20 py-12">
              <motion.div
                initial={{ opacity: 0, x: -30 }}
                whileInView={{ opacity: 1, x: 0 }}
@@ -88,7 +95,7 @@ export function VideoShowcase() {
 
              <h2 className="text-5xl lg:text-6xl xl:text-7xl font-medium uppercase tracking-tighter text-white mb-8 leading-[0.85] font-heading">
                <StaggerText text="Actie in de" /><br />
-               <span className="text-red-600 drop-shadow-[0_0_30px_rgba(220,38,38,0.3)]">
+               <span className="text-red-600 drop-shadow-[0_0_30px_rgba(220,38,38,0.3)] font-heading">
                  <StaggerText text="Gemeenteraad" delay={0.2} />
                </span>
              </h2>
@@ -98,7 +105,7 @@ export function VideoShowcase() {
                whileInView={{ opacity: 1, y: 0 }}
                viewport={{ once: true }}
                transition={{ delay: 0.3 }}
-               className="text-lg md:text-xl text-zinc-400 font-medium leading-relaxed mb-10 max-w-lg"
+               className="text-lg md:text-xl text-zinc-300 font-medium leading-relaxed mb-10 max-w-lg"
              >
                Bekijk mijn recentste tussenkomsten en debatten over de thema's die Oostende en haar bewoners aanbelangen.
              </motion.p>
@@ -126,7 +133,7 @@ export function VideoShowcase() {
           {/* Vertical Video Container (2D-only transforms — see comment above) */}
           <motion.div 
              style={{ y, scale, opacity }}
-             className="lg:col-span-5 lg:col-start-8 relative w-full max-w-[450px] mx-auto lg:ml-auto lg:mr-0 order-1 lg:order-2"
+             className="lg:col-span-5 lg:col-start-1 relative w-full max-w-[450px] mx-auto lg:ml-0 lg:mr-auto order-1 lg:order-1 z-20"
           >
              {/*
                Ambient Blur Background — static image instead of a 2nd <video>.
