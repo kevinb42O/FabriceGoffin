@@ -167,7 +167,7 @@ export function HomeHeroMobile() {
           </span>{' '}
           en{' '}
           <span className="text-zinc-900 font-bold border-b-2 border-red-500/60">
-            Ontmoeting
+            Ontmoetingcentra
           </span>
           .
         </motion.p>

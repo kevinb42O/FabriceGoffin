@@ -7,6 +7,7 @@ const links = [
   { path: '/', label: 'Home' },
   { path: '/over', label: 'Over Mij' },
   { path: '/standpunten', label: 'Standpunten' },
+  { path: '/tijdlijn', label: 'Tijdlijn' },
   { path: '/nieuws', label: 'Nieuws' },
   { path: '/contact', label: 'Contact' },
 ];

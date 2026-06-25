@@ -78,7 +78,7 @@ export function HomeHero() {
               className="mt-8 lg:mt-12 max-w-lg"
             >
               <p className="text-lg md:text-2xl text-zinc-700 leading-relaxed font-medium mb-10">
-                Ik ben een Oostendse ondernemer met een groot hart voor dieren. Sinds eind 2024 ben ik Schepen bevoegd voor <span className="text-zinc-900 font-bold border-b-2 border-red-200">Dierenwelzijn</span>, <span className="text-zinc-900 font-bold border-b-2 border-red-200">Digitalisering</span> en <span className="text-zinc-900 font-bold border-b-2 border-red-200">Ontmoeting</span>.
+                Ik ben een Oostendse ondernemer met een groot hart voor dieren. Sinds eind 2024 ben ik Schepen bevoegd voor <span className="text-zinc-900 font-bold border-b-2 border-red-200">Dierenwelzijn</span>, <span className="text-zinc-900 font-bold border-b-2 border-red-200">Digitalisering</span> en <span className="text-zinc-900 font-bold border-b-2 border-red-200">Ontmoetingcentra</span>.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-4">

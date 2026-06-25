@@ -48,7 +48,7 @@ export function HomeBio() {
                     Ik ben een Oostendse ondernemer met een hart voor dieren. Founder en ex-Co-CEO van softwarebedrijf Talemate, voormalig voorzitter van het Blauwe Kruis van de Kust en bovenal een enthousiaste en gemotiveerde dierenliefhebber, die van Oostende de meest diervriendelijke stad van Vlaanderen wil maken.
                   </p>
                   <p>
-                    Sinds eind 2024 ben ik Schepen in Oostende bevoegd voor Dierenwelzijn, Digitalisering en Ontmoeting. Help je graag mee, heb je vragen of ideeën? Aarzel dan niet om me te contacteren.
+                    Sinds eind 2024 ben ik Schepen in Oostende bevoegd voor Dierenwelzijn, Digitalisering en Ontmoetingcentra. Help je graag mee, heb je vragen of ideeën? Aarzel dan niet om me te contacteren.
                   </p>
                   
                   <blockquote className="mt-6 lg:mt-8 p-6 lg:p-8 bg-zinc-50 border-l-4 border-red-600 rounded-r-2xl shadow-sm relative overflow-hidden group">

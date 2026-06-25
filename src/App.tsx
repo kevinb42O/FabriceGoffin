@@ -12,6 +12,7 @@ import { Suspense, lazy } from 'react';
 
 const Home = lazy(() => import('./pages/Home'));
 const Standpunten = lazy(() => import('./pages/Standpunten'));
+const Tijdlijn = lazy(() => import('./pages/Tijdlijn'));
 const Nieuws = lazy(() => import('./pages/Nieuws'));
 const Article = lazy(() => import('./pages/Article'));
 const Over = lazy(() => import('./pages/Over'));
@@ -50,6 +51,7 @@ export default function App() {
                   <Route path="/standpunten" element={<Standpunten />} />
                   {/* /doelen content lives on /standpunten now — redirect old URLs */}
                   <Route path="/doelen" element={<Navigate to="/standpunten" replace />} />
+                  <Route path="/tijdlijn" element={<Tijdlijn />} />
                   <Route path="/nieuws" element={<Nieuws />} />
                   <Route path="/nieuws/:slug" element={<Article />} />
                   <Route path="/privacy" element={<Privacy />} />

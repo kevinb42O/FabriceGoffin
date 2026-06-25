@@ -70,7 +70,7 @@ export default function Over() {
             <div className="my-12 py-8 border-y-2 border-zinc-100">
                <h3 className="text-2xl font-medium uppercase tracking-tight text-zinc-900 mb-4 font-heading">Zorabots & Talemate</h3>
                <p className="text-zinc-600 text-base m-0">
-                 In 2011 werkte ik samen met een van mijn beste vrienden, Tommy, het idee uit voor een robot gericht op het verbeteren van mensenlevens. Zo is ‘Zora’ geboren, een zorgrobot ontstaan uit onze gedeelde passie voor ‘Star Wars’. En zo was ook ‘Zorabots’ een feit, als roboticabedrijf.
+                 In 2011 werkte ik het idee uit voor een robot gericht op het verbeteren van mensenlevens. Zo is ‘Zora’ geboren, een zorgrobot ontstaan uit onze gedeelde passie voor ‘Star Wars’. En zo was ook ‘Zorabots’ een feit, als roboticabedrijf.
                </p>
             </div>
 
@@ -94,7 +94,7 @@ export default function Over() {
             </div>
 
             <p>
-              Vandaag is Zorabots als bedrijf uitgegroeid tot Talemate, een wereldwijde speler voor software voor robotica, IoT en metaverse. Het Blauwe Kruis van de Kust is verder gegroeid tot een efficiënte en sterke organisatie voor de opvang van jaarlijks meer dan 200 honden, 400 katten, en heel wat konijnen en knaagdieren. Met dit dierenasiel staan we bovendien op de drempel van het uitgroeien tot een Centrum voor Dierenwelzijn in de Oostendse regio. Het zijn verwezenlijkingen waar ik bijzonder trots op ben. Het is dan ook met spijt in het hart dat ik afscheid neem van Talemate als co-CEO en als voorzitter van Het Blauwe Kruis van de Kust. Maar Oostende roept.
+              Vandaag is Zorabots als bedrijf uitgegroeid tot Talemate, een wereldwijde speler voor software voor robotica, IoT en metaverse. Het Blauwe Kruis van de Kust is verder gegroeid tot een efficiënte en sterke organisatie voor de opvang van jaarlijks meer dan 200 honden, 400 katten, en heel wat konijnen en knaagdieren. Met dit dierenasiel staan we bovendien op de drempel van het uitgroeien tot een Centrum voor Dierenwelzijn in de Oostendse regio. Het zijn verwezenlijkingen waar ik bijzonder trots op ben. Het is dan ook met spijt in het hart dat ik afscheid nam van Talemate als co-CEO en als voorzitter van Het Blauwe Kruis van de Kust. Maar Oostende roept.
             </p>
 
             <blockquote className="my-12 text-2xl md:text-3xl text-zinc-900 font-black uppercase tracking-tight leading-snug border-l-4 border-red-600 pl-6 md:pl-10">
