@@ -23,6 +23,7 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 
 import { CustomCursor } from './components/CustomCursor';
 import { GrainOverlay } from './components/GrainOverlay';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   const location = useLocation();
@@ -62,6 +63,7 @@ export default function App() {
           </AnimatePresence>
         </main>
         <Footer />
+        <Analytics />
       </div>
     </MotionConfig>
   );
