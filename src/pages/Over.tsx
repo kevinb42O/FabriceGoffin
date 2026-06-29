@@ -6,7 +6,11 @@ import { SEO } from '../components/SEO';
 export default function Over() {
   return (
     <PageTransition>
-      <SEO title="Over Fabrice — Fabrice Goffin" description="Leer meer over Fabrice Goffin, zijn achtergrond, en zijn passie voor dierenwelzijn en Oostende." />
+      <SEO 
+        title="Over Fabrice — Fabrice Goffin" 
+        description="Leer meer over Fabrice Goffin, zijn achtergrond, en zijn passie voor dierenwelzijn en Oostende." 
+        url="/over"
+      />
       <div className="w-full">
         {/* Full Bleed Hero Section */}
         <div className="relative w-full min-h-[85vh] flex items-center justify-end overflow-hidden bg-zinc-900">
@@ -17,6 +21,8 @@ export default function Over() {
               alt="Fabrice Goffin op het strand" 
               className="w-full h-full object-cover object-center lg:object-[center_30%]"
               fetchPriority="high"
+              width={1920}
+              height={1080}
             />
             {/* Subtle gradient on the right side to ensure text readability, leaving the left clear */}
             <div className="absolute inset-y-0 right-0 w-full lg:w-1/2 bg-gradient-to-l from-zinc-900/90 to-transparent"></div>
@@ -118,6 +124,8 @@ export default function Over() {
                 alt="Opkomst Fabrice Goffin" 
                 className="w-full h-auto object-contain transition-transform duration-[2s] ease-out group-hover:scale-105"
                 loading="lazy"
+                width={1200}
+                height={800}
               />
               <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl pointer-events-none"></div>
             </motion.div>

@@ -11,7 +11,11 @@ import { HomeStandpuntenMobile } from '../components/HomeStandpuntenMobile';
 export default function Home() {
   return (
     <PageTransition>
-      <SEO title="Fabrice Goffin — Schepen van Oostende" />
+      <SEO 
+        title="Fabrice Goffin — Schepen van Oostende" 
+        description="Ontdek de visie, standpunten en realisaties van Fabrice Goffin, Schepen van Dierenwelzijn, Digitalisering en Ontmoeting in Oostende."
+        url="/"
+      />
 
       {/* 1. Hero — mobile and desktop variants render mutually exclusively */}
       <HomeHeroMobile />

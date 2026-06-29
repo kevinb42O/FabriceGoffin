@@ -5,13 +5,15 @@ import PageTransition from '../components/PageTransition';
 import { SEO } from '../components/SEO';
 import {
   CATEGORIES,
-  HorizontalTimeline,
+  TimelineFeed,
   catCfg,
-} from '../components/HorizontalTimeline';
+} from '../components/TimelineFeed';
+import { MagneticButton } from '../components/MagneticButton';
+import { StaggerText } from '../components/StaggerText';
 import { CategoryPicker } from '../components/CategoryPicker';
 import type { TimelineCategory } from '../data/tijdlijn';
 
-export default function Tijdlijn() {
+export default function Realisaties() {
   const [selected, setSelected] = useState<TimelineCategory | null>(null);
   const [previewKey, setPreviewKey] = useState<TimelineCategory>(
     CATEGORIES[0]!.key,
@@ -33,22 +35,14 @@ export default function Tijdlijn() {
     <PageTransition>
       <SEO
         title="Realisaties — Fabrice Goffin"
-        description="Realisaties en projecten in de maak van Fabrice Goffin, opgedeeld per bevoegdheid."
-        url="/tijdlijn"
+        description="Realisaties en projecten in de maak van Fabrice Goffin, opgedeeld per thema."
+        url="/realisaties"
       />
 
       <section
-        className="relative bg-white text-zinc-900 pt-28 md:pt-36 pb-24 md:pb-32 overflow-hidden"
+        className="relative bg-white text-zinc-900 pt-32 md:pt-48 pb-24 md:pb-32 overflow-hidden"
       >
-        {/* Eyebrow */}
-        <div className="relative z-10 px-4 md:px-12 max-w-5xl">
-          <div className="flex items-center gap-3 mb-5">
-            <span className="block w-8 h-px bg-red-600" aria-hidden />
-            <span className="text-[10px] md:text-[11px] font-bold tracking-[0.3em] uppercase text-red-600">
-              Bevoegdheden
-            </span>
-          </div>
-        </div>
+
 
         <div className="relative z-10 flex flex-col xl:flex-row xl:items-start max-w-[1600px] mx-auto">
           {/* Always render picker, pass isCompact */}
@@ -74,15 +68,17 @@ export default function Tijdlijn() {
                   transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   className="mt-12 md:mt-16 w-full flex justify-center"
                 >
-                  <button
-                    type="button"
-                    onClick={() => setSelected(null)}
-                    className="group relative inline-flex items-center justify-center gap-4 px-8 py-4 bg-zinc-900 text-white rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.12)] focus:outline-none focus-visible:ring-4 focus-visible:ring-zinc-400"
-                  >
-                    <ArrowLeft className="w-5 h-5 relative z-10 transition-transform group-hover:-translate-x-1" aria-hidden />
-                    <span className="relative z-10 text-[11px] font-black tracking-[0.25em] uppercase mt-0.5">Andere Bevoegdheid</span>
-                    <div className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${activeCfg?.bg || 'bg-red-600'}`} />
-                  </button>
+                  <MagneticButton>
+                    <button
+                      type="button"
+                      onClick={() => setSelected(null)}
+                      className="group relative inline-flex items-center justify-center gap-4 px-8 py-4 bg-zinc-900 text-white rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.12)] focus:outline-none focus-visible:ring-4 focus-visible:ring-zinc-400"
+                    >
+                      <ArrowLeft className="w-5 h-5 relative z-10 transition-transform group-hover:-translate-x-1" aria-hidden />
+                      <span className="relative z-10 text-[11px] font-black tracking-[0.25em] uppercase mt-0.5">Ander Thema</span>
+                      <div className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${activeCfg?.bg || 'bg-red-600'}`} />
+                    </button>
+                  </MagneticButton>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -106,14 +102,19 @@ export default function Tijdlijn() {
               >
               <header className="px-4 md:px-12 mb-10 md:mb-14 max-w-5xl">
                 {/* Title — animates in */}
-                <motion.h1
-                  initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-                  className="text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] font-black tracking-[-0.025em] leading-[1] text-zinc-900"
-                >
-                  {activeCfg?.label}
-                </motion.h1>
+                <div className="text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] font-black tracking-[-0.025em] leading-[1] text-zinc-900 min-h-[1.2em]">
+                  {activeCfg?.displayLabel ? (
+                    <motion.h1
+                      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+                    >
+                      {activeCfg.displayLabel}
+                    </motion.h1>
+                  ) : (
+                    <StaggerText el="h1" text={activeCfg?.label || ''} delay={0.1} />
+                  )}
+                </div>
 
                 <motion.div
                   initial={reduceMotion ? false : { scaleX: 0 }}
@@ -135,7 +136,7 @@ export default function Tijdlijn() {
               </header>
 
               {/* Timeline itself plays its own staged buildup on mount */}
-              <HorizontalTimeline filter={selected} />
+              <TimelineFeed filter={selected} />
             </motion.div>
             )}
           </AnimatePresence>

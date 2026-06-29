@@ -7,7 +7,7 @@ const links = [
   { path: '/', label: 'Home' },
   { path: '/over', label: 'Over Mij' },
   { path: '/standpunten', label: 'Standpunten' },
-  { path: '/tijdlijn', label: 'Tijdlijn' },
+  { path: '/realisaties', label: 'Realisaties' },
   { path: '/nieuws', label: 'Nieuws' },
   { path: '/contact', label: 'Contact' },
 ];
@@ -196,7 +196,7 @@ export function Navbar() {
                />
             </div>
 
-            <div className="flex flex-col gap-2 md:gap-6 items-center relative z-10 w-full max-w-4xl mt-12 md:mt-0">
+            <div className="flex flex-col gap-1 md:gap-4 items-center relative z-10 w-full max-w-4xl mt-8 md:mt-0">
               {links.map((link, i) => (
                 <div key={link.path} className="overflow-hidden">
                   <motion.div
@@ -212,14 +212,21 @@ export function Navbar() {
                     <Link
                       to={link.path}
                       onClick={() => setIsOpen(false)}
-                      className="group relative text-[50px] sm:text-[70px] md:text-[90px] lg:text-[110px] font-black tracking-tighter leading-[0.9] transition-colors uppercase block"
+                      className="group relative flex items-center justify-center text-[45px] sm:text-[60px] md:text-[75px] lg:text-[90px] font-black tracking-tighter leading-[1] transition-colors uppercase w-full"
                       {...(location.pathname === link.path ? { 'aria-current': 'page' as const } : {})}
                     >
-                      <motion.span 
-                        className={`inline-block transition-colors duration-500 ${location.pathname === link.path ? 'text-red-500' : 'text-white group-hover:text-red-500'}`}
-                      >
-                        {link.label}
-                      </motion.span>
+                      <div className="flex items-center gap-0 group-hover:gap-4 md:group-hover:gap-8 transition-all duration-500 ease-[0.22,1,0.36,1]">
+                         <div className="w-0 opacity-0 group-hover:w-[40px] md:group-hover:w-[80px] group-hover:opacity-100 transition-all duration-500 ease-[0.22,1,0.36,1] overflow-hidden flex items-center justify-center">
+                           <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 md:w-20 md:h-20 text-red-500 shrink-0 -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 12h14M12 5l7 7-7 7" />
+                           </svg>
+                         </div>
+                         <motion.span 
+                           className={`inline-block transition-colors duration-500 ${location.pathname === link.path ? 'text-red-500' : 'text-white group-hover:text-red-500'}`}
+                         >
+                           {link.label}
+                         </motion.span>
+                      </div>
                     </Link>
                   </motion.div>
                 </div>

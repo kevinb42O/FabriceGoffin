@@ -58,7 +58,7 @@ export default function Article() {
             transition={{ delay: 0.2 }}
             className="aspect-video w-full rounded-2xl overflow-hidden shadow-xl mb-16 relative"
           >
-            <img src={article.image} alt={article.titel} className="w-full h-full object-cover" loading="lazy" />
+            <img src={article.image} alt={article.titel} className="w-full h-full object-cover" loading="lazy" width={1920} height={1080} />
             {/* Subtle Oostende watermark overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/40 to-transparent"></div>
           </motion.div>

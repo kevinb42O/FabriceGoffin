@@ -7,6 +7,7 @@ const footerLinks = [
   { path: '/', label: 'Home' },
   { path: '/over', label: 'Over Mij' },
   { path: '/standpunten', label: 'Standpunten' },
+  { path: '/realisaties', label: 'Realisaties' },
   { path: '/nieuws', label: 'Nieuws' },
   { path: '/contact', label: 'Contact' },
 ];

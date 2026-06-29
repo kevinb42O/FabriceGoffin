@@ -127,7 +127,7 @@ export function HomeHeroMobile() {
         style={{ paddingBottom: 'max(env(safe-area-inset-bottom), 1.25rem)' }}
       >
         {/* Headline — overflow-hidden mask drives the y-reveal */}
-        <h1 className="font-medium tracking-tighter leading-[0.85] uppercase mb-5 font-heading">
+        <h1 className="font-black tracking-tighter leading-[0.85] uppercase mb-5 font-heading">
           <span className="block overflow-hidden">
             <motion.span
               initial={{ y: '110%' }}

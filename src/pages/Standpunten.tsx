@@ -60,7 +60,11 @@ export default function Standpunten() {
 
   return (
     <PageTransition>
-      <SEO title="Standpunten — Fabrice Goffin" description="Ontdek de speerpunten en standpunten van Fabrice Goffin voor een diervriendelijker en digitaler Oostende." />
+      <SEO 
+        title="Standpunten — Fabrice Goffin" 
+        description="Ontdek de speerpunten en standpunten van Fabrice Goffin voor een diervriendelijker en digitaler Oostende." 
+        url="/standpunten"
+      />
       <div className="min-h-screen relative overflow-hidden flex flex-col bg-zinc-50">
         
         {/* Full Width Dynamic Background */}
@@ -149,24 +153,15 @@ export default function Standpunten() {
               {/* List Container */}
               <div className="lg:col-span-6 flex flex-col w-full group">
                 {standpunten.map((punt, index) => (
-                   <div 
+                   <button 
                      key={index}
-                     role="button"
-                     tabIndex={0}
                      aria-label={`Lees meer over ${punt.titel}`}
-                     className={`text-left rounded-2xl mb-4 border overflow-hidden transition-all duration-300 cursor-pointer backdrop-blur-md focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-600 focus-visible:ring-offset-2 ${activeIndex === index ? 'bg-white/95 border-white shadow-xl shadow-zinc-900/5 scale-[1.01]' : 'bg-white/60 border-white/40 hover:bg-white/80 hover:border-white/60 hover:scale-[1.005]'}`}
+                     className={`w-full text-left rounded-2xl mb-4 border overflow-hidden transition-all duration-300 cursor-pointer backdrop-blur-md focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-600 focus-visible:ring-offset-2 ${activeIndex === index ? 'bg-white/95 border-white shadow-xl shadow-zinc-900/5 scale-[1.01]' : 'bg-white/60 border-white/40 hover:bg-white/80 hover:border-white/60 hover:scale-[1.005]'}`}
                      onMouseEnter={() => setActiveIndex(index)}
                      onFocus={() => setActiveIndex(index)}
                      onClick={() => {
                        setActiveIndex(index);
                        setSelectedStandpunt(index);
-                     }}
-                     onKeyDown={(e) => {
-                       if (e.key === 'Enter' || e.key === ' ') {
-                         e.preventDefault();
-                         setActiveIndex(index);
-                         setSelectedStandpunt(index);
-                       }
                      }}
                    >
                       <div className="px-6 py-5 md:px-8 md:py-6 relative">
@@ -190,7 +185,7 @@ export default function Standpunten() {
                           </div>
                         </div>
                       </div>
-                   </div>
+                   </button>
                 ))}
               </div>
            </div>
@@ -230,6 +225,8 @@ export default function Standpunten() {
                     alt={standpunten[selectedStandpunt]!.titel} 
                     className="w-full h-full object-cover object-center"
                     loading="lazy"
+                    width={1000}
+                    height={1000}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 via-zinc-900/20 to-transparent" />
                   

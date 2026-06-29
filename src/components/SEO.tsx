@@ -16,7 +16,7 @@ export function SEO({
   type = 'website',
 }: SEOProps) {
   // Voor absolute URL's
-  const siteUrl = 'https://fabricegoffin.vercel.app'; // Pas dit aan naar het échte domein als het bekend is.
+  const siteUrl = import.meta.env.VITE_SITE_URL || 'https://www.fabricegoffin.be'; // Pas dit aan naar het échte domein als het bekend is.
   const fullUrl = url ? `${siteUrl}${url}` : siteUrl;
   const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
 
@@ -25,6 +25,7 @@ export function SEO({
       {/* Standard metadata tags */}
       <title>{title}</title>
       <meta name="description" content={description} />
+      <link rel="canonical" href={fullUrl} />
       
       {/* Open Graph tags / Facebook */}
       <meta property="og:type" content={type} />

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { AnimatePresence, motion, useReducedMotion, useMotionValue, useMotionTemplate } from 'motion/react';
 import {
   PawPrint,
   Cpu,
@@ -166,12 +166,12 @@ function useIsDesktop() {
 // ──────────────────────────────────────────────────────────────
 //  Main component
 // ──────────────────────────────────────────────────────────────
-interface HorizontalTimelineProps {
+interface TimelineFeedProps {
   /** Restrict to one bevoegdheid. If omitted, all tracks render. */
   filter?: TimelineCategory;
 }
 
-export function HorizontalTimeline({ filter }: HorizontalTimelineProps) {
+export function TimelineFeed({ filter }: TimelineFeedProps) {
   const isDesktop = useIsDesktop();
   const reduceMotion = useReducedMotion();
 
@@ -336,6 +336,23 @@ function FeedCard({
 }) {
   const isLopend = item.status === 'Lopend';
   const Icon = isLopend ? Sprout : CheckCircle2;
+  
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
+  const background = useMotionTemplate`
+    radial-gradient(
+      350px circle at ${mouseX}px ${mouseY}px,
+      ${cfg.hex}15,
+      transparent 80%
+    )
+  `;
 
   return (
     <motion.div
@@ -358,13 +375,18 @@ function FeedCard({
 
       <button
         onClick={onClick}
-        className={`group block w-full text-left p-5 md:p-6 rounded-2xl bg-white/70 backdrop-blur-xl border border-zinc-200/60 shadow-[0_4px_24px_rgba(0,0,0,0.02)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${cfg.ring} ${
+        onMouseMove={handleMouseMove}
+        className={`group block w-full text-left p-5 md:p-6 rounded-2xl bg-white/70 backdrop-blur-xl border border-zinc-200/60 shadow-[0_4px_24px_rgba(0,0,0,0.02)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 overflow-hidden relative ${cfg.ring} ${
           active 
             ? `ring-2 ${cfg.ring} bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] scale-[1.02]` 
             : 'hover:bg-white hover:border-zinc-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 hover:scale-[1.01]'
         }`}
       >
-        <div className="flex items-start gap-4 md:gap-5 relative">
+        <motion.div
+          className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
+          style={{ background }}
+        />
+        <div className="flex items-start gap-4 md:gap-5 relative z-10">
           <div className={`shrink-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full ${cfg.soft} ${cfg.text} group-hover:scale-110 transition-transform duration-300`}>
             <Icon className="w-5 h-5 md:w-6 md:h-6" />
           </div>
@@ -504,13 +526,13 @@ function TimelinePanel({ item, prevItem, nextItem, onNavigate, onClose, isDeskto
 
             <p className="mt-8 text-base md:text-lg text-zinc-600 leading-relaxed italic">
               {isLopend
-                ? `Een project dat momenteel vorm krijgt binnen de bevoegdheid ${cfg.label}.`
-                : `Een gerealiseerd dossier binnen de bevoegdheid ${cfg.label}.`}
+                ? `Een project dat momenteel vorm krijgt binnen het thema ${cfg.label}.`
+                : `Een gerealiseerd dossier binnen het thema ${cfg.label}.`}
             </p>
 
             <div className="mt-12 grid grid-cols-2 gap-6 text-[11px] font-bold tracking-[0.25em] uppercase">
               <div>
-                <div className="text-zinc-400 mb-2">Bevoegdheid</div>
+                <div className="text-zinc-400 mb-2">Thema</div>
                 <div className="text-zinc-900">{cfg.label}</div>
               </div>
               <div>
@@ -573,4 +595,4 @@ function TimelinePanel({ item, prevItem, nextItem, onNavigate, onClose, isDeskto
   return typeof document !== 'undefined' ? createPortal(panelContent, document.body) : null;
 }
 
-export default HorizontalTimeline;
+export default TimelineFeed;

@@ -46,7 +46,11 @@ export default function Contact() {
 
   return (
     <PageTransition>
-      <SEO title="Contact — Fabrice Goffin" description="Contacteer Fabrice Goffin met je vragen, ideeën, of om mee te werken aan een beter Oostende." />
+      <SEO 
+        title="Contact — Fabrice Goffin" 
+        description="Contacteer Fabrice Goffin met je vragen, ideeën, of om mee te werken aan een beter Oostende." 
+        url="/contact"
+      />
       <div className="min-h-screen pt-32 pb-24 px-6 md:px-12 lg:px-24 bg-white flex items-center justify-center">
         <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
           
@@ -56,7 +60,7 @@ export default function Contact() {
             animate={{ opacity: 1, scale: 1 }}
             className="lg:col-span-5 w-full relative rounded-3xl overflow-hidden shadow-2xl min-h-[400px]"
           >
-            <img src="/images/contacteermij.webp" alt="Contacteer Fabrice Goffin" className="absolute inset-0 w-full h-full object-cover object-center" loading="lazy" />
+            <img src="/images/contacteermij.webp" alt="Contacteer Fabrice Goffin" className="absolute inset-0 w-full h-full object-cover object-center" loading="lazy" width={1000} height={1500} />
           </motion.div>
 
           {/* Right Column: Context & Form */}

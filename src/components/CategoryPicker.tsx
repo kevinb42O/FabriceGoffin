@@ -15,7 +15,7 @@ import {
   CATEGORIES,
   countsFor,
   type CategoryConfig,
-} from './HorizontalTimeline';
+} from './TimelineFeed';
 import type { TimelineCategory } from '../data/tijdlijn';
 
 interface Props {
@@ -70,6 +70,7 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact }: Props) {
   const reduceMotion = useReducedMotion();
   const [activeIdx, setActiveIdx] = useState(0);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const tooltipLeft = useMotionValue('50%');
   const tooltipTop = useMotionValue('50%');
   const rotation = useMotionValue(0);
@@ -87,8 +88,8 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact }: Props) {
 
   // ── Tooltip placement ──
   // Distance from wheel center to label, in percent of the wheel box.
-  // R_OUT / SIZE ≈ 0.49, so 62% sits just outside the outer wedge edge.
-  const TOOLTIP_R = 62;
+  // R_OUT / SIZE ≈ 0.49, so 54% sits just comfortably outside the outer wedge edge.
+  const TOOLTIP_R = 54;
   const updateTooltipPos = (idx: number, r: number) => {
     const angle = segmentCenter(idx) + r;
     const rad = (angle * Math.PI) / 180;
@@ -116,6 +117,7 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact }: Props) {
 
   // ── Selection ────────────────────────────────────────────────
   const selectIdx = (i: number) => {
+    setHasInteracted(true);
     // Choose the equivalent target nearest to current rotation
     // so spinning across the seam doesn't reverse direction.
     const current = rotation.get();
@@ -134,6 +136,7 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact }: Props) {
 
   // ── Drag rotation ────────────────────────────────────────────
   const onPanStart = () => {
+    setHasInteracted(true);
     isDragging.current = true;
     dragStart.current = rotation.get();
   };
@@ -148,21 +151,32 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact }: Props) {
     setTimeout(() => { isDragging.current = false; }, 0);
     const projected = rotation.get() + info.velocity.x * 0.04;
     const snapped = Math.round(projected / SEG) * SEG;
+    const targetIdx = ((-Math.round(snapped / SEG)) % N + N) % N;
+    
     animate(rotation, snapped, {
       type: 'spring',
       stiffness: 160,
       damping: 22,
     });
+    
+    if (isCompact) {
+      onPick(CATEGORIES[targetIdx]!.key);
+    }
   };
 
   // ── Keyboard ─────────────────────────────────────────────────
   const onKeyDown = (e: React.KeyboardEvent) => {
+    setHasInteracted(true);
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       e.preventDefault();
-      selectIdx((activeIdx + 1) % N);
+      const nextIdx = (activeIdx + 1) % N;
+      selectIdx(nextIdx);
+      if (isCompact) onPick(CATEGORIES[nextIdx]!.key);
     } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
       e.preventDefault();
-      selectIdx((activeIdx - 1 + N) % N);
+      const prevIdx = (activeIdx - 1 + N) % N;
+      selectIdx(prevIdx);
+      if (isCompact) onPick(CATEGORIES[prevIdx]!.key);
     } else if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       onPick(active.key);
@@ -277,7 +291,7 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact }: Props) {
                 whileTap={reduceMotion ? undefined : { scale: 0.95 }}
                 type="button"
                 onClick={() => selectIdx((activeIdx - 1 + N) % N)}
-                aria-label="Vorige bevoegdheid"
+                aria-label="Vorig thema"
                 className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2"
               >
                 <ChevronLeft className="w-5 h-5" aria-hidden />
@@ -287,7 +301,7 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact }: Props) {
                 whileTap={reduceMotion ? undefined : { scale: 0.95 }}
                 type="button"
                 onClick={() => selectIdx((activeIdx + 1) % N)}
-                aria-label="Volgende bevoegdheid"
+                aria-label="Volgend thema"
                 className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2"
               >
                 <ChevronRight className="w-5 h-5" aria-hidden />
@@ -312,29 +326,30 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact }: Props) {
           {/* Wheel Background Image */}
           <div className="absolute top-[18%] left-[18%] w-[64%] h-[64%] rounded-full overflow-hidden pointer-events-none z-0">
              <AnimatePresence mode="popLayout">
-               <motion.img
-                 key={(hoveredIdx !== null ? CATEGORIES[hoveredIdx]!.key : active.key) + '-disc'}
-                 src={hoveredIdx !== null ? CATEGORIES[hoveredIdx]!.panelImage : active.panelImage}
-                 alt=""
-                 initial={{ opacity: 0 }}
-                 animate={{ opacity: 1 }}
-                 exit={{ opacity: 0 }}
-                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                 className="absolute inset-0 w-full h-full object-cover"
-               />
+                <motion.img
+                  key={(hoveredIdx !== null ? CATEGORIES[hoveredIdx]!.key : active.key) + '-disc'}
+                  src={hoveredIdx !== null ? CATEGORIES[hoveredIdx]!.panelImage : active.panelImage}
+                  alt=""
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
              </AnimatePresence>
           </div>
 
           {/* Rotating wheel */}
           <motion.div
-            className="absolute inset-0 touch-none cursor-grab active:cursor-grabbing select-none focus:outline-none rounded-full"
+            className="absolute inset-0 touch-none cursor-grab active:cursor-grabbing select-none focus:outline-none focus-visible:ring-4 focus-visible:ring-red-600 focus-visible:ring-offset-4 rounded-full transition-shadow"
             style={{ rotate: rotation }}
             onPanStart={onPanStart}
             onPan={onPan}
             onPanEnd={onPanEnd}
             tabIndex={0}
             role="listbox"
-            aria-label="Kies een bevoegdheid"
+            aria-label="Kies een thema"
+            aria-activedescendant={`wedge-${active.key}`}
             onKeyDown={onKeyDown}
           >
             <svg
@@ -351,15 +366,14 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact }: Props) {
                 return (
                   <path
                     key={cfg.key}
+                    id={`wedge-${cfg.key}`}
                     d={d}
                     fill={isActive ? cfg.hex : '#f4f4f5'}
-                    className="cursor-pointer transition-colors duration-300 hover:fill-zinc-200"
+                    className="cursor-pointer transition-colors duration-300 hover:fill-zinc-200 focus:outline-none"
                     onClick={() => {
                       if (isDragging.current) return;
                       selectIdx(i);
-                      if (isCompact) {
-                        onPick(cfg.key);
-                      }
+                      onPick(cfg.key);
                     }}
                     onMouseEnter={() => onWedgeEnter(i)}
                     onMouseLeave={onWedgeLeave}
@@ -420,54 +434,27 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact }: Props) {
             )}
           </AnimatePresence>
 
-          {/* ── Center hub IS the primary action ── */}
-          <motion.button
-            type="button"
-            onClick={() => onPick(active.key)}
-            aria-label={`Bekijk realisaties en projecten voor ${active.label}`}
-            whileHover={reduceMotion ? undefined : { scale: 1.03 }}
-            whileTap={reduceMotion ? undefined : { scale: 0.97 }}
-            transition={{ type: 'spring', stiffness: 320, damping: 22 }}
-            className={`absolute z-20 rounded-full bg-transparent flex items-center justify-center cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 ${active.ring} group`}
-            style={{
-              // R_IN / (SIZE/2) ≈ 0.64 → hub fills 64% of wheel
-              top: '18%',
-              left: '18%',
-              width: '64%',
-              height: '64%',
-            }}
-          >
-            {/* Centered icon orb (re-pops on category change) */}
-            <motion.div
-              key={active.key + '-orb'}
-              initial={reduceMotion ? false : { scale: 0.55, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: 'spring', stiffness: 280, damping: 20 }}
-              className={`relative flex items-center justify-center rounded-full ${active.bg} shadow-[0_10px_30px_-8px_rgba(0,0,0,0.35)] transition-transform duration-300 group-hover:scale-110 group-focus-visible:scale-110`}
-              style={{ width: '38%', height: '38%' }}
-            >
-              {/* Quiet hover ring — only appears on hover/focus */}
-              <span
-                aria-hidden
-                className={`absolute -inset-2 rounded-full border ${active.borderStrong} opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300`}
-              />
-              <Icon
-                className="text-white"
-                style={{ width: '46%', height: '46%' }}
-                aria-hidden
-              />
-            </motion.div>
-
-            {/* Hover-reveal CTA — appears below the icon */}
-            <div
-              className="absolute left-1/2 -translate-x-1/2 top-[74%] flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900/90 backdrop-blur-sm text-white opacity-0 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0 pointer-events-none whitespace-nowrap shadow-[0_8px_20px_-6px_rgba(0,0,0,0.4)]"
-            >
-              <span className="text-[10px] md:text-[11px] font-bold tracking-[0.3em] uppercase">
-                Bekijk
-              </span>
-              <ArrowRight className="w-3.5 h-3.5" aria-hidden />
-            </div>
-          </motion.button>
+          {/* ── Affordance Label ── */}
+          <AnimatePresence>
+            {!isCompact && !hasInteracted && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 5 }}
+                transition={{ duration: 0.6, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute -top-10 md:-top-14 left-1/2 -translate-x-1/2 pointer-events-none flex items-center gap-3 z-30"
+              >
+                {/* Sleek agency-style pulsing indicator */}
+                <div className="relative flex h-[6px] w-[6px]">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-[6px] w-[6px] bg-red-600"></span>
+                </div>
+                <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] text-zinc-400 whitespace-nowrap">
+                  Klik of sleep een thema
+                </span>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </motion.div>
     </motion.div>
