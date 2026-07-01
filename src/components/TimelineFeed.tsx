@@ -82,7 +82,7 @@ export const CATEGORIES: CategoryConfig[] = [
     borderStrong: 'border-red-600',
     ring: 'ring-red-600',
     hex: '#dc2626',
-    panelImage: '/images/fabriceennova.webp',
+    panelImage: '/images/contacteermij.webp',
   },
   {
     key: 'Buurten & Wijken',
@@ -122,7 +122,7 @@ export const CATEGORIES: CategoryConfig[] = [
     borderStrong: 'border-red-600',
     ring: 'ring-red-600',
     hex: '#dc2626',
-    panelImage: '/images/contacteermij.webp',
+    panelImage: '/realisaties/Aziatische Hoornaar - preventie + vallen in publieke ruimtes.jpeg',
   },
 ];
 
