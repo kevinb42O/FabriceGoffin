@@ -475,7 +475,7 @@ function TimelinePanel({ item, prevItem, nextItem, onNavigate, onClose, isDeskto
 
           <div className="relative shrink-0 w-full aspect-[16/10] overflow-hidden bg-zinc-100">
             <img
-              src={cfg.panelImage}
+              src={item.image || cfg.panelImage}
               alt=""
               className="w-full h-full object-cover"
               loading="eager"
