@@ -42,33 +42,33 @@ export function Navbar() {
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
           isOpen 
-            ? 'bg-transparent py-3 md:py-4' 
+            ? 'bg-transparent py-4 md:py-6' 
             : isScrolled 
-              ? 'py-2 md:py-2.5 bg-white/80 backdrop-blur-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] border-b border-zinc-200/50' 
-              : 'py-3 md:py-4 bg-white border-b border-transparent'
+              ? 'py-3 md:py-4 bg-white/80 backdrop-blur-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] border-b border-zinc-200/50' 
+              : 'py-4 md:py-6 bg-white border-b border-transparent'
         }`}
       >
         <div className="w-full px-4 md:px-12 flex justify-between items-center">
           {/* Logo */}
           <Link to="/" onClick={() => setIsOpen(false)} className="relative z-50 group flex items-center gap-3 md:gap-4">
              {/* Official Emblem Icon */}
-             <div className={`relative flex items-center justify-center w-8 h-8 md:w-10 md:h-10 transition-all duration-500 ${isOpen ? 'bg-white' : 'bg-zinc-900 group-hover:bg-red-600'}`}>
-               <span className={`font-black text-sm md:text-base tracking-tighter transition-colors duration-500 ${isOpen ? 'text-zinc-900' : 'text-white'}`}>
+             <div className={`relative flex items-center justify-center w-10 h-10 md:w-12 md:h-12 transition-all duration-500 ${isOpen ? 'bg-white' : 'bg-zinc-900 group-hover:bg-red-600'}`}>
+               <span className={`font-black text-base md:text-lg tracking-tighter transition-colors duration-500 ${isOpen ? 'text-zinc-900' : 'text-white'}`}>
                  FG
                </span>
                {/* Accent Square */}
-               <div className={`absolute bottom-0 right-0 w-2 h-2 transition-colors duration-500 ${isOpen ? 'bg-red-600' : 'bg-red-600 group-hover:bg-white'}`} />
+               <div className={`absolute bottom-0 right-0 w-2.5 h-2.5 md:w-3 md:h-3 transition-colors duration-500 ${isOpen ? 'bg-red-600' : 'bg-red-600 group-hover:bg-white'}`} />
              </div>
 
              {/* Text Block */}
              <div className="flex flex-col justify-center">
-               <span className={`text-[12px] md:text-[13px] font-black tracking-[0.2em] uppercase leading-none transition-colors duration-300 ${isOpen ? 'text-white' : 'text-zinc-900'}`}>
+               <span className={`text-sm md:text-base font-black tracking-[0.2em] uppercase leading-none transition-colors duration-300 ${isOpen ? 'text-white' : 'text-zinc-900'}`}>
                  FABRICE GOFFIN
                </span>
-               <span className={`text-[7.5px] md:text-[8px] font-bold tracking-[0.2em] uppercase leading-none mt-1 transition-colors duration-300 ${isOpen ? 'text-zinc-400' : 'text-red-600'} hidden lg:block`}>
+               <span className={`text-[9px] md:text-[11px] font-bold tracking-[0.2em] uppercase leading-none mt-1 transition-colors duration-300 ${isOpen ? 'text-zinc-400' : 'text-red-600'} hidden lg:block`}>
                  DIERENWELZIJN • DIGITALISERING • ONTMOETING
                </span>
-               <span className={`text-[7.5px] font-bold tracking-[0.3em] uppercase leading-none mt-1 transition-colors duration-300 ${isOpen ? 'text-zinc-400' : 'text-red-600'} lg:hidden`}>
+               <span className={`text-[9px] font-bold tracking-[0.3em] uppercase leading-none mt-1 transition-colors duration-300 ${isOpen ? 'text-zinc-400' : 'text-red-600'} lg:hidden`}>
                  SCHEPEN
                </span>
              </div>
@@ -88,7 +88,7 @@ export function Navbar() {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className="relative group px-1 py-1 text-xs font-bold tracking-[0.2em] uppercase overflow-hidden"
+                    className="relative group px-1 py-1 text-sm md:text-base font-bold tracking-[0.2em] uppercase overflow-hidden"
                     {...(isActive ? { 'aria-current': 'page' as const } : {})}
                   >
                     <motion.span
@@ -121,18 +121,18 @@ export function Navbar() {
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
               aria-label={isOpen ? 'Navigatiemenu sluiten' : 'Navigatiemenu openen'}
-              className={`group flex items-center gap-3 text-xs font-bold tracking-[0.2em] uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 rounded-sm ${isOpen ? 'text-white' : 'text-zinc-900'}`}
+              className={`group flex items-center gap-3 text-sm md:text-base font-bold tracking-[0.2em] uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 rounded-sm ${isOpen ? 'text-white' : 'text-zinc-900'}`}
             >
-              <span className="hidden md:block relative overflow-hidden h-4 w-[60px]">
+              <span className="hidden md:block relative overflow-hidden h-5 w-[80px] md:w-[95px]">
                 <motion.span 
                   animate={{ y: isOpen ? -20 : 0 }} 
-                  className="absolute top-0 left-0 w-full h-4 leading-none flex items-center justify-end"
+                  className="absolute top-0 left-0 w-full h-5 leading-none flex items-center justify-end"
                 >
                   MENU
                 </motion.span>
                 <motion.span 
                   animate={{ y: isOpen ? 0 : 20 }} 
-                  className={`absolute top-0 left-0 w-full h-4 leading-none flex items-center justify-end ${isOpen ? 'text-red-500' : 'text-red-600'}`}
+                  className={`absolute top-0 left-0 w-full h-5 leading-none flex items-center justify-end ${isOpen ? 'text-red-500' : 'text-red-600'}`}
                 >
                   SLUITEN
                 </motion.span>

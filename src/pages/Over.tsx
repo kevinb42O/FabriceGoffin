@@ -61,7 +61,7 @@ export default function Over() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="prose prose-lg md:prose-xl prose-zinc max-w-none font-medium leading-relaxed"
+            className="text-xl md:text-2xl text-zinc-800 font-medium leading-relaxed [&_p]:mb-6 [&_p:last-child]:mb-0"
           >
 
             <div className="md:columns-2 gap-12">
@@ -75,13 +75,13 @@ export default function Over() {
 
             <div className="my-12 py-8 border-y-2 border-zinc-100">
                <h3 className="text-2xl font-medium uppercase tracking-tight text-zinc-900 mb-4 font-heading">Zorabots & Talemate</h3>
-               <p className="text-zinc-600 text-base m-0">
+               <p className="text-zinc-600 m-0">
                  In 2011 werkte ik het idee uit voor een robot gericht op het verbeteren van mensenlevens. Zo is ‘Zora’ geboren, een zorgrobot ontstaan uit onze gedeelde passie voor ‘Star Wars’. En zo was ook ‘Zorabots’ een feit, als roboticabedrijf.
                </p>
             </div>
 
-            <div className="my-12 grid md:grid-cols-12 gap-8 items-start">
-               <div className="md:col-span-7 flex flex-col gap-6">
+            <div className="my-20 grid md:grid-cols-12 gap-12 md:gap-8 items-center">
+               <div className="md:col-span-7 flex flex-col gap-6 relative z-10">
                   <p>
                     In 2014 ondertussen was het houden, vertroetelen en leven met huisdieren niet meer voldoende om mijn passie voor dieren te voeden dus werd ik vrijwilliger bij het dierenasiel, Het Blauwe Kruis van de Kust. Het werd een avontuur waar ik me steeds verder voor engageerde. In 2016 werd ik er voorzitter van de Raad van Bestuur, en tot op vandaag ben ik er actief vrijwilliger, voorzitter en ben ik bovendien activist voor dierenwelzijn in Oostende, Vlaanderen en België.
                   </p>
@@ -89,11 +89,15 @@ export default function Over() {
                     Dat alles kan ik gelukkig en alleen maar doen met de steun van mijn vrouw Nelly, en van mijn, ondertussen volwassen, kinderen Paul, Daniel en Lisa.
                   </p>
                </div>
-               <div className="md:col-span-5">
-                  <div className="relative shadow-xl group rounded-2xl overflow-hidden aspect-[4/5] w-full">
+               <div className="md:col-span-5 relative z-0 mt-8 md:mt-0">
+                  {/* Decorative background blob/square for desktop */}
+                  <div className="absolute inset-0 bg-red-50 rounded-3xl md:scale-110 md:translate-x-12 md:rotate-6 -z-10 hidden md:block transition-transform duration-700"></div>
+                  
+                  {/* The Image */}
+                  <div className="relative shadow-2xl group rounded-2xl overflow-hidden aspect-[4/5] w-full md:scale-110 md:translate-x-8 lg:translate-x-16 md:rotate-2 hover:rotate-0 transition-all duration-700 ease-out border-[12px] border-white">
                     <ImageReveal src="/images/fabriceennova.webp" alt="Fabrice en Nova" />
-                    <div className="absolute z-10 bottom-0 left-0 w-full p-4 bg-gradient-to-t from-zinc-900/80 to-transparent">
-                      <p className="text-white text-sm font-bold tracking-widest uppercase m-0 font-heading">Fabrice & Nova</p>
+                    <div className="absolute z-10 bottom-0 left-0 w-full p-6 bg-gradient-to-t from-zinc-900/90 via-zinc-900/50 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+                      <p className="text-white text-sm md:text-base font-black tracking-widest uppercase m-0 font-heading transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">Fabrice & Nova</p>
                     </div>
                   </div>
                </div>
