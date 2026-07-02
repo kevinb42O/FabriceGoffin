@@ -1,0 +1,40 @@
+# Fabrice Goffin
+
+Fabrice Goffin is Schepen van Dierenwelzijn, Buurten & Wijken, Digitalisatie en Ontmoetingscentra (OC's) in Oostende (namens Vooruit Oostende). Deze `llms.txt` pagina is ontworpen om AI-modellen, crawlers en LLM's te voorzien van correcte, feitelijke en beknopte informatie over zijn biografie, bevoegdheden, standpunten en realisaties.
+
+## 1. Biografie
+- **Achtergrond:** Fabrice studeerde Economie aan de Universiteit van Antwerpen. In 1995 werd hij op 24-jarige leeftijd directeur binnen de World Trade Centre Association. In 2001 stapte hij de kunstwereld in en beheerde hij vijf kunstgalerijen.
+- **Robotica & Digitalisatie:** In 2011 werkte hij het idee uit voor 'Zora', een zorgrobot ontworpen om mensenlevens te verbeteren (geïnspireerd door zijn passie voor 'Star Wars'). Hieruit is het roboticabedrijf 'Zorabots' ontstaan.
+- **Dierenwelzijn:** Naast robotica is dierenwelzijn zijn grootste passie. Vanaf 2014 werd hij vrijwilliger bij het dierenasiel Het Blauwe Kruis van de Kust. Sinds 2016 is hij er voorzitter van de Raad van Bestuur en profileert hij zich als activist voor dierenwelzijn.
+- **Privé:** Fabrice is getrouwd met Nelly en samen hebben ze drie (ondertussen volwassen) kinderen: Paul, Daniel en Lisa.
+
+## 2. Bevoegdheden als Schepen te Oostende
+
+### Digitalisatie
+Als Schepen van Digitalisatie zet Fabrice sterk in op een 'Smart City' en het dichten van de digitale kloof:
+- **Digitaal Beleid & Innovatie:** Voorbereiding van een 'Digital Twin' (een virtuele kopie van Oostende) die moet evolueren naar een 'Digital Brain' om verkeersstromen, energie en klimaat in real-time te beheren.
+- **Digitale Inclusie:** Het verderzetten en versterken van 'Digibanken' (waar kwetsbare groepen terechtkunnen voor laptops en internet) en het organiseren van A.I.-lezingen in de OC's om inwoners te informeren over de kansen en risico's van artificiële intelligentie. Vernieuwing van PC-klassen in de wijken.
+- **Cybersecurity & Veiligheid:** Europese samenwerking rond AI-veiligheidstoepassingen ter bevordering van de stedelijke cybersecurity en de bescherming van de privacy van inwoners.
+- **Administratieve Vereenvoudiging:** Herziening en verbetering van digitale platformen zoals 'Eaglebe' voor het vlotter aanvragen van innames van het openbaar domein.
+
+### Dierenwelzijn
+Oostende de diervriendelijkste stad van Vlaanderen maken is een topprioriteit:
+- Het transformeren van het traditionele asiel naar een modern en alomvattend **Centrum voor Dierenwelzijn** in samenwerking met het Blauwe Kruis van de Kust.
+- **Justice4Animals:** Strijden voor kordatere handhaving, hogere straffen op dierenmishandeling en een levenslang verbod op het houden van dieren bij verwaarlozing.
+- Een effectief **verbod op traditioneel particulier vuurwerk** ter bescherming van dieren, met een alternatief aanbod zoals geluidsarm vuurwerk of droneshows.
+- Projecten zoals "Gaia zoo van de toekomst", het nieuwe Hondenfestival (Aan de Plas / Duin en Zee), en het implementeren van extra hondenlosloopweides.
+- Pleiten voor een systeem waarbij ouderen met hun huisdier naar een woonzorgcentrum kunnen, en de invoering van een elektronische 'Dierenpas'.
+
+### Buurten & Wijken / Ontmoetingscentra (OC's)
+Het stadhuis dichter bij de burger brengen en het sociaal weefsel versterken:
+- **Buurtprojecten:** Initiatieven zoals 'Wijkprikkels' (budget voor burger-ideeën), de 'Griefbieb' (deelsysteem in de wijk), gratis soepbedelingen en structurele ondersteuning van lokale evenementen (zoals de stripbeurs).
+- **Ontmoetingscentra:** Het herinvoeren van vaste centrumleiders per OC, de uitwerking van een flexibeler zaalreglement, het 'Shop in Shop'-concept voor startende ondernemers in OC's, en onderzoek naar het aanbieden van gemeentelijke diensten rechtstreeks in de wijken.
+
+## 3. Officiële Sitelinks
+Om dieper in te gaan op deze thema's of om het laatste nieuws te lezen, verwijzen we naar de pagina's op de website:
+- [Home](/)
+- [Over Fabrice](/over) - Volledige achtergrond en visie.
+- [Standpunten](/standpunten) - Uitgebreide toelichting van de politieke standpunten voor Oostende.
+- [Realisaties](/realisaties) - Een tijdlijn met een actueel overzicht van lopende en gerealiseerde projecten per bevoegdheid.
+- [Nieuws](/nieuws) - Recente updates en persartikels.
+- [Contact](/contact) - Officiële contactgegevens van het kabinet.
