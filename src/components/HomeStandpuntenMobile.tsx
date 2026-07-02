@@ -194,7 +194,7 @@ export function HomeStandpuntenMobile() {
                 onClick={() => goTo(i)}
                 aria-label={`Ga naar speerpunt ${i + 1}`}
                 aria-current={active ? 'true' : undefined}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
+                className={`relative after:absolute after:-inset-3 after:content-[''] h-1.5 rounded-full transition-all duration-300 ${
                   active
                     ? 'w-8 bg-red-600'
                     : 'w-1.5 bg-zinc-300 hover:bg-zinc-400'

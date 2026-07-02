@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { AnimatePresence, motion, useReducedMotion, useMotionValue, useMotionTemplate } from 'motion/react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import {
   PawPrint,
   Cpu,
@@ -282,16 +282,13 @@ function VerticalTrack({
   onSelect: (id: string) => void;
   reduceMotion: boolean;
 }) {
-  // Combine all items, optionally keeping them segregated or just ordered
-  const items = [...realisaties, ...lopend];
-
-  if (items.length === 0) return null;
+  if (realisaties.length === 0 && lopend.length === 0) return null;
 
   return (
     <div className="relative pl-6 md:pl-10">
       {/* The glowing vertical line */}
       <motion.div 
-        className="absolute left-[11px] md:left-[19px] top-6 bottom-4 w-[2px] bg-zinc-200/50 origin-top rounded-full"
+        className="absolute left-[11px] md:left-[19px] top-12 bottom-4 w-[2px] bg-zinc-200/50 origin-top rounded-full"
         initial={reduceMotion ? false : { scaleY: 0 }}
         animate={{ scaleY: 1 }}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
@@ -302,18 +299,68 @@ function VerticalTrack({
         />
       </motion.div>
 
-      <div className="flex flex-col gap-5 md:gap-6">
-        {items.map((item, i) => (
-          <FeedCard
-            key={item.id}
-            item={item}
-            cfg={cfg}
-            active={selectedId === item.id}
-            onClick={() => onSelect(item.id)}
-            reduceMotion={reduceMotion}
-            index={i}
-          />
-        ))}
+      <div className="flex flex-col gap-10 md:gap-14 pt-2">
+        {realisaties.length > 0 && (
+          <div className="flex flex-col gap-5 md:gap-6">
+            <div className="relative mt-2 mb-2 flex items-center -ml-6 md:-ml-10">
+              <div className="flex items-center gap-4 pl-1">
+                <div className={`flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-zinc-100 text-zinc-900 shadow-sm border border-white/60`}>
+                  <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6" />
+                </div>
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-black tracking-tight text-zinc-900 drop-shadow-sm">
+                    Gerealiseerd
+                  </h3>
+                  <div className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase mt-0.5 text-zinc-500">
+                    Succesvol afgerond
+                  </div>
+                </div>
+              </div>
+            </div>
+            {realisaties.map((item, i) => (
+              <FeedCard
+                key={item.id}
+                item={item}
+                cfg={cfg}
+                active={selectedId === item.id}
+                onClick={() => onSelect(item.id)}
+                reduceMotion={reduceMotion}
+                index={i}
+              />
+            ))}
+          </div>
+        )}
+
+        {lopend.length > 0 && (
+          <div className="flex flex-col gap-5 md:gap-6">
+            <div className="relative mt-4 mb-2 flex items-center -ml-6 md:-ml-10">
+              <div className="flex items-center gap-4 pl-1">
+                <div className={`flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-zinc-100 text-zinc-900 shadow-sm border border-white/60`}>
+                  <Sprout className="w-5 h-5 md:w-6 md:h-6" />
+                </div>
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-black tracking-tight text-zinc-900 drop-shadow-sm">
+                    In de maak
+                  </h3>
+                  <div className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase mt-0.5 text-zinc-500">
+                    Lopende projecten
+                  </div>
+                </div>
+              </div>
+            </div>
+            {lopend.map((item, i) => (
+              <FeedCard
+                key={item.id}
+                item={item}
+                cfg={cfg}
+                active={selectedId === item.id}
+                onClick={() => onSelect(item.id)}
+                reduceMotion={reduceMotion}
+                index={i + realisaties.length}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -335,25 +382,8 @@ function FeedCard({
   index: number;
 }) {
   const isLopend = item.status === 'Lopend';
-  const Icon = isLopend ? Sprout : CheckCircle2;
+  const CategoryIcon = cfg.Icon;
   
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
-
-  const background = useMotionTemplate`
-    radial-gradient(
-      350px circle at ${mouseX}px ${mouseY}px,
-      ${cfg.hex}15,
-      transparent 80%
-    )
-  `;
-
   return (
     <motion.div
       initial={reduceMotion ? false : { opacity: 0, x: 20 }}
@@ -375,34 +405,40 @@ function FeedCard({
 
       <button
         onClick={onClick}
-        onMouseMove={handleMouseMove}
-        className={`group block w-full text-left p-5 md:p-6 rounded-2xl bg-white/70 backdrop-blur-xl border border-zinc-200/60 shadow-[0_4px_24px_rgba(0,0,0,0.02)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 overflow-hidden relative ${cfg.ring} ${
+        className={`group block w-full text-left p-3 md:p-4 rounded-2xl bg-white/70 backdrop-blur-xl border border-zinc-200/60 shadow-[0_4px_24px_rgba(0,0,0,0.02)] transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 overflow-hidden relative ${cfg.ring} ${
           active 
             ? `ring-2 ${cfg.ring} bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] scale-[1.02]` 
-            : 'hover:bg-white hover:border-zinc-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 hover:scale-[1.01]'
-        }`}
+            : 'hover:shadow-[0_16px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1'
+        } min-h-[80px] md:min-h-[96px]`}
       >
-        <motion.div
-          className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
-          style={{ background }}
-        />
-        <div className="flex items-start gap-4 md:gap-5 relative z-10">
-          <div className={`shrink-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full ${cfg.soft} ${cfg.text} group-hover:scale-110 transition-transform duration-300`}>
-            <Icon className="w-5 h-5 md:w-6 md:h-6" />
+        {/* The expanding image background */}
+        <div className="absolute z-0 top-2 right-2 bottom-2 w-20 md:w-28 rounded-xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:top-0 group-hover:bottom-0 group-hover:right-0 group-hover:w-full group-hover:rounded-none">
+          <img 
+            src={item.image || cfg.panelImage} 
+            alt={item.title}
+            className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+            loading="lazy"
+          />
+          {/* Gradient overlay on hover for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-zinc-900/90 via-zinc-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          
+          {/* Arrow */}
+          <div className="absolute inset-0 flex items-center justify-end pr-4 md:pr-8 translate-x-8 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] delay-75">
+            <ArrowRight className="w-6 h-6 md:w-8 md:h-8 text-white drop-shadow-lg" />
           </div>
-          <div className="flex-1 min-w-0 pt-0.5 pr-10 md:pr-14">
-            <div className={`text-[9px] md:text-[10px] font-bold tracking-[0.25em] uppercase mb-2 ${cfg.text}`}>
-              {STATUS_LABEL[item.status]}
-            </div>
-            <h3 className="text-sm md:text-base font-semibold leading-relaxed text-zinc-900 pr-4">
+        </div>
+
+        {/* Content */}
+        <div className="flex items-center gap-3 md:gap-5 relative z-10 w-full transition-colors duration-500 pr-[90px] md:pr-[130px]">
+          <div className={`shrink-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full ${cfg.soft} ${cfg.text} group-hover:scale-110 group-hover:bg-white/20 group-hover:text-white group-hover:backdrop-blur-md transition-all duration-500`}>
+            <CategoryIcon className="w-5 h-5 md:w-6 md:h-6" />
+          </div>
+          
+          <div className="flex-1 min-w-0 py-1">
+            <h3 className="text-sm md:text-lg font-bold leading-snug text-zinc-900 group-hover:text-white transition-colors duration-500 drop-shadow-sm">
               {item.title}
             </h3>
           </div>
-          {!isLopend && (
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-500 shadow-sm" aria-hidden>
-              <Check className="w-4 h-4 md:w-5 md:h-5 stroke-[3]" />
-            </div>
-          )}
         </div>
       </button>
     </motion.div>
@@ -468,82 +504,73 @@ function TimelinePanel({ item, prevItem, nextItem, onNavigate, onClose, isDeskto
           }
         >
           {!isDesktop && (
-            <div className="flex justify-center pt-3 pb-1 shrink-0" aria-hidden>
+            <div className="flex justify-center pt-3 pb-1 shrink-0 bg-white relative z-50" aria-hidden>
               <span className="block w-10 h-1.5 rounded-full bg-zinc-300" />
             </div>
           )}
 
-          <div className="relative shrink-0 w-full aspect-[16/10] overflow-hidden bg-zinc-100">
-            <img
-              src={item.image || cfg.panelImage}
-              alt=""
-              className="w-full h-full object-cover"
-              loading="eager"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent" />
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Sluiten"
+            className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-white/95 backdrop-blur-md text-zinc-700 flex items-center justify-center hover:bg-white shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400"
+          >
+            <X className="w-4 h-4" aria-hidden />
+          </button>
 
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="Sluiten"
-              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/95 backdrop-blur-md text-zinc-700 flex items-center justify-center hover:bg-white shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400"
-            >
-              <X className="w-4 h-4" aria-hidden />
-            </button>
+          <div className="flex-1 overflow-y-auto w-full flex flex-col">
+            <div className="relative shrink-0 w-full aspect-[16/10] overflow-hidden bg-zinc-100">
+              <img
+                src={item.image || cfg.panelImage}
+                alt=""
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent" />
 
-            <div className="absolute left-6 bottom-6 flex flex-wrap items-center gap-3">
-              <span
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-zinc-900 shadow-sm border border-zinc-200/50"
-              >
-                <Icon className="w-4 h-4" aria-hidden />
-                <span className="text-[10px] font-black tracking-[0.2em] uppercase">
-                  {cfg.label}
+              <div className="absolute left-6 bottom-6 flex flex-wrap items-center gap-3 pr-16">
+                <span
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-zinc-900 shadow-sm border border-zinc-200/50"
+                >
+                  <Icon className="w-4 h-4" aria-hidden />
+                  <span className="text-[10px] font-black tracking-[0.2em] uppercase">
+                    {cfg.label}
+                  </span>
                 </span>
-              </span>
-              <span
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-zinc-900 shadow-sm border border-zinc-200/50"
-              >
-                {isLopend ? (
-                  <Sprout className="w-4 h-4" aria-hidden />
-                ) : (
-                  <CheckCircle2 className="w-4 h-4" aria-hidden />
-                )}
-                <span className="text-[10px] font-black tracking-[0.2em] uppercase">
-                  {STATUS_LABEL[item.status]}
+                <span
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-zinc-900 shadow-sm border border-zinc-200/50"
+                >
+                  {isLopend ? (
+                    <Sprout className="w-4 h-4" aria-hidden />
+                  ) : (
+                    <CheckCircle2 className="w-4 h-4" aria-hidden />
+                  )}
+                  <span className="text-[10px] font-black tracking-[0.2em] uppercase">
+                    {STATUS_LABEL[item.status]}
+                  </span>
                 </span>
-              </span>
-            </div>
-          </div>
-
-          <div className="relative grow overflow-y-auto px-6 md:px-12 py-8 md:py-12">
-            <h2
-              id="tl-panel-title"
-              className="text-3xl md:text-5xl font-black tracking-tight leading-[1.1] text-zinc-900"
-            >
-              {item.title}
-            </h2>
-            <div className="mt-5 h-[3px] w-16 bg-zinc-900" aria-hidden />
-
-            <div className="mt-8 text-base md:text-lg text-zinc-600 leading-relaxed">
-              {item.description ? (
-                <p>{item.description}</p>
-              ) : (
-                <p className="italic">
-                  {isLopend
-                    ? `Een project dat momenteel vorm krijgt binnen het thema ${cfg.label}.`
-                    : `Een gerealiseerd dossier binnen het thema ${cfg.label}.`}
-                </p>
-              )}
-            </div>
-
-            <div className="mt-12 grid grid-cols-2 gap-6 text-[11px] font-bold tracking-[0.25em] uppercase">
-              <div>
-                <div className="text-zinc-400 mb-2">Thema</div>
-                <div className="text-zinc-900">{cfg.label}</div>
               </div>
-              <div>
-                <div className="text-zinc-400 mb-2">Status</div>
-                <div className="text-zinc-900">{STATUS_LABEL[item.status]}</div>
+            </div>
+
+            <div className="relative shrink-0 px-6 md:px-12 py-8 md:py-12">
+              <h2
+                id="tl-panel-title"
+                className="text-3xl md:text-5xl font-black tracking-tight leading-[1.1] text-zinc-900"
+              >
+                {item.title}
+              </h2>
+              <div className="mt-5 h-[3px] w-16 bg-zinc-900" aria-hidden />
+
+              <div className="mt-8 pb-4 text-base md:text-lg text-zinc-600 leading-relaxed whitespace-pre-wrap">
+                {item.description ? (
+                  item.description
+                ) : (
+                  <span className="italic">
+                    {isLopend
+                      ? `Een project dat momenteel vorm krijgt binnen het thema ${cfg.label}.`
+                      : `Een gerealiseerd dossier binnen het thema ${cfg.label}.`}
+                  </span>
+                )}
               </div>
             </div>
           </div>
