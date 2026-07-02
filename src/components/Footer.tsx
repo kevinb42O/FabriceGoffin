@@ -65,11 +65,11 @@ export function Footer() {
             </span>
           </div>
 
-          <p className="md:col-span-3 text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-400">
+          <p className="hidden md:block md:col-span-3 text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-400">
             Navigatie
           </p>
 
-          <p className="md:col-span-4 text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-400">
+          <p className="hidden md:block md:col-span-4 text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-400">
             Kabinet
           </p>
 
