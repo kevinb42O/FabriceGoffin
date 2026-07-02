@@ -524,11 +524,17 @@ function TimelinePanel({ item, prevItem, nextItem, onNavigate, onClose, isDeskto
             </h2>
             <div className="mt-5 h-[3px] w-16 bg-zinc-900" aria-hidden />
 
-            <p className="mt-8 text-base md:text-lg text-zinc-600 leading-relaxed italic">
-              {isLopend
-                ? `Een project dat momenteel vorm krijgt binnen het thema ${cfg.label}.`
-                : `Een gerealiseerd dossier binnen het thema ${cfg.label}.`}
-            </p>
+            <div className="mt-8 text-base md:text-lg text-zinc-600 leading-relaxed">
+              {item.description ? (
+                <p>{item.description}</p>
+              ) : (
+                <p className="italic">
+                  {isLopend
+                    ? `Een project dat momenteel vorm krijgt binnen het thema ${cfg.label}.`
+                    : `Een gerealiseerd dossier binnen het thema ${cfg.label}.`}
+                </p>
+              )}
+            </div>
 
             <div className="mt-12 grid grid-cols-2 gap-6 text-[11px] font-bold tracking-[0.25em] uppercase">
               <div>
@@ -552,9 +558,9 @@ function TimelinePanel({ item, prevItem, nextItem, onNavigate, onClose, isDeskto
                 <div className="w-12 h-12 rounded-full border border-zinc-200 flex items-center justify-center bg-white shrink-0 group-hover:-translate-x-1 transition-transform shadow-sm">
                   <ArrowLeft className="w-5 h-5 text-zinc-900" />
                 </div>
-                <div className="flex flex-col min-w-0 hidden md:flex">
+                <div className="flex flex-col min-w-0 hidden md:flex w-full">
                   <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 mb-1">Vorige</span>
-                  <span className="text-sm md:text-base font-semibold text-zinc-900 truncate pr-4">{prevItem.title}</span>
+                  <span className="text-sm md:text-base font-semibold text-zinc-900 truncate pr-4 block w-full">{prevItem.title}</span>
                 </div>
               </button>
             ) : (
@@ -575,9 +581,9 @@ function TimelinePanel({ item, prevItem, nextItem, onNavigate, onClose, isDeskto
                 onClick={() => onNavigate(nextItem.id)}
                 className="group flex items-center gap-4 text-right justify-end hover:opacity-70 transition-opacity focus:outline-none flex-1 min-w-0"
               >
-                <div className="flex flex-col items-end min-w-0 hidden md:flex">
+                <div className="flex flex-col text-right min-w-0 hidden md:flex w-full">
                   <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 mb-1">Volgende</span>
-                  <span className="text-sm md:text-base font-semibold text-zinc-900 truncate pl-4">{nextItem.title}</span>
+                  <span className="text-sm md:text-base font-semibold text-zinc-900 truncate pl-4 block w-full">{nextItem.title}</span>
                 </div>
                 <div className="w-12 h-12 rounded-full border border-zinc-200 flex items-center justify-center bg-white shrink-0 group-hover:translate-x-1 transition-transform shadow-sm">
                   <ArrowRight className="w-5 h-5 text-zinc-900" />
