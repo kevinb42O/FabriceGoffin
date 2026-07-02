@@ -25,7 +25,7 @@ export const tijdlijn: TimelineItem[] = [
   // ─────────────────── Dierenwelzijn — Lopende projecten ───────────────────
   { id: 'dw-l-1', category: 'Dierenwelzijn', status: 'Lopend', title: 'Gaia zoo van de toekomst in Oostende', image: "/realisaties/gaiazoovandetoekomst.jpg" },
   { id: 'dw-l-2', category: 'Dierenwelzijn', status: 'Lopend', title: 'Hondenfestival onder stad Oostende' , image: "/realisaties/Hondenfestival onder stad Oostende.webp" },
-  { id: 'dw-l-3', category: 'Dierenwelzijn', status: 'Lopend', title: 'Aziatische Hoornaar - preventie + vallen in publieke ruimtes' , image: "/realisaties/Aziatische Hoornaar - preventie + vallen in publieke ruimtes.jpeg" },
+  { id: 'dw-l-3', category: 'Dierenwelzijn', status: 'Lopend', title: 'Aziatische Hoornaar - preventie + vallen in publieke ruimtes' , image: "/realisaties/Aziatische Hoornaar - preventie en vallen in publieke ruimtes.jpeg" },
   { id: 'dw-l-4', category: 'Dierenwelzijn', status: 'Lopend', title: 'Diervriendelijk horeca label' , image: "/realisaties/Diervriendelijk horeca label.jpeg" },
   { id: 'dw-l-5', category: 'Dierenwelzijn', status: 'Lopend', title: 'Aanleg van stads drink-fontijntjes voor honden op drukke plaatsen' , image: "/realisaties/Aanleg van stads drink-fontijntjes voor honden op drukke plaatsen.webp" },
 

@@ -122,7 +122,7 @@ export const CATEGORIES: CategoryConfig[] = [
     borderStrong: 'border-red-600',
     ring: 'ring-red-600',
     hex: '#dc2626',
-    panelImage: '/realisaties/Aziatische Hoornaar - preventie + vallen in publieke ruimtes.jpeg',
+    panelImage: '/realisaties/Aziatische Hoornaar - preventie en vallen in publieke ruimtes.jpeg',
   },
 ];
 
