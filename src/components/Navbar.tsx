@@ -150,7 +150,7 @@ export function Navbar() {
                     opacity: isOpen ? 0 : 1,
                     x: isOpen ? 10 : 0,
                   }}
-                  className={`block w-full h-[2px] transition-all duration-300 ${isOpen ? 'bg-white' : 'bg-zinc-900 group-hover:bg-red-600'}`}
+                  className={`block w-full h-[2px] transition-colors duration-300 ${isOpen ? 'bg-white' : 'bg-zinc-900 group-hover:bg-red-600'}`}
                 />
                 <motion.span
                   animate={{
@@ -185,12 +185,14 @@ export function Navbar() {
                <motion.div 
                  initial={{ scale: 1.2, opacity: 0 }}
                  animate={{ scale: 1, opacity: 1 }}
+                 exit={{ opacity: 0 }}
                  transition={{ duration: 1.5, ease: 'easeOut' }}
                  className="absolute -top-[50%] -right-[20%] w-[100vw] h-[100vw] rounded-full bg-red-900/40 blur-[120px]"
                />
                <motion.div 
                  initial={{ scale: 1.2, opacity: 0 }}
                  animate={{ scale: 1, opacity: 1 }}
+                 exit={{ opacity: 0 }}
                  transition={{ duration: 1.5, ease: 'easeOut', delay: 0.2 }}
                  className="absolute -bottom-[50%] -left-[20%] w-[80vw] h-[80vw] rounded-full bg-zinc-800/80 blur-[100px]"
                />
@@ -200,14 +202,24 @@ export function Navbar() {
               {links.map((link, i) => (
                 <div key={link.path} className="overflow-hidden">
                   <motion.div
-                    initial={{ y: '100%', rotate: 5, opacity: 0 }}
-                    animate={{ y: 0, rotate: 0, opacity: 1 }}
-                    exit={{ y: '100%', rotate: -5, opacity: 0 }}
-                    transition={{ 
-                      duration: 0.6, 
-                      ease: [0.22, 1, 0.36, 1], 
-                      delay: i * 0.1 + 0.2 
+                    variants={{
+                      initial: { y: '100%', rotate: 5, opacity: 0 },
+                      animate: { 
+                        y: 0, 
+                        rotate: 0, 
+                        opacity: 1,
+                        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 + 0.2 }
+                      },
+                      exit: { 
+                        y: '100%', 
+                        rotate: -5, 
+                        opacity: 0,
+                        transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
+                      }
                     }}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
                   >
                     <Link
                       to={link.path}
@@ -234,10 +246,22 @@ export function Navbar() {
             </div>
             
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
+              variants={{
+                initial: { opacity: 0, y: 20 },
+                animate: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: { delay: 0.6, duration: 0.5 }
+                },
+                exit: { 
+                  opacity: 0, 
+                  y: 20,
+                  transition: { duration: 0.3 }
+                }
+              }}
+              initial="initial"
+              animate="animate"
+              exit="exit"
               className="absolute bottom-8 md:bottom-12 text-[10px] text-zinc-500 font-bold tracking-[0.3em] uppercase w-full px-8 text-center flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto gap-4"
             >
               <div className="hidden md:block">Fabrice Goffin © 2026</div>
