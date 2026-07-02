@@ -19,8 +19,8 @@ export function HomeStandpuntenPreview() {
   return (
     <section
       ref={targetRef}
-      // 6 cards instead of 4: pin a bit longer so the horizontal scroll feels paced, not sprinted.
-      className="hidden lg:block relative h-[450vh] bg-zinc-50 border-t border-zinc-200 z-10"
+      // Minder hoge pin (250vh i.p.v. 450vh) zorgt ervoor dat het sneller scrollt en minder irritant is
+      className="hidden lg:block relative h-[250vh] bg-zinc-50 border-t border-zinc-200 z-10"
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
         <div className="px-6 md:px-12 lg:px-24 flex flex-col md:flex-row justify-between md:items-end mb-16 gap-8 shrink-0">
