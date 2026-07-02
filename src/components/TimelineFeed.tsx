@@ -54,7 +54,7 @@ export const CATEGORIES: CategoryConfig[] = [
     borderStrong: 'border-red-600',
     ring: 'ring-red-600',
     hex: '#dc2626',
-    panelImage: '/images/diervriendelijk.webp',
+    panelImage: '/images/diervriendelijk-taart.jpeg',
   },
   {
     key: "OC's",
@@ -68,7 +68,7 @@ export const CATEGORIES: CategoryConfig[] = [
     borderStrong: 'border-red-600',
     ring: 'ring-red-600',
     hex: '#dc2626',
-    panelImage: '/images/gemeenteraad.webp',
+    panelImage: '/images/gemeenteraad-taart.jpeg',
   },
   {
     key: 'Digitalisatie',
@@ -82,7 +82,7 @@ export const CATEGORIES: CategoryConfig[] = [
     borderStrong: 'border-red-600',
     ring: 'ring-red-600',
     hex: '#dc2626',
-    panelImage: '/images/contacteermij.webp',
+    panelImage: '/images/contacteermij-taart.jpeg',
   },
   {
     key: 'Buurten & Wijken',
@@ -108,7 +108,7 @@ export const CATEGORIES: CategoryConfig[] = [
     borderStrong: 'border-red-600',
     ring: 'ring-red-600',
     hex: '#dc2626',
-    panelImage: '/images/opkomst.webp',
+    panelImage: '/images/opkomst-taart.jpeg',
   },
   {
     key: 'Overige projecten algemeen',
@@ -122,7 +122,7 @@ export const CATEGORIES: CategoryConfig[] = [
     borderStrong: 'border-red-600',
     ring: 'ring-red-600',
     hex: '#dc2626',
-    panelImage: '/realisaties/Aziatische Hoornaar - preventie en vallen in publieke ruimtes.jpeg',
+    panelImage: '/realisaties/hoornaar-taart.jpeg',
   },
 ];
 
