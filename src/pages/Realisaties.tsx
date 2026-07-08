@@ -23,15 +23,20 @@ export default function Realisaties() {
   const activeCfg = selected ? catCfg(selected) : null;
   const previewCfg = catCfg(previewKey);
 
+  const handleThemeChange = (newTheme: TimelineCategory | null) => {
+    setSelected(newTheme);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const selectedIdx = selected ? CATEGORIES.findIndex((c) => c.key === selected) : -1;
   const handlePrev = () => {
     if (selectedIdx !== -1) {
-      setSelected(CATEGORIES[(selectedIdx - 1 + CATEGORIES.length) % CATEGORIES.length]!.key);
+      handleThemeChange(CATEGORIES[(selectedIdx - 1 + CATEGORIES.length) % CATEGORIES.length]!.key);
     }
   };
   const handleNext = () => {
     if (selectedIdx !== -1) {
-      setSelected(CATEGORIES[(selectedIdx + 1) % CATEGORIES.length]!.key);
+      handleThemeChange(CATEGORIES[(selectedIdx + 1) % CATEGORIES.length]!.key);
     }
   };
 
@@ -83,7 +88,7 @@ export default function Realisaties() {
             }`}
           >
             <CategoryPicker
-              onPick={setSelected}
+              onPick={handleThemeChange}
               onActiveChange={setPreviewKey}
               isCompact={selected !== null}
               activeKey={selected}
@@ -112,7 +117,7 @@ export default function Realisaties() {
                   <MagneticButton>
                     <button
                       type="button"
-                      onClick={() => setSelected(null)}
+                      onClick={() => handleThemeChange(null)}
                       className="group relative inline-flex items-center justify-center gap-3 sm:gap-4 px-6 sm:px-8 py-3.5 sm:py-4 bg-zinc-900 text-white rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.12)] focus:outline-none focus-visible:ring-4 focus-visible:ring-zinc-400 shrink-0"
                     >
                       <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 relative z-10 transition-transform group-hover:-translate-x-1" aria-hidden />
