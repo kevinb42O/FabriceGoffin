@@ -52,9 +52,26 @@ export default function Realisaties() {
       />
 
       <section
-        className="relative bg-white text-zinc-900 pt-32 md:pt-48 pb-24 md:pb-32"
+        className="relative text-zinc-900 pt-32 md:pt-48 pb-24 md:pb-32 min-h-screen overflow-hidden bg-zinc-50"
       >
-
+        {/* Dynamic Elegant Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <AnimatePresence mode="popLayout">
+            <motion.img 
+              key={previewCfg.panelImage}
+              src={previewCfg.panelImage}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="absolute inset-0 w-full h-full object-cover object-center"
+            />
+          </AnimatePresence>
+          {/* Lighter frosting: you can clearly see the image, but text remains readable */}
+          <div className="absolute inset-0 bg-zinc-50/70 backdrop-blur-[12px]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-zinc-50 via-zinc-50/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-zinc-50 via-transparent to-transparent" />
+        </div>
 
         <div className="relative z-10 flex flex-col xl:flex-row xl:items-start max-w-[1600px] mx-auto">
           {/* Always render picker, pass isCompact */}

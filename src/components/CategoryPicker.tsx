@@ -213,7 +213,7 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact, activeKey }:
           <div className="mb-14">
             <h1 className="text-[40px] sm:text-[48px] lg:text-[64px] font-black tracking-[-0.025em] leading-[1.05] text-zinc-900 mb-6">
               Mijn<br />
-              <span className="text-zinc-400">Standpunten</span>
+              <span className="text-zinc-400">Realisaties</span>
             </h1>
             <p className="text-base md:text-lg text-zinc-600 leading-relaxed max-w-md">
               Ontdek de thema's en projecten waar ik vol overtuiging mijn schouders onder zet. Een heldere visie voor de toekomst, met concrete realisaties en ambitieuze plannen in de maak.
