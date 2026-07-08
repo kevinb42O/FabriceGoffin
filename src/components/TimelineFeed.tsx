@@ -416,7 +416,7 @@ function FeedCard({
           <img 
             src={item.image || cfg.panelImage} 
             alt={item.title}
-            className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+            className="w-full h-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
             loading="lazy"
           />
           {/* Gradient overlay on hover for text readability */}

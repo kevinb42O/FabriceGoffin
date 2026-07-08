@@ -86,7 +86,7 @@ export default function Nieuws() {
           >
             <Link to={`/nieuws/${featuredArticle.slug}`} className="group grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white rounded-3xl shadow-xl overflow-hidden border border-zinc-100 block">
               <div className="aspect-video lg:aspect-auto h-full overflow-hidden relative">
-                <img src={featuredArticle.image} alt={featuredArticle.titel} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" fetchPriority="high" width={800} height={600} />
+                <img src={featuredArticle.image} alt={featuredArticle.titel} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" fetchPriority="high" width={800} height={600} />
               </div>
               <div className="p-10 md:p-16 flex flex-col justify-center bg-white relative">
                 <div className="absolute top-0 left-0 w-2 h-full bg-red-600"></div>
@@ -122,7 +122,7 @@ export default function Nieuws() {
                >
                  <Link to={`/nieuws/${article.slug}`} className="group flex flex-col bg-white rounded-3xl border border-zinc-100 hover:border-red-200 hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
                    <div className="aspect-[4/3] w-full overflow-hidden relative">
-                     <img src={article.image} alt={article.titel} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" width={800} height={600} />
+                     <img src={article.image} alt={article.titel} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" loading="lazy" width={800} height={600} />
                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-zinc-900 text-[10px] font-black px-3 py-1.5 uppercase tracking-widest rounded-sm">
                        {article.datum}
                      </div>
