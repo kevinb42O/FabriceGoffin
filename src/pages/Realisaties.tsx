@@ -52,10 +52,10 @@ export default function Realisaties() {
       />
 
       <section
-        className="relative text-zinc-900 pt-32 md:pt-48 pb-24 md:pb-32 min-h-screen overflow-hidden bg-zinc-50"
+        className="relative text-zinc-900 pt-32 md:pt-48 pb-24 md:pb-32 min-h-screen bg-zinc-50"
       >
         {/* Dynamic Elegant Background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <AnimatePresence mode="popLayout">
             <motion.img 
               key={previewCfg.panelImage}
