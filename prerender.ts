@@ -7,12 +7,15 @@ import { articles } from './src/data/articles';
 const app = express();
 const DIST_DIR = path.resolve(process.cwd(), 'dist');
 
+// Keep a copy of the original clean index.html before prerendering overwrites it
+const ORIGINAL_INDEX_HTML = fs.readFileSync(path.join(DIST_DIR, 'index.html'), 'utf-8');
+
 // Serve static assets from the dist directory
 app.use(express.static(DIST_DIR));
 
-// Fallback all routes to index.html to allow client-side routing initially
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(DIST_DIR, 'index.html'));
+// Fallback all routes to the ORIGINAL index.html (the clean SPA shell)
+app.get('*', (_req, res) => {
+  res.type('html').send(ORIGINAL_INDEX_HTML);
 });
 
 const PORT = 3001;
@@ -21,6 +24,7 @@ const server = app.listen(PORT, async () => {
   console.log(`\n🚀 Starting Prerendering process on http://localhost:${PORT}...`);
   
   const routes = [
+    '/',
     '/over',
     '/contact',
     '/standpunten',
@@ -28,8 +32,7 @@ const server = app.listen(PORT, async () => {
     '/nieuws',
     '/privacy',
     '/voorwaarden',
-    ...articles.map(a => `/nieuws/${a.slug}`),
-    '/'
+    ...articles.map(a => `/nieuws/${a.slug}`)
   ];
 
   try {
@@ -37,32 +40,39 @@ const server = app.listen(PORT, async () => {
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox'] 
     });
-    
-    const page = await browser.newPage();
-    
-    // Optioneel: blokkeer netwerkverzoeken die niet nodig zijn (bv externe analytics) om sneller te renderen
-    // await page.setRequestInterception(true);
-    // page.on('request', (req) => { ... });
 
     for (const route of routes) {
       console.log(`⏳ Rendering: ${route}`);
-      // Wacht tot er geen actieve netwerkverzoeken meer zijn gedurende 500ms (betekent dat React en Helmet klaar zijn)
+      
+      // Create a FRESH page for each route to prevent Helmet tag leakage
+      const page = await browser.newPage();
+      
       await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: 'networkidle0', timeout: 30000 });
       
-      // Get the full HTML
       const html = await page.content();
+      await page.close();
       
-      // Create nested directories if needed
+      // Create nested directories and write index.html (for directory-based serving)
       const dirPath = path.join(DIST_DIR, route);
       if (!fs.existsSync(dirPath)) {
         fs.mkdirSync(dirPath, { recursive: true });
       }
-      
-      // For the root route '/', it will overwrite dist/index.html
-      // For others, it writes dist/over/index.html etc.
-      // This allows simple static hosting like Netlify/Vercel or standard Apache/Nginx to serve the correct file
       fs.writeFileSync(path.join(dirPath, 'index.html'), html);
-      console.log(`✅ Saved: ${path.join(route, 'index.html')}`);
+      
+      // Also write a flat .html file for Vercel's cleanUrls feature
+      // e.g. /over -> dist/over.html, /nieuws/slug -> dist/nieuws/slug.html
+      // This ensures Vercel serves the pre-rendered file BEFORE the rewrite fallback
+      if (route !== '/') {
+        const flatPath = path.join(DIST_DIR, `${route}.html`);
+        const flatDir = path.dirname(flatPath);
+        if (!fs.existsSync(flatDir)) {
+          fs.mkdirSync(flatDir, { recursive: true });
+        }
+        fs.writeFileSync(flatPath, html);
+        console.log(`✅ Saved: ${route}/index.html + ${route}.html`);
+      } else {
+        console.log(`✅ Saved: /index.html`);
+      }
     }
     
     await browser.close();
