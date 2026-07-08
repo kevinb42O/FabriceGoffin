@@ -82,35 +82,38 @@ export default function Nieuws() {
           <motion.article 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-16"
+            className="mb-20 md:mb-32"
           >
-            <Link to={`/nieuws/${featuredArticle.slug}`} className="group grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white rounded-3xl shadow-xl overflow-hidden border border-zinc-100 block">
-              <div className="aspect-video lg:aspect-auto h-full overflow-hidden relative">
-                <img src={featuredArticle.image} alt={featuredArticle.titel} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" fetchPriority="high" width={800} height={600} />
+            <Link to={`/nieuws/${featuredArticle.slug}`} className="group flex flex-col lg:flex-row gap-10 md:gap-16 items-center">
+              <div className="w-full lg:w-[60%] aspect-[4/3] lg:aspect-[16/10] overflow-hidden rounded-2xl md:rounded-[2rem] relative shrink-0 shadow-xl">
+                <img src={featuredArticle.image} alt={featuredArticle.titel} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" fetchPriority="high" width={1000} height={700} />
               </div>
-              <div className="p-10 md:p-16 flex flex-col justify-center bg-white relative">
-                <div className="absolute top-0 left-0 w-2 h-full bg-red-600"></div>
-                <span className="inline-block px-3 py-1 bg-zinc-100 text-red-600 font-black text-xs uppercase tracking-widest rounded-sm mb-6 w-max">
-                  Uitgelicht — {featuredArticle.datum}
-                </span>
-                <h2 className="text-3xl md:text-5xl font-medium tracking-tight leading-none text-zinc-900 mb-6 group-hover:text-red-600 transition-colors font-heading">
+              <div className="w-full lg:w-[40%] flex flex-col justify-center">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-8 h-[2px] bg-red-600"></div>
+                  <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">
+                    Uitgelicht
+                  </span>
+                </div>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1] text-zinc-900 mb-6 group-hover:text-red-600 transition-colors font-heading">
                   {featuredArticle.titel}
                 </h2>
-                <p className="text-zinc-600 text-lg md:text-xl font-medium leading-relaxed mb-10 line-clamp-3 md:line-clamp-4">
+                <div className="text-zinc-400 text-sm font-black uppercase tracking-widest mb-6">
+                  {featuredArticle.datum}
+                </div>
+                <p className="text-zinc-600 text-lg md:text-xl font-medium leading-relaxed mb-10 line-clamp-4">
                   {featuredArticle.inhoud}
                 </p>
                 <div className="flex items-center gap-3 text-sm font-black uppercase tracking-[0.2em] text-zinc-900 group-hover:text-red-600 transition-colors w-max">
                   Lees artikel
-                  <div className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center group-hover:bg-red-100 transition-colors">
-                    <ArrowRight className="w-4 h-4" />
-                  </div>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             </Link>
           </motion.article>
 
-          {/* Grid for older articles */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Minimal Grid for older articles */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
             {visibleArticles.map((article, index) => (
                <motion.article 
                  key={article.slug}
@@ -120,23 +123,23 @@ export default function Nieuws() {
                  transition={{ delay: 0.1 * index }}
                  className="h-full"
                >
-                 <Link to={`/nieuws/${article.slug}`} className="group flex flex-col bg-white rounded-3xl border border-zinc-100 hover:border-red-200 hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
-                   <div className="aspect-[4/3] w-full overflow-hidden relative">
-                     <img src={article.image} alt={article.titel} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" loading="lazy" width={800} height={600} />
-                     <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-zinc-900 text-[10px] font-black px-3 py-1.5 uppercase tracking-widest rounded-sm">
-                       {article.datum}
-                     </div>
+                 <Link to={`/nieuws/${article.slug}`} className="group flex flex-col h-full">
+                   <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl mb-6 relative">
+                     <img src={article.image} alt={article.titel} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy" width={800} height={600} />
                    </div>
 
-                   <div className="p-8 flex flex-col flex-1">
-                     <h3 className="text-xl font-medium tracking-tight leading-snug text-zinc-900 mb-4 group-hover:text-red-600 transition-colors line-clamp-2 font-heading">
+                   <div className="flex flex-col flex-1">
+                     <div className="text-zinc-400 text-[10px] font-black uppercase tracking-widest mb-3">
+                       {article.datum}
+                     </div>
+                     <h3 className="text-2xl font-medium tracking-tight leading-snug text-zinc-900 mb-4 group-hover:text-red-600 transition-colors line-clamp-3 font-heading">
                        {article.titel}
                      </h3>
-                     <p className="text-zinc-600 text-sm font-medium leading-relaxed mb-8 flex-1 line-clamp-3">
+                     <p className="text-zinc-500 text-sm font-medium leading-relaxed mb-6 flex-1 line-clamp-3">
                        {article.inhoud}
                      </p>
                      
-                     <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 group-hover:text-red-600 transition-colors w-max mt-auto">
+                     <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-900 group-hover:text-red-600 transition-colors w-max mt-auto">
                        Lees meer 
                        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                      </div>

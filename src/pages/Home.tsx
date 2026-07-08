@@ -7,6 +7,7 @@ import { HomeHeroMobile } from '../components/HomeHeroMobile';
 import { HomeBio } from '../components/HomeBio';
 import { HomeStandpuntenPreview } from '../components/HomeStandpuntenPreview';
 import { HomeStandpuntenMobile } from '../components/HomeStandpuntenMobile';
+import { HomeNieuwsPreview } from '../components/HomeNieuwsPreview';
 
 export default function Home() {
   return (
@@ -28,7 +29,10 @@ export default function Home() {
       <HomeStandpuntenMobile />
       <HomeStandpuntenPreview />
 
-      {/* 4. Video Showcase Section */}
+      {/* 4. Laatste Nieuws Section */}
+      <HomeNieuwsPreview />
+
+      {/* 5. Video Showcase Section */}
       <VideoShowcase />
 
       {/* 5. Social Wall Section */}
