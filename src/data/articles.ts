@@ -240,7 +240,7 @@ export const articles: Article[] = [
       "Daarom investeerden we in een nieuw, comfortabel minibusje waarmee we mensen vlot en veilig naar het ontmoetingscentrum \u2019t Kasteeltje brengen voor hun dagelijkse lunch.",
       "Een dikke dankjewel aan de vrijwilligers die zich elke dag opnieuw inzetten voor deze vervoerdienst. Dankzij hen blijft deze service draaien, met hart voor de wijk."
     ],
-    "image": "/images/articles/toegankelijke-mobiliteit-is-essentieel-zeker-voor-minder-m.jpeg",
+    "image": "/realisaties/busje.jpeg",
     "datum": "18 mei 2025",
     "featured": false
   },

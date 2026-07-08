@@ -25,6 +25,7 @@ interface Props {
   onActiveChange?: (category: TimelineCategory) => void;
   /** When true, hides the text side-rail to make room for the timeline */
   isCompact?: boolean;
+  activeKey?: TimelineCategory | null;
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -66,7 +67,7 @@ const segmentCenter = (i: number) => -180 + i * SEG;
 // ──────────────────────────────────────────────────────────────
 //  Picker
 // ──────────────────────────────────────────────────────────────
-export function CategoryPicker({ onPick, onActiveChange, isCompact }: Props) {
+export function CategoryPicker({ onPick, onActiveChange, isCompact, activeKey }: Props) {
   const reduceMotion = useReducedMotion();
   const [activeIdx, setActiveIdx] = useState(0);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
@@ -133,6 +134,16 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact }: Props) {
     // activeIdx will be picked up by the rotation subscriber as the spring
     // settles — no eager set needed.
   };
+
+  useEffect(() => {
+    if (activeKey) {
+      const idx = CATEGORIES.findIndex((c) => c.key === activeKey);
+      if (idx !== -1 && idx !== activeIdx) {
+        selectIdx(idx);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeKey]);
 
   // ── Drag rotation ────────────────────────────────────────────
   const onPanStart = () => {
@@ -285,26 +296,46 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact }: Props) {
             </AnimatePresence>
 
             {/* Controls row */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 sm:gap-6 mt-2">
               <motion.button
                 whileHover={reduceMotion ? undefined : { scale: 1.05 }}
                 whileTap={reduceMotion ? undefined : { scale: 0.95 }}
                 type="button"
                 onClick={() => selectIdx((activeIdx - 1 + N) % N)}
                 aria-label="Vorig thema"
-                className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2"
+                className="inline-flex items-center justify-center w-14 h-14 shrink-0 rounded-full border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 hover:bg-zinc-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2"
               >
-                <ChevronLeft className="w-5 h-5" aria-hidden />
+                <ChevronLeft className="w-6 h-6" aria-hidden />
               </motion.button>
+
+              <motion.button
+                whileHover={reduceMotion ? undefined : { scale: 1.05 }}
+                whileTap={reduceMotion ? undefined : { scale: 0.95 }}
+                type="button"
+                onClick={() => {
+                  if (isDragging.current) return;
+                  selectIdx(activeIdx);
+                  if (isCompact) {
+                    onPick(active.key);
+                  } else {
+                    onPick(active.key);
+                  }
+                }}
+                className={`inline-flex items-center justify-center h-14 px-8 sm:px-10 rounded-full font-black uppercase tracking-widest text-[12px] md:text-[13px] text-white transition-all focus:outline-none shadow-[0_8px_20px_-6px_rgba(0,0,0,0.4)] hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.5)] shrink-0 ${active.bg}`}
+              >
+                Ontdek projecten
+                <ArrowRight className="w-5 h-5 ml-3" />
+              </motion.button>
+
               <motion.button
                 whileHover={reduceMotion ? undefined : { scale: 1.05 }}
                 whileTap={reduceMotion ? undefined : { scale: 0.95 }}
                 type="button"
                 onClick={() => selectIdx((activeIdx + 1) % N)}
                 aria-label="Volgend thema"
-                className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2"
+                className="inline-flex items-center justify-center w-14 h-14 shrink-0 rounded-full border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 hover:bg-zinc-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2"
               >
-                <ChevronRight className="w-5 h-5" aria-hidden />
+                <ChevronRight className="w-6 h-6" aria-hidden />
               </motion.button>
             </div>
           </div>

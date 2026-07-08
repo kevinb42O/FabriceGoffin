@@ -408,34 +408,34 @@ function FeedCard({
         className={`group block w-full text-left p-3 md:p-4 rounded-2xl bg-white/70 backdrop-blur-xl border border-zinc-200/60 shadow-[0_4px_24px_rgba(0,0,0,0.02)] transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 overflow-hidden relative ${cfg.ring} ${
           active 
             ? `ring-2 ${cfg.ring} bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] scale-[1.02]` 
-            : 'hover:shadow-[0_16px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1'
+            : 'hover:bg-white hover:border-zinc-300 hover:shadow-[0_16px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1'
         } min-h-[80px] md:min-h-[96px]`}
       >
-        {/* The expanding image background */}
-        <div className="absolute z-0 top-2 right-2 bottom-2 w-20 md:w-28 rounded-xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:top-0 group-hover:bottom-0 group-hover:right-0 group-hover:w-full group-hover:rounded-none">
+        {/* The thumbnail */}
+        <div className="absolute z-0 top-2 right-2 bottom-2 w-20 md:w-28 rounded-xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
           <img 
             src={item.image || cfg.panelImage} 
             alt={item.title}
-            className="w-full h-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+            className="w-full h-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
             loading="lazy"
           />
-          {/* Gradient overlay on hover for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-zinc-900/90 via-zinc-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          {/* Dark overlay on hover */}
+          <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           
           {/* Arrow */}
-          <div className="absolute inset-0 flex items-center justify-end pr-4 md:pr-8 translate-x-8 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] delay-75">
-            <ArrowRight className="w-6 h-6 md:w-8 md:h-8 text-white drop-shadow-lg" />
+          <div className="absolute inset-0 flex items-center justify-center translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
+            <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-white drop-shadow-md" />
           </div>
         </div>
 
         {/* Content */}
         <div className="flex items-center gap-3 md:gap-5 relative z-10 w-full transition-colors duration-500 pr-[90px] md:pr-[130px]">
-          <div className={`shrink-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full ${cfg.soft} ${cfg.text} group-hover:scale-110 group-hover:bg-white/20 group-hover:text-white group-hover:backdrop-blur-md transition-all duration-500`}>
+          <div className={`shrink-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full ${cfg.soft} ${cfg.text} group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all duration-500`}>
             <CategoryIcon className="w-5 h-5 md:w-6 md:h-6" />
           </div>
           
           <div className="flex-1 min-w-0 py-1">
-            <h3 className="text-sm md:text-lg font-bold leading-snug text-zinc-900 group-hover:text-white transition-colors duration-500 drop-shadow-sm">
+            <h3 className="text-sm md:text-lg font-bold leading-snug text-zinc-900 group-hover:text-red-600 transition-colors duration-500 drop-shadow-sm">
               {item.title}
             </h3>
           </div>

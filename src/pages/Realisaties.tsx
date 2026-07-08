@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import { SEO } from '../components/SEO';
 import {
@@ -23,6 +23,18 @@ export default function Realisaties() {
   const activeCfg = selected ? catCfg(selected) : null;
   const previewCfg = catCfg(previewKey);
 
+  const selectedIdx = selected ? CATEGORIES.findIndex((c) => c.key === selected) : -1;
+  const handlePrev = () => {
+    if (selectedIdx !== -1) {
+      setSelected(CATEGORIES[(selectedIdx - 1 + CATEGORIES.length) % CATEGORIES.length]!.key);
+    }
+  };
+  const handleNext = () => {
+    if (selectedIdx !== -1) {
+      setSelected(CATEGORIES[(selectedIdx + 1) % CATEGORIES.length]!.key);
+    }
+  };
+
   // Preload the other panel images so hover swaps are instant.
   useEffect(() => {
     CATEGORIES.forEach((c) => {
@@ -40,7 +52,7 @@ export default function Realisaties() {
       />
 
       <section
-        className="relative bg-white text-zinc-900 pt-32 md:pt-48 pb-24 md:pb-32 overflow-hidden"
+        className="relative bg-white text-zinc-900 pt-32 md:pt-48 pb-24 md:pb-32"
       >
 
 
@@ -49,7 +61,7 @@ export default function Realisaties() {
           <motion.div 
             layout
             transition={{ type: "spring", bounce: 0, duration: 0.8 }}
-            className={`flex flex-col items-center md:items-start shrink-0 ${
+            className={`flex flex-col items-center md:items-start shrink-0 xl:sticky xl:top-40 ${
               selected === null ? 'w-full' : ''
             }`}
           >
@@ -57,6 +69,7 @@ export default function Realisaties() {
               onPick={setSelected}
               onActiveChange={setPreviewKey}
               isCompact={selected !== null}
+              activeKey={selected}
             />
             
             <AnimatePresence>
@@ -66,19 +79,41 @@ export default function Realisaties() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 10, transition: { duration: 0.2 } }}
                   transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  className="mt-12 md:mt-16 w-full flex justify-center"
+                  className="mt-12 md:mt-16 w-full flex justify-center items-center gap-3 sm:gap-6"
                 >
+                  <motion.button
+                    whileHover={reduceMotion ? undefined : { scale: 1.05 }}
+                    whileTap={reduceMotion ? undefined : { scale: 0.95 }}
+                    type="button"
+                    onClick={handlePrev}
+                    aria-label="Vorig thema"
+                    className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 hover:bg-zinc-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400"
+                  >
+                    <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />
+                  </motion.button>
+
                   <MagneticButton>
                     <button
                       type="button"
                       onClick={() => setSelected(null)}
-                      className="group relative inline-flex items-center justify-center gap-4 px-8 py-4 bg-zinc-900 text-white rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.12)] focus:outline-none focus-visible:ring-4 focus-visible:ring-zinc-400"
+                      className="group relative inline-flex items-center justify-center gap-3 sm:gap-4 px-6 sm:px-8 py-3.5 sm:py-4 bg-zinc-900 text-white rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.12)] focus:outline-none focus-visible:ring-4 focus-visible:ring-zinc-400 shrink-0"
                     >
-                      <ArrowLeft className="w-5 h-5 relative z-10 transition-transform group-hover:-translate-x-1" aria-hidden />
-                      <span className="relative z-10 text-[11px] font-black tracking-[0.25em] uppercase mt-0.5">Ander Thema</span>
+                      <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 relative z-10 transition-transform group-hover:-translate-x-1" aria-hidden />
+                      <span className="relative z-10 text-[10px] sm:text-[11px] font-black tracking-[0.25em] uppercase mt-0.5">Ander Thema</span>
                       <div className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${activeCfg?.bg || 'bg-red-600'}`} />
                     </button>
                   </MagneticButton>
+
+                  <motion.button
+                    whileHover={reduceMotion ? undefined : { scale: 1.05 }}
+                    whileTap={reduceMotion ? undefined : { scale: 0.95 }}
+                    type="button"
+                    onClick={handleNext}
+                    aria-label="Volgend thema"
+                    className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 hover:bg-zinc-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400"
+                  >
+                    <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />
+                  </motion.button>
                 </motion.div>
               )}
             </AnimatePresence>
