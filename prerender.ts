@@ -21,7 +21,6 @@ const server = app.listen(PORT, async () => {
   console.log(`\n🚀 Starting Prerendering process on http://localhost:${PORT}...`);
   
   const routes = [
-    '/',
     '/over',
     '/contact',
     '/standpunten',
@@ -29,7 +28,8 @@ const server = app.listen(PORT, async () => {
     '/nieuws',
     '/privacy',
     '/voorwaarden',
-    ...articles.map(a => `/nieuws/${a.slug}`)
+    ...articles.map(a => `/nieuws/${a.slug}`),
+    '/'
   ];
 
   try {
