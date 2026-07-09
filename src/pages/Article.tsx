@@ -29,7 +29,10 @@ export default function Article() {
   }
 
   // Helper for social sharing
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const siteUrl = import.meta.env.VITE_SITE_URL || 'https://www.fabricegoffin.be';
+  const shareUrl = `${siteUrl}/nieuws/${article.slug}`;
+  const encodedShareUrl = encodeURIComponent(shareUrl);
+  const encodedTitle = encodeURIComponent(article.titel);
 
   return (
     <PageTransition>
@@ -82,13 +85,13 @@ export default function Article() {
                 <div className="flex items-center gap-4">
                   <span className="text-xs font-black uppercase tracking-widest text-zinc-400">Deel dit artikel</span>
                   <div className="flex items-center gap-2">
-                    <a href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-[#1877F2] hover:text-white transition-colors">
+                    <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodedShareUrl}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-[#1877F2] hover:text-white transition-colors">
                       <Facebook className="w-4 h-4" />
                     </a>
-                    <a href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${article.titel}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-[#1DA1F2] hover:text-white transition-colors">
+                    <a href={`https://twitter.com/intent/tweet?url=${encodedShareUrl}&text=${encodedTitle}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-[#1DA1F2] hover:text-white transition-colors">
                       <Twitter className="w-4 h-4" />
                     </a>
-                    <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${article.titel}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-[#0A66C2] hover:text-white transition-colors">
+                    <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodedShareUrl}&title=${encodedTitle}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-[#0A66C2] hover:text-white transition-colors">
                       <Linkedin className="w-4 h-4" />
                     </a>
                   </div>
