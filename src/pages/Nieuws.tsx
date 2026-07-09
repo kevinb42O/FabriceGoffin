@@ -85,17 +85,17 @@ export default function Nieuws() {
             className="mb-20 md:mb-32"
           >
             <Link to={`/nieuws/${featuredArticle.slug}`} className="group flex flex-col lg:flex-row gap-10 md:gap-16 items-center">
-              <div className="w-full lg:w-[60%] aspect-[4/3] lg:aspect-[16/10] overflow-hidden rounded-2xl md:rounded-[2rem] relative shrink-0 shadow-xl">
+              <div className="w-full lg:w-[55%] aspect-[4/3] overflow-hidden rounded-2xl md:rounded-[2rem] relative shrink-0 shadow-xl">
                 <img src={featuredArticle.image} alt={featuredArticle.titel} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" fetchPriority="high" width={1000} height={700} />
               </div>
-              <div className="w-full lg:w-[40%] flex flex-col justify-center">
+              <div className="w-full lg:w-[45%] flex flex-col justify-center">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-8 h-[2px] bg-red-600"></div>
                   <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">
                     Uitgelicht
                   </span>
                 </div>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1] text-zinc-900 mb-6 group-hover:text-red-600 transition-colors font-heading">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-[1.1] text-zinc-900 mb-6 group-hover:text-red-600 transition-colors font-heading">
                   {featuredArticle.titel}
                 </h2>
                 <div className="text-zinc-400 text-sm font-black uppercase tracking-widest mb-6">
