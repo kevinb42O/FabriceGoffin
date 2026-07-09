@@ -10,6 +10,23 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    "slug": "stad-oostende-roept-op-let-op-voor-jonge-meeuwen-nestspringers",
+    "titel": "Stad Oostende roept op: let op voor jonge meeuwen op straat",
+    "inhoud": "Stad Oostende waarschuwt voor jonge puberende meeuwen die hun nest verlaten maar nog niet goed kunnen vliegen, de zogenaamde 'nestspringers'. Als ze gewond zijn of in een drukke straat lopen, breng ze dan naar het Vogelopvangcentrum.",
+    "fullText": [
+      "Stad Oostende waarschuwt voor jonge puberende meeuwen die hun nest verlaten maar nog niet goed kunnen vliegen, de zogenaamde 'nestspringers'. Als ze gewond zijn of in een drukke straat lopen, vraagt de Stad om ze naar het Vogelopvangcentrum te brengen.",
+      "Met deze oproep willen we inwoners en bezoekers sensibiliseren om gewonde of verdwaalde jonge meeuwen op de juiste manier te helpen en indien nodig naar het Vogelopvangcentrum Oostende te brengen.",
+      "Deze tijd van het jaar zijn er veel 'nestspringers'. Dat zijn jonge Zilvermeeuwen en Kleine Mantelmeeuwen die te groot zijn geworden voor het nest, maar nog niet goed kunnen vliegen. Ze fladderen dan van de daken op straat. Doordat ze niet kunnen wegvliegen, worden ze helaas vaak aangereden.",
+      "\"Begin juni kwamen ze uit het ei als kleine donsballetjes in een warm nest. Ze waren veilig onder de vleugels van pa en ma meeuw, maar in amper een maand groeiden ze uit van kuikentjes tot jonge meeuwen die de wereld willen verkennen. Als pubers storten ze zich in het leven. Maar voor veel nestspringers eindigt de eerste vlucht helaas al in aanraking met het verkeer. Als je een gekwetste of verdwaalde meeuw ziet, breng die dan zeker naar het Vogelopvangcentrum of contacteer ons.\"\n- Claude Velter, Directeur Vogelopvangcentrum Oostende",
+      "We hebben de ambitie om van Oostende de meest diervriendelijke stad van Vlaanderen te maken. Dierenwelzijn krijgt daarom een essentiële plaats binnen ons beleid. Dat betekent niet alleen investeren in onze huisdieren en opvanginitiatieven, maar ook aandacht hebben voor de wilde dieren die onze stad typeren. Meeuwen maken nu eenmaal deel uit van onze kust en verdienen tijdens deze kwetsbare periode extra zorg.",
+      "\"Meeuwen maken deel uit van onze kustnatuur. Het is zoeken naar een evenwicht tussen het stadsleven en de meeuwen. Zeker nu, aansluitend op het broedseizoen, verdienen jonge vogels onze aandacht en zorg. Door alert te zijn voor nestspringers en hen op de juiste manier te helpen, dragen we ons steentje bij aan het dierenwelzijn.\"\n- Fabrice Goffin, schepen van dierenwelzijn",
+      "Wat moet je doen als je een nestspringer vindt? Vind je een verdwaalde of gekwetste jonge meeuw? Breng het dier naar het Vogelopvangcentrum Oostende (Nieuwpoortsesteenweg 642). Lukt dat niet, bel dan naar 059 80 67 66."
+    ],
+    "image": "/images/articles/nestspringers.jpeg",
+    "datum": "9 juli 2026",
+    "featured": true
+  },
+  {
     "slug": "nieuwe-publieke-bbq-geopend-aan-oc-t-kasteeltje",
     "titel": "Nieuwe Publieke BBQ Geopend aan OC 't Kasteeltje",
     "inhoud": "Vandaag hebben we officieel het lintje doorgeknipt van de nieuwe publieke BBQ aan OC 't Kasteeltje",
