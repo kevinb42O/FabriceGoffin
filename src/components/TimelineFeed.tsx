@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import {
   PawPrint,
@@ -174,8 +175,15 @@ interface TimelineFeedProps {
 export function TimelineFeed({ filter }: TimelineFeedProps) {
   const isDesktop = useIsDesktop();
   const reduceMotion = useReducedMotion();
+  const location = useLocation();
 
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      if (tijdlijn.find(i => i.id === id)) return id;
+    }
+    return null;
+  });
   const selected = useMemo(
     () => tijdlijn.find((i) => i.id === selectedId) ?? null,
     [selectedId]
@@ -254,7 +262,10 @@ export function TimelineFeed({ filter }: TimelineFeedProps) {
             prevItem={prevItem}
             nextItem={nextItem}
             onNavigate={setSelectedId}
-            onClose={() => setSelectedId(null)}
+            onClose={() => {
+              setSelectedId(null);
+              window.history.replaceState(null, '', location.pathname);
+            }}
             isDesktop={isDesktop}
             reduceMotion={!!reduceMotion}
           />
@@ -446,6 +457,39 @@ function FeedCard({
 }
 
 // ──────────────────────────────────────────────────────────────
+//  Image Slider Component
+// ──────────────────────────────────────────────────────────────
+function ImageSlider({ images, fallback }: { images?: string[], fallback: string }) {
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    if (!images || images.length <= 1) return;
+    const interval = setInterval(() => {
+      setIdx(prev => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [images]);
+
+  const imgs = images && images.length > 0 ? images : [fallback];
+
+  return (
+    <div className="absolute inset-0 bg-zinc-100 overflow-hidden">
+      <AnimatePresence>
+        <motion.img
+          key={idx}
+          src={imgs[idx]}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: 'easeInOut' }}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// ──────────────────────────────────────────────────────────────
 //  Panel (light)
 // ──────────────────────────────────────────────────────────────
 interface PanelProps {
@@ -520,13 +564,8 @@ function TimelinePanel({ item, prevItem, nextItem, onNavigate, onClose, isDeskto
 
           <div className="flex-1 overflow-y-auto w-full flex flex-col">
             <div className="relative shrink-0 w-full aspect-[16/10] overflow-hidden bg-zinc-100">
-              <img
-                src={item.image || cfg.panelImage}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent" />
+              <ImageSlider images={item.images} fallback={item.image || cfg.panelImage} />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent pointer-events-none" />
 
               <div className="absolute left-6 bottom-6 flex flex-wrap items-center gap-3 pr-16">
                 <span

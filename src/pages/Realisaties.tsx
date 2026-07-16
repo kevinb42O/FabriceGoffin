@@ -8,15 +8,26 @@ import {
   TimelineFeed,
   catCfg,
 } from '../components/TimelineFeed';
+import { useLocation } from 'react-router-dom';
 import { MagneticButton } from '../components/MagneticButton';
 import { StaggerText } from '../components/StaggerText';
 import { CategoryPicker } from '../components/CategoryPicker';
-import type { TimelineCategory } from '../data/tijdlijn';
+import { type TimelineCategory, tijdlijn } from '../data/tijdlijn';
 
 export default function Realisaties() {
-  const [selected, setSelected] = useState<TimelineCategory | null>(null);
+  const location = useLocation();
+
+  const [selected, setSelected] = useState<TimelineCategory | null>(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const item = tijdlijn.find(i => i.id === id);
+      if (item) return item.category;
+    }
+    return null;
+  });
+
   const [previewKey, setPreviewKey] = useState<TimelineCategory>(
-    CATEGORIES[0]!.key,
+    selected || CATEGORIES[0]!.key,
   );
   const reduceMotion = useReducedMotion();
 
