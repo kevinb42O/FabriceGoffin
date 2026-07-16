@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'motion/react';
 import { useRef, useState, useEffect } from 'react';
-import { Play, Volume2, VolumeX, ArrowRight, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Play, Volume2, VolumeX, ArrowRight, ChevronRight, ChevronLeft, Loader2 } from 'lucide-react';
 import { StaggerText } from './StaggerText';
 import { Link } from 'react-router-dom';
 import { MagneticButton } from './MagneticButton';
@@ -32,11 +32,12 @@ const slides = [
 
 export function VideoShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [isBuffering, setIsBuffering] = useState(true);
 
   const isInView = useInView(containerRef, { amount: 0.3 }); // Trigger when 30% is visible
 
@@ -48,37 +49,52 @@ export function VideoShowcase() {
 
   // Auto-play/pause based on viewport intersection
   useEffect(() => {
-    if (!videoRef.current) return;
+    // Pause and reset all other videos
+    videoRefs.current.forEach((vid, idx) => {
+      if (!vid) return;
+      if (idx !== currentIndex) {
+        vid.pause();
+        vid.currentTime = 0;
+      }
+    });
+
+    const currentVideo = videoRefs.current[currentIndex];
+    if (!currentVideo) return;
 
     if (isInView) {
-      const playPromise = videoRef.current.play();
+      setIsBuffering(currentVideo.readyState < 3);
+      const playPromise = currentVideo.play();
       if (playPromise !== undefined) {
         playPromise.then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
       }
     } else {
-      videoRef.current.pause();
+      currentVideo.pause();
       setIsPlaying(false);
     }
   }, [isInView, currentIndex]);
 
   const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (!videoRef.current) return;
+    const currentVideo = videoRefs.current[currentIndex];
+    if (!currentVideo) return;
     if (isPlaying) {
-      videoRef.current.pause();
+      currentVideo.pause();
       setIsPlaying(false);
     } else {
-      videoRef.current.play();
-      setIsPlaying(true);
+      const playPromise = currentVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+      }
     }
   };
 
   const toggleMute = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
+    const newMuted = !isMuted;
+    setIsMuted(newMuted);
+    videoRefs.current.forEach(vid => {
+      if (vid) vid.muted = newMuted;
+    });
   };
 
   const { scrollYProgress } = useScroll({
@@ -188,27 +204,25 @@ export function VideoShowcase() {
                 className="aspect-[11/16] w-full rounded-[2.5rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] bg-zinc-950 border border-white/20 ring-4 ring-zinc-900 relative z-10 group isolate"
              >
                 <div
-                  className={`absolute inset-0 transition-transform duration-700 will-change-transform ${isPlaying ? 'scale-100' : 'scale-105 group-hover:scale-100'}`}
+                  className={`absolute inset-0 transition-transform duration-700 will-change-transform ${isPlaying && !isBuffering ? 'scale-100' : 'scale-105 group-hover:scale-100'}`}
                 >
-                  <AnimatePresence mode="wait">
-                    <motion.video
-                      key={currentSlide.video}
-                      initial={{ opacity: 0, scale: 1.05 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5 }}
-                      ref={videoRef}
-                      src={currentSlide.video}
-                      className="block w-full h-full object-cover absolute inset-0"
+                  {slides.map((slide, index) => (
+                    <video
+                      key={slide.id}
+                      ref={(el) => { videoRefs.current[index] = el; }}
+                      src={slide.video}
+                      className={`block w-full h-full object-cover absolute inset-0 transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
                       playsInline
-                      autoPlay
                       muted={isMuted}
-                      onEnded={nextSlide}
-                      onPlay={() => setIsPlaying(true)}
-                      onPause={() => setIsPlaying(false)}
+                      onEnded={index === currentIndex ? nextSlide : undefined}
+                      onPlay={() => { if (index === currentIndex) setIsPlaying(true); }}
+                      onPause={() => { if (index === currentIndex) setIsPlaying(false); }}
+                      onWaiting={() => { if (index === currentIndex) setIsBuffering(true); }}
+                      onPlaying={() => { if (index === currentIndex) { setIsBuffering(false); setIsPlaying(true); } }}
+                      onCanPlay={() => { if (index === currentIndex) setIsBuffering(false); }}
                       preload="auto"
                     />
-                  </AnimatePresence>
+                  ))}
                 </div>
                 
                 {/* A11y: Toegankelijke verborgen overlay knop voor keyboard control */}
@@ -240,9 +254,11 @@ export function VideoShowcase() {
                      </button>
                    </div>
 
-                   {/* Center Big Play Button */}
+                   {/* Center Big Play Button / Loading Spinner */}
                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                     {!isPlaying && (
+                     {isBuffering ? (
+                       <Loader2 className="w-16 h-16 text-white/80 animate-spin drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]" />
+                     ) : !isPlaying ? (
                        <button 
                          onClick={togglePlay}
                          aria-label="Video afspelen"
@@ -250,7 +266,7 @@ export function VideoShowcase() {
                        >
                          <Play className="w-10 h-10 sm:w-12 sm:h-12 ml-2" fill="currentColor" />
                        </button>
-                     )}
+                     ) : null}
                    </div>
 
                 </div>
