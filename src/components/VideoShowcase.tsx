@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'motion/react';
 import { useRef, useState, useEffect } from 'react';
-import { Play, Volume2, VolumeX, ArrowRight, ChevronRight } from 'lucide-react';
+import { Play, Volume2, VolumeX, ArrowRight, ChevronRight, ChevronLeft } from 'lucide-react';
 import { StaggerText } from './StaggerText';
 import { Link } from 'react-router-dom';
 import { MagneticButton } from './MagneticButton';
@@ -173,7 +173,15 @@ export function VideoShowcase() {
           {/* Vertical Video Container */}
           <motion.div 
              style={{ y, scale, opacity }}
-             className="lg:col-span-5 lg:col-start-1 relative w-full max-w-[450px] mx-auto lg:ml-0 lg:mr-auto order-1 lg:order-1 z-20"
+             onPanEnd={(e, info) => {
+               const swipe = info.offset.x;
+               if (swipe < -40) {
+                 nextSlide();
+               } else if (swipe > 40) {
+                 setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+               }
+             }}
+             className="lg:col-span-5 lg:col-start-1 relative w-full max-w-[450px] mx-auto lg:ml-0 lg:mr-auto order-1 lg:order-1 z-20 touch-pan-y"
           >
              {/* Main Vertical Video Player */}
              <div 
@@ -247,6 +255,24 @@ export function VideoShowcase() {
 
                 </div>
              </div>
+
+             {/* Mobile Swipe Hint BELOW the video */}
+             <motion.div 
+               className="mt-8 flex justify-center md:hidden pointer-events-none"
+               initial={{ opacity: 0, y: -10 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ delay: 1, duration: 0.8 }}
+             >
+               <motion.div
+                 animate={{ x: [0, 15, 0], opacity: [0.6, 1, 0.6] }}
+                 transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                 className="flex items-center gap-3 px-6 py-2.5 bg-black/30 backdrop-blur-md rounded-full border border-white/10 text-white shadow-lg"
+               >
+                 <span className="text-[11px] font-bold uppercase tracking-[0.2em]">Swipe</span>
+                 <ChevronRight className="w-4 h-4 text-red-500" />
+               </motion.div>
+             </motion.div>
+
           </motion.div>
        </div>
 
