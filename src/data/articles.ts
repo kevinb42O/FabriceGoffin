@@ -10,6 +10,21 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    "slug": "bezoek-van-de-amerikaanse-ambassadeur-aan-de-werf-casino-kursaal-oostende",
+    "titel": "Ambassadeur Bill White te gast op de werf van het Casino Kursaal in Oostende",
+    "inhoud": "Vandaag hadden we in Oostende de eer om de Amerikaanse ambassadeur Bill White te ontvangen voor een bezoek aan de werf van het Casino Kursaal. Achter het publieke imago schuilt een bijzonder warme, vriendelijke en joviale man, die oprechte interesse toonde in onze stad, haar geschiedenis en de ambitieuze toekomstplannen.",
+    "fullText": [
+      "Vandaag hadden we in Oostende de eer om de Amerikaanse ambassadeur Bill White te ontvangen voor een bezoek aan de werf van het Casino Kursaal.",
+      "Zoals velen kende ik hem vooral van zijn uitgesproken persoonlijkheid en zijn publieke optredens. Net daarom was deze ontmoeting des te verrassender. Achter het publieke imago schuilt een bijzonder warme, vriendelijke en joviale man, die oprechte interesse toonde in onze stad, haar geschiedenis en de ambitieuze toekomstplannen voor het vernieuwde Casino Kursaal.",
+      "Tijdens de rondleiding namen we uitgebreid de tijd om van gedachten te wisselen over de rijke band tussen Oostende en de Verenigde Staten, de toeristische en economische troeven van onze kuststad en de belangrijke rol die het vernieuwde Kursaal opnieuw zal spelen als internationale ontmoetingsplaats.",
+      "Wat me vooral zal bijblijven, is de openheid en de menselijke aanpak waarmee hij iedereen benaderde. Het zijn net zulke ontmoetingen die tonen dat diplomatie niet alleen draait om officiële protocollen, maar ook om persoonlijk contact, wederzijds respect en een oprechte nieuwsgierigheid naar elkaar.",
+      "Het was een bijzonder aangename en waardevolle kennismaking, waarvoor ik ambassadeur Bill White van harte wil bedanken. Ik wens hem alle succes toe tijdens zijn verdere opdracht in België en hoop hem in de toekomst opnieuw in Oostende te mogen verwelkomen."
+    ],
+    "image": "/images/bezoekamerika.jpeg",
+    "datum": "28 juli 2026",
+    "featured": true
+  },
+  {
     "slug": "stad-oostende-roept-op-let-op-voor-jonge-meeuwen-nestspringers",
     "titel": "Stad Oostende roept op: let op voor jonge meeuwen op straat",
     "inhoud": "Stad Oostende waarschuwt voor jonge puberende meeuwen die hun nest verlaten maar nog niet goed kunnen vliegen, de zogenaamde 'nestspringers'. Als ze gewond zijn of in een drukke straat lopen, breng ze dan naar het Vogelopvangcentrum.",
