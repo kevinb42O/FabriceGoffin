@@ -195,8 +195,8 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact, activeKey }:
   };
 
   return (
-    <motion.div layout transition={{ type: "spring", bounce: 0, duration: 0.8 }} className={`px-4 md:px-12 w-full`}>
-      <motion.div layout transition={{ type: "spring", bounce: 0, duration: 0.8 }} className={`mx-auto flex flex-col md:flex-row items-center md:items-start justify-center md:gap-10 lg:gap-16 max-w-[1400px] w-full`}>
+    <motion.div layout transition={{ type: "spring", bounce: 0, duration: 0.8 }} className="px-4 md:px-8 w-full">
+      <motion.div layout transition={{ type: "spring", bounce: 0, duration: 0.8 }} className="mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-center lg:gap-[clamp(40px,5vw,96px)] max-w-[1680px] w-full">
         {/* ── Side rail ── */}
         <AnimatePresence mode="popLayout">
           {!isCompact && (
@@ -207,11 +207,11 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact, activeKey }:
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, filter: 'blur(4px)', transition: { duration: 0.3 } }}
               transition={{ type: "spring", bounce: 0, duration: 0.8 }}
-              className="order-2 md:order-1 pt-4 md:pt-12 shrink-0 w-full md:w-[500px] lg:w-[600px]"
+              className="order-2 lg:order-1 pt-4 lg:pt-12 shrink-0 w-full lg:w-[clamp(500px,32vw,720px)]"
             >
           {/* Main Editorial Header */}
           <div className="mb-14">
-            <h1 className="text-[40px] sm:text-[48px] lg:text-[64px] font-black tracking-[-0.025em] leading-[1.05] text-zinc-900 mb-6">
+            <h1 className="text-[clamp(40px,3vw,72px)] font-black tracking-[-0.025em] leading-[1.05] text-zinc-900 mb-6">
               Mijn<br />
               <span className="text-zinc-400">Realisaties</span>
             </h1>
@@ -249,7 +249,7 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact, activeKey }:
                   </motion.span>
                 </div>
                 
-                <h2 className="text-[56px] md:text-[64px] lg:text-[80px] font-black tracking-[-0.03em] leading-[0.9] text-zinc-900 mb-8 whitespace-pre overflow-visible">
+                <h2 className="text-[clamp(52px,4vw,88px)] font-black tracking-[-0.03em] leading-[0.9] text-zinc-900 mb-8 whitespace-pre overflow-visible">
                   {active.displayLabel || active.label}
                 </h2>
 
@@ -348,9 +348,11 @@ export function CategoryPicker({ onPick, onActiveChange, isCompact, activeKey }:
           layout
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="order-1 md:order-2 relative mx-auto md:mx-0 shrink-0"
+          className="order-1 lg:order-2 relative mx-auto lg:mx-0 shrink-0"
           style={{
-            width: isCompact ? 'clamp(240px, 40vw, 400px)' : 'clamp(280px, 45vw, 560px)',
+            width: isCompact
+              ? 'clamp(240px, min(40vw, 58vh), 420px)'
+              : 'clamp(280px, min(38vw, 62vh), 680px)',
             aspectRatio: '1',
           }}
         >

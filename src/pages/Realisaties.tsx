@@ -68,7 +68,7 @@ export default function Realisaties() {
       />
 
       <section
-        className="relative text-zinc-900 pt-32 md:pt-48 pb-24 md:pb-32 min-h-screen bg-zinc-50"
+        className={`relative text-zinc-900 pt-32 md:pt-48 pb-24 md:pb-32 min-h-screen bg-zinc-50 ${selected === null ? 'lg:flex lg:items-center' : ''}`}
       >
         {/* Dynamic Elegant Background */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -89,12 +89,12 @@ export default function Realisaties() {
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-50 via-transparent to-transparent" />
         </div>
 
-        <div className="layout-shell-wide relative z-10 flex flex-col xl:flex-row xl:items-start">
+        <div className={`layout-shell-wide relative z-10 ${selected === null ? 'flex flex-col' : 'flex flex-col xl:grid xl:grid-cols-[minmax(380px,480px)_minmax(0,1200px)] xl:justify-center xl:items-start xl:gap-[clamp(48px,4vw,96px)]'}`}>
           {/* Always render picker, pass isCompact */}
           <motion.div 
             layout
             transition={{ type: "spring", bounce: 0, duration: 0.8 }}
-            className={`flex flex-col items-center md:items-start shrink-0 xl:sticky xl:top-40 ${
+            className={`flex flex-col items-center md:items-start shrink-0 ${selected !== null ? 'xl:sticky xl:top-40 xl:w-full' : ''} ${
               selected === null ? 'w-full' : ''
             }`}
           >
@@ -158,7 +158,7 @@ export default function Realisaties() {
               <motion.div
                 layout
                 key={`timeline-${selected}`}
-                className="flex-1 min-w-0 xl:pl-8 mt-16 xl:mt-0"
+                className="min-w-0 w-full mt-16 xl:mt-0"
                 initial={
                   reduceMotion
                     ? false
@@ -168,7 +168,7 @@ export default function Realisaties() {
                 exit={reduceMotion ? { opacity: 0 } : { opacity: 0, x: 40, filter: 'blur(8px)' }}
                 transition={{ type: "spring", bounce: 0, duration: 0.8, delay: 0.1 }}
               >
-              <header className="px-4 md:px-12 mb-10 md:mb-14 max-w-5xl">
+              <header className="px-4 md:px-8 xl:px-0 mb-10 md:mb-14 max-w-5xl">
                 {/* Title — animates in */}
                 <div className="text-[36px] sm:text-[48px] md:text-[64px] lg:text-[72px] font-black tracking-[-0.025em] leading-[1] text-zinc-900 min-h-[1.2em]">
                   {activeCfg?.displayLabel ? (
