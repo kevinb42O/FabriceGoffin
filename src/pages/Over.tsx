@@ -56,7 +56,7 @@ export default function Over() {
 
         {/* Content Section */}
         <div className="bg-white pb-24">
-          <div className="layout-shell editorial-measure pt-16">
+          <div className="layout-shell pt-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export default function Over() {
 
             <div className="my-12 py-8 border-y-2 border-zinc-100">
                <h3 className="text-2xl font-medium uppercase tracking-tight text-zinc-900 mb-4 font-heading">Zorabots & Talemate</h3>
-               <p className="text-zinc-600 m-0">
+              <p className="editorial-measure text-zinc-600 m-0">
                  In 2011 werkte ik het idee uit voor een robot gericht op het verbeteren van mensenlevens. Zo is ‘Zora’ geboren, een zorgrobot ontstaan uit onze gedeelde passie voor ‘Star Wars’. En zo was ook ‘Zorabots’ een feit, als roboticabedrijf.
                </p>
             </div>
@@ -103,17 +103,19 @@ export default function Over() {
                </div>
             </div>
 
-            <p>
-              Vandaag is Zorabots als bedrijf uitgegroeid tot Talemate, een wereldwijde speler voor software voor robotica, IoT en metaverse. Het Blauwe Kruis van de Kust is verder gegroeid tot een efficiënte en sterke organisatie voor de opvang van jaarlijks meer dan 200 honden, 400 katten, en heel wat konijnen en knaagdieren. Met dit dierenasiel staan we bovendien op de drempel van het uitgroeien tot een Centrum voor Dierenwelzijn in de Oostendse regio. Het zijn verwezenlijkingen waar ik bijzonder trots op ben. Het is dan ook met spijt in het hart dat ik afscheid nam van Talemate als co-CEO en als voorzitter van Het Blauwe Kruis van de Kust. Maar Oostende roept.
-            </p>
+            <div className="grid lg:grid-cols-12 gap-x-16 gap-y-12 items-start">
+              <p className="editorial-measure lg:col-span-6">
+                Vandaag is Zorabots als bedrijf uitgegroeid tot Talemate, een wereldwijde speler voor software voor robotica, IoT en metaverse. Het Blauwe Kruis van de Kust is verder gegroeid tot een efficiënte en sterke organisatie voor de opvang van jaarlijks meer dan 200 honden, 400 katten, en heel wat konijnen en knaagdieren. Met dit dierenasiel staan we bovendien op de drempel van het uitgroeien tot een Centrum voor Dierenwelzijn in de Oostendse regio. Het zijn verwezenlijkingen waar ik bijzonder trots op ben. Het is dan ook met spijt in het hart dat ik afscheid nam van Talemate als co-CEO en als voorzitter van Het Blauwe Kruis van de Kust. Maar Oostende roept.
+              </p>
 
-            <blockquote className="my-12 text-2xl md:text-3xl text-zinc-900 font-black uppercase tracking-tight leading-snug border-l-4 border-red-600 pl-6 md:pl-10">
-              "Mijn engagement, ervaring en dierenliefde combineer ik nu in mijn nieuwe uitdaging als Oostends Schepen bevoegd voor Digitalisering, Ontmoeting en Dierenwelzijn."
-            </blockquote>
+              <blockquote className="editorial-measure lg:col-span-6 text-2xl md:text-3xl text-zinc-900 font-black uppercase tracking-tight leading-snug border-l-4 border-red-600 pl-6 md:pl-10">
+                "Mijn engagement, ervaring en dierenliefde combineer ik nu in mijn nieuwe uitdaging als Oostends Schepen bevoegd voor Digitalisering, Ontmoeting en Dierenwelzijn."
+              </blockquote>
 
-            <p>
-              Ik zet me vol enthousiasme in voor het verbeteren van dierenwelzijn, voor een optimale bescherming van dieren en om van Oostende de diervriendelijkste stad van Vlaanderen te maken. Ik smijt mij dagelijks om mensen samen te brengen in onze Oostendse wijken, en ben een luisterend oor voor iedereen die het nodig heeft. En ik engageer me om van Oostende een sterke digitale stad te maken ten dienste van haar inwoners en iedereen die onze stad bezoekt.
-            </p>
+              <p className="editorial-measure lg:col-start-3 lg:col-span-8 mx-auto">
+                Ik zet me vol enthousiasme in voor het verbeteren van dierenwelzijn, voor een optimale bescherming van dieren en om van Oostende de diervriendelijkste stad van Vlaanderen te maken. Ik smijt mij dagelijks om mensen samen te brengen in onze Oostendse wijken, en ben een luisterend oor voor iedereen die het nodig heeft. En ik engageer me om van Oostende een sterke digitale stad te maken ten dienste van haar inwoners en iedereen die onze stad bezoekt.
+              </p>
+            </div>
 
             {/* Afsluitende Foto (Opkomst) */}
             <motion.div
@@ -121,7 +123,7 @@ export default function Over() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8 }}
-              className="mt-16 w-full relative rounded-2xl overflow-hidden shadow-lg border border-zinc-100 group"
+              className="mt-16 w-full max-w-[1200px] mx-auto relative rounded-2xl overflow-hidden shadow-lg border border-zinc-100 group"
             >
               <img 
                 src="/images/opkomst.webp" 
