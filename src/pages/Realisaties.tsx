@@ -89,7 +89,7 @@ export default function Realisaties() {
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-50 via-transparent to-transparent" />
         </div>
 
-        <div className="relative z-10 flex flex-col xl:flex-row xl:items-start max-w-[1600px] mx-auto">
+        <div className="layout-shell-wide relative z-10 flex flex-col xl:flex-row xl:items-start">
           {/* Always render picker, pass isCompact */}
           <motion.div 
             layout
@@ -120,7 +120,7 @@ export default function Realisaties() {
                     type="button"
                     onClick={handlePrev}
                     aria-label="Vorig thema"
-                    className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 hover:bg-zinc-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400"
+                    className="touch-target inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 hover:bg-zinc-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400"
                   >
                     <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />
                   </motion.button>
@@ -143,7 +143,7 @@ export default function Realisaties() {
                     type="button"
                     onClick={handleNext}
                     aria-label="Volgend thema"
-                    className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 hover:bg-zinc-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400"
+                    className="touch-target inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full border border-zinc-200 text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 hover:bg-zinc-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400"
                   >
                     <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden />
                   </motion.button>

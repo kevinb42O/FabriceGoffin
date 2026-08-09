@@ -2,6 +2,7 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import FocusTrap from 'focus-trap-react';
+import { X } from 'lucide-react';
 
 const links = [
   { path: '/', label: 'Home' },
@@ -40,9 +41,9 @@ export function Navbar() {
         }}
         animate={hidden && !isOpen ? "hidden" : "visible"}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
+        className={`fixed top-0 left-0 w-full z-[70] transition-[padding,box-shadow,border-color,backdrop-filter] duration-500 ease-in-out ${
           isOpen 
-            ? 'bg-transparent py-4 md:py-6' 
+            ? 'bg-zinc-950 py-4 md:py-6 border-b border-transparent'
             : isScrolled 
               ? 'py-3 md:py-4 bg-white/80 backdrop-blur-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] border-b border-zinc-200/50' 
               : 'py-4 md:py-6 bg-white border-b border-transparent'
@@ -121,7 +122,7 @@ export function Navbar() {
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
               aria-label={isOpen ? 'Navigatiemenu sluiten' : 'Navigatiemenu openen'}
-              className={`group flex items-center gap-3 text-sm md:text-base font-bold tracking-[0.2em] uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 rounded-sm ${isOpen ? 'text-white' : 'text-zinc-900'}`}
+              className={`touch-target group flex items-center justify-end gap-3 text-sm md:text-base font-bold tracking-[0.2em] uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 rounded-sm ${isOpen ? 'text-white' : 'text-zinc-900'}`}
             >
               <span className="hidden md:block relative overflow-hidden h-5 w-[80px] md:w-[95px]">
                 <motion.span 
@@ -137,28 +138,22 @@ export function Navbar() {
                   SLUITEN
                 </motion.span>
               </span>
-              <div className="w-6 h-4 relative flex flex-col justify-between">
-                <motion.span
-                  animate={{
-                    rotate: isOpen ? 45 : 0,
-                    y: isOpen ? 7 : 0,
-                  }}
-                  className={`block w-full h-[2px] transform origin-center transition-colors duration-300 ${isOpen ? 'bg-white' : 'bg-zinc-900 group-hover:bg-red-600'}`}
-                />
-                <motion.span
-                  animate={{
-                    opacity: isOpen ? 0 : 1,
-                    x: isOpen ? 10 : 0,
-                  }}
-                  className={`block w-full h-[2px] transition-colors duration-300 ${isOpen ? 'bg-white' : 'bg-zinc-900 group-hover:bg-red-600'}`}
-                />
-                <motion.span
-                  animate={{
-                    rotate: isOpen ? -45 : 0,
-                    y: isOpen ? -7 : 0,
-                  }}
-                  className={`block w-full h-[2px] transform origin-center transition-colors duration-300 ${isOpen ? 'bg-white' : 'bg-zinc-900 group-hover:bg-red-600'}`}
-                />
+              <div className="w-[24px] h-[24px] relative flex items-center justify-center shrink-0">
+                {isOpen ? (
+                  <motion.span
+                    initial={{ opacity: 0, rotate: -45 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    className="flex items-center justify-center text-white"
+                  >
+                    <X className="w-[24px] h-[24px]" strokeWidth={2} aria-hidden />
+                  </motion.span>
+                ) : (
+                  <span className="w-[24px] h-[16px] relative flex flex-col justify-between" aria-hidden>
+                    <span className="block w-full h-[2px] bg-zinc-900 group-hover:bg-red-600 transition-colors duration-300" />
+                    <span className="block w-full h-[2px] bg-zinc-900 group-hover:bg-red-600 transition-colors duration-300" />
+                    <span className="block w-full h-[2px] bg-zinc-900 group-hover:bg-red-600 transition-colors duration-300" />
+                  </span>
+                )}
               </div>
             </button>
           </div>
@@ -169,11 +164,11 @@ export function Navbar() {
         {isOpen && (
           <motion.div
             id="mobile-menu"
-            initial={{ clipPath: 'circle(0% at calc(100% - 3rem) 3rem)' }}
-            animate={{ clipPath: 'circle(150% at calc(100% - 3rem) 3rem)' }}
-            exit={{ clipPath: 'circle(0% at calc(100% - 3rem) 3rem)' }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-zinc-950 text-white"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-[60] bg-zinc-950 text-white"
             role="dialog"
             aria-modal="true"
             aria-label="Navigatiemenu"

@@ -482,7 +482,7 @@ function ImageSlider({ images, fallback }: { images?: string[], fallback: string
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.5, ease: 'easeInOut' }}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-contain"
         />
       </AnimatePresence>
     </div>
@@ -543,7 +543,7 @@ function TimelinePanel({ item, prevItem, nextItem, onNavigate, onClose, isDeskto
           {...(isDesktop ? desktopPanel : mobilePanel)}
           className={
             isDesktop
-              ? 'absolute top-0 right-0 h-full w-full md:w-1/2 bg-white text-zinc-900 shadow-[0_0_60px_rgba(0,0,0,0.25)] flex flex-col overflow-hidden border-l border-zinc-200'
+              ? 'timeline-panel absolute top-0 right-0 h-full bg-white text-zinc-900 shadow-[0_0_60px_rgba(0,0,0,0.25)] flex flex-col overflow-hidden border-l border-zinc-200'
               : 'absolute bottom-0 left-0 right-0 h-[88vh] bg-white text-zinc-900 rounded-t-3xl shadow-[0_-12px_60px_rgba(0,0,0,0.18)] flex flex-col overflow-hidden border-t border-zinc-200'
           }
         >
@@ -557,13 +557,13 @@ function TimelinePanel({ item, prevItem, nextItem, onNavigate, onClose, isDeskto
             type="button"
             onClick={onClose}
             aria-label="Sluiten"
-            className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-white/95 backdrop-blur-md text-zinc-700 flex items-center justify-center hover:bg-white shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400"
+            className="touch-target absolute top-4 right-4 z-50 rounded-full bg-white/95 backdrop-blur-md text-zinc-700 flex items-center justify-center hover:bg-white shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400"
           >
             <X className="w-4 h-4" aria-hidden />
           </button>
 
           <div className="flex-1 overflow-y-auto w-full flex flex-col">
-            <div className="relative shrink-0 w-full aspect-[16/10] overflow-hidden bg-zinc-100">
+            <div className="detail-media relative shrink-0 w-full aspect-[16/10] max-h-[56vh] overflow-hidden bg-zinc-100">
               <ImageSlider images={item.images} fallback={item.image || cfg.panelImage} />
               <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent pointer-events-none" />
 
@@ -619,7 +619,7 @@ function TimelinePanel({ item, prevItem, nextItem, onNavigate, onClose, isDeskto
               <button
                 type="button"
                 onClick={() => onNavigate(prevItem.id)}
-                className="group flex items-center gap-4 text-left hover:opacity-70 transition-opacity focus:outline-none flex-1 min-w-0"
+                className="touch-target group flex items-center gap-4 text-left hover:opacity-70 transition-opacity focus:outline-none flex-1 min-w-0"
               >
                 <div className="w-12 h-12 rounded-full border border-zinc-200 flex items-center justify-center bg-white shrink-0 group-hover:-translate-x-1 transition-transform shadow-sm">
                   <ArrowLeft className="w-5 h-5 text-zinc-900" />
@@ -636,7 +636,7 @@ function TimelinePanel({ item, prevItem, nextItem, onNavigate, onClose, isDeskto
             <button
               type="button"
               onClick={onClose}
-              className="shrink-0 flex items-center justify-center text-[11px] font-bold tracking-[0.25em] uppercase text-zinc-400 hover:text-zinc-900 transition-colors focus:outline-none"
+              className="touch-target shrink-0 flex items-center justify-center text-[11px] font-bold tracking-[0.25em] uppercase text-zinc-400 hover:text-zinc-900 transition-colors focus:outline-none"
             >
               Sluiten
             </button>
@@ -645,7 +645,7 @@ function TimelinePanel({ item, prevItem, nextItem, onNavigate, onClose, isDeskto
               <button
                 type="button"
                 onClick={() => onNavigate(nextItem.id)}
-                className="group flex items-center gap-4 text-right justify-end hover:opacity-70 transition-opacity focus:outline-none flex-1 min-w-0"
+                className="touch-target group flex items-center gap-4 text-right justify-end hover:opacity-70 transition-opacity focus:outline-none flex-1 min-w-0"
               >
                 <div className="flex flex-col text-right min-w-0 hidden md:flex w-full">
                   <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 mb-1">Volgende</span>

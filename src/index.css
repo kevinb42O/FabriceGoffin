@@ -6,6 +6,13 @@
 }
 
 @layer base {
+  :root {
+    --layout-gutter: clamp(1.5rem, 4vw, 8rem);
+    --layout-content: 1680px;
+    --layout-wide: 2200px;
+    --reading-measure: 72ch;
+  }
+
   body {
     @apply bg-zinc-50 text-zinc-900 font-sans antialiased overflow-x-hidden selection:bg-teal-500 selection:text-white;
   }
@@ -20,28 +27,135 @@
     }
   }
 
-  /*
-   * Desktop typografie/spacing op 67% (i.p.v. browserzoom).
-   *
-   * Door alleen `font-size` op <html> aan te passen schalen automatisch alle
-   * rem-gebaseerde Tailwind-utilities mee: text-*, p-\*/m-\*/gap-*, max-w-*,
-   * space-*, etc. — wat 95% van de visuele "tightness" oplevert van 67%
-   * browserzoom.
-   *
-   * Belangrijk: vh/vw en arbitraire px-waardes (w-[460px], h-[450vh], …)
-   * blijven ONGEMOEID. Daardoor:
-   *   - Scroll-secties (Speerpunten 450vh, Hero parallax, VideoShowcase)
-   *     houden exact dezelfde scroll-lengte → useScroll & sticky werken
-   *     onveranderd.
-   *   - Cards behouden hun fysieke breedte → horizontale scroll-math
-   *     (calc(-100% + 100vw)) blijft kloppen.
-   *
-   * Alleen op desktop (>=1024px) — mobile components zijn al voor native
-   * weergave ontworpen.
-   */
+  /* Keep the established compact desktop rhythm, then increase it only when
+     both width and height provide enough usable canvas. */
   @media (min-width: 1024px) {
     html {
       font-size: 67%;
+    }
+  }
+
+  @media (min-width: 1600px) and (min-height: 850px) {
+    html {
+      font-size: 75%;
+    }
+  }
+
+  @media (min-width: 2400px) and (min-height: 900px) {
+    html {
+      font-size: 87.5%;
+    }
+  }
+
+  @media (min-width: 3600px) and (min-height: 1200px) {
+    html {
+      font-size: 100%;
+    }
+  }
+}
+
+@layer components {
+  .layout-shell,
+  .layout-shell-wide {
+    width: min(calc(100% - (2 * var(--layout-gutter))), var(--layout-content));
+    margin-inline: auto;
+  }
+
+  .layout-shell-wide {
+    width: min(calc(100% - (2 * var(--layout-gutter))), var(--layout-wide));
+  }
+
+  .editorial-measure {
+    max-width: var(--reading-measure);
+  }
+
+  .widescreen-display {
+    font-size: clamp(3.5rem, 4.25vw, 9rem);
+    line-height: 0.9;
+  }
+
+  .editorial-copy {
+    font-size: clamp(1rem, 0.35vw + 0.85rem, 1.375rem);
+    line-height: 1.75;
+  }
+
+  .detail-media {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .detail-media > img,
+  .detail-media > picture,
+  .detail-media > video {
+    max-width: 100%;
+  }
+
+  .timeline-panel {
+    width: min(58vw, 1120px);
+  }
+
+  .standpoint-drawer {
+    width: min(90vw, 1600px);
+  }
+
+  .touch-target {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .article-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  @media (min-width: 768px) {
+    .catalog-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .catalog-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .article-layout {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    .article-main {
+      grid-column: span 8 / span 8;
+    }
+
+    .article-aside {
+      grid-column: span 4 / span 4;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .timeline-panel,
+    .standpoint-drawer {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 2400px) and (min-height: 900px) {
+    .catalog-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .article-layout {
+      grid-template-columns: minmax(0, 3fr) minmax(320px, 1fr);
+    }
+
+    .article-main,
+    .article-aside {
+      grid-column: auto;
     }
   }
 }

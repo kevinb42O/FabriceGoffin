@@ -31,7 +31,7 @@ export default function Over() {
           </div>
 
           {/* Hero Content (Right Aligned) */}
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-24 flex justify-end pt-32 pb-24">
+          <div className="layout-shell-wide relative z-10 flex justify-end pt-32 pb-24">
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -55,8 +55,8 @@ export default function Over() {
         </div>
 
         {/* Content Section */}
-        <div className="bg-white px-6 md:px-12 lg:px-24 pb-24">
-          <div className="max-w-4xl mx-auto pt-16">
+        <div className="bg-white pb-24">
+          <div className="layout-shell editorial-measure pt-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

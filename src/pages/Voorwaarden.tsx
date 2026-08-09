@@ -40,7 +40,7 @@ export default function Voorwaarden() {
               'radial-gradient(circle at 80% 20%, rgba(239,68,68,0.6) 0, transparent 35%), radial-gradient(circle at 20% 80%, rgba(20,184,166,0.4) 0, transparent 35%)',
           }}
         />
-        <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 lg:px-24 pt-40 pb-20">
+        <div className="layout-shell relative z-10 pt-40 pb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -68,7 +68,7 @@ export default function Voorwaarden() {
 
       {/* Body */}
       <section className="bg-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="layout-shell py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
           {/* Sticky TOC */}
           <aside className="lg:col-span-4">
             <div className="lg:sticky lg:top-28">
@@ -88,7 +88,7 @@ export default function Voorwaarden() {
           </aside>
 
           {/* Content */}
-          <article className="lg:col-span-8 prose prose-zinc prose-lg max-w-none font-medium leading-relaxed prose-headings:font-heading prose-headings:font-medium prose-headings:uppercase prose-headings:tracking-tight prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mt-16 prose-h2:mb-6 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-a:text-red-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-zinc-900 font-heading">
+          <article className="editorial-measure lg:col-span-8 prose prose-zinc prose-lg font-medium leading-relaxed prose-headings:font-heading prose-headings:font-medium prose-headings:uppercase prose-headings:tracking-tight prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:mt-16 prose-h2:mb-6 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-a:text-red-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-zinc-900 font-heading">
 
             <p className="text-xl text-zinc-700 leading-relaxed">
               Deze algemene voorwaarden zijn van toepassing op elk bezoek aan en elk gebruik van de website <strong>fabricegoffin.be</strong>. Lees ze zorgvuldig door. Door de website te raadplegen, erkent u kennis te hebben genomen van deze voorwaarden en stemt u uitdrukkelijk in met de inhoud ervan.

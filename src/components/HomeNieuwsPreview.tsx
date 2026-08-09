@@ -25,7 +25,7 @@ export function HomeNieuwsPreview() {
 
   return (
     <section className="py-24 bg-white relative z-10 border-t border-zinc-100 overflow-hidden">
-      <div className="relative z-10 max-w-[90rem] mx-auto px-6 md:px-12 lg:px-24">
+      <div className="layout-shell-wide relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-12 lg:mb-16">
@@ -101,7 +101,7 @@ export function HomeNieuwsPreview() {
                whileInView={{ opacity: 1, scale: 1 }}
                viewport={{ once: true }}
                transition={{ delay: 0.1 * index, duration: 0.5 }}
-               className="w-[85vw] sm:w-[350px] lg:w-[400px] shrink-0 snap-start h-full"
+               className="w-[85vw] sm:w-[350px] lg:w-[400px] min-[2400px]:w-[460px] shrink-0 snap-start h-full"
              >
                <Link to={`/nieuws/${article.slug}`} className="group flex flex-col h-full">
                  <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl mb-6 relative bg-zinc-100">

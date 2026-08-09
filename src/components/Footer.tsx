@@ -45,7 +45,7 @@ export function Footer() {
       />
 
       {/* ===== MAIN GRID ===== */}
-      <div className="relative z-10 px-6 md:px-12 lg:px-24 pt-20 lg:pt-24 pb-14">
+      <div className="layout-shell-wide relative z-10 pt-20 lg:pt-24 pb-14">
         {/*
           Drie kolommen in één grid met TWEE rijen:
             Rij 1 (auto)  — de small-caps labels op één horizontale lijn
@@ -108,7 +108,7 @@ export function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-zinc-200 text-zinc-600 hover:text-red-600 hover:border-red-200 hover:bg-red-50 transition-colors duration-300"
+                    className="touch-target flex items-center justify-center rounded-full bg-white border border-zinc-200 text-zinc-600 hover:text-red-600 hover:border-red-200 hover:bg-red-50 transition-colors duration-300"
                     aria-label={social.label}
                   >
                     <Icon className="w-[15px] h-[15px]" />
@@ -125,7 +125,7 @@ export function Footer() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className="text-[14px] text-zinc-700 hover:text-red-600 transition-colors duration-200 w-max"
+                  className="touch-target inline-flex items-center text-[14px] text-zinc-700 hover:text-red-600 transition-colors duration-200 w-max"
                 >
                   {link.label}
                 </Link>
@@ -175,8 +175,8 @@ export function Footer() {
       </div>
 
       {/* ===== BOTTOM BAR ===== */}
-      <div className="relative z-10 border-t border-zinc-200/80 bg-white/60 backdrop-blur-sm px-6 md:px-12 lg:px-24 py-6">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+      <div className="relative z-10 border-t border-zinc-200/80 bg-white/60 backdrop-blur-sm py-6">
+        <div className="layout-shell-wide flex flex-col md:flex-row md:justify-between md:items-center gap-4">
           <p className="text-[12px] text-zinc-500 text-center md:text-left">
             © {new Date().getFullYear()} Fabrice Goffin. Alle rechten voorbehouden.
             <span className="hidden md:inline mx-2 text-zinc-300">·</span>

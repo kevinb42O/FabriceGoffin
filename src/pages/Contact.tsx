@@ -51,8 +51,8 @@ export default function Contact() {
         description="Contacteer Fabrice Goffin met je vragen, ideeën, of om mee te werken aan een beter Oostende." 
         url="/contact"
       />
-      <div className="min-h-screen pt-32 pb-24 px-6 md:px-12 lg:px-24 bg-white flex items-center justify-center">
-        <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
+      <div className="min-h-screen pt-32 pb-24 bg-white flex items-center justify-center">
+        <div className="layout-shell grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
           
           {/* Left Column: High Def Vertical Image */}
           <motion.div

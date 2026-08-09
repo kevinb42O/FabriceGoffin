@@ -89,8 +89,8 @@ export default function Standpunten() {
         </div>
 
         {/* Content Container */}
-        <div className="relative z-10 w-full pt-32 md:pt-48 pb-24 px-6 md:px-12 lg:px-24 flex-1 flex flex-col justify-center">
-           <div className="max-w-[90rem] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+          <div className="relative z-10 w-full pt-32 md:pt-48 pb-24 flex-1 flex flex-col justify-center">
+            <div className="layout-shell-wide grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
               
               {/* Title Column */}
               <div className="lg:col-span-6 lg:sticky lg:top-40 flex flex-col justify-center">
@@ -211,7 +211,7 @@ export default function Standpunten() {
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: '100%', opacity: 0 }}
                 transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-                className="fixed inset-y-0 right-0 w-full md:w-[90vw] xl:w-[1200px] bg-white z-[110] shadow-2xl overflow-hidden"
+                className="standpoint-drawer fixed inset-y-0 right-0 bg-white z-[110] shadow-2xl overflow-hidden"
                 role="dialog"
                 aria-modal="true"
                 aria-label={standpunten[selectedStandpunt]!.titel}
@@ -250,14 +250,14 @@ export default function Standpunten() {
                   <button 
                     onClick={() => closeDrawer()}
                     aria-label="Sluit standpunt"
-                    className="absolute top-6 right-6 md:top-8 md:right-8 w-12 h-12 bg-white hover:bg-zinc-100 shadow-md border border-zinc-200 rounded-full flex items-center justify-center text-zinc-600 transition-all z-10 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-600"
+                    className="touch-target absolute top-6 right-6 md:top-8 md:right-8 w-12 h-12 bg-white hover:bg-zinc-100 shadow-md border border-zinc-200 rounded-full flex items-center justify-center text-zinc-600 transition-all z-10 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-600"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   </button>
 
-                  <div className="max-w-2xl mx-auto md:mt-12">
+                  <div className="editorial-measure mx-auto mt-16 md:mt-12">
                     {standpunten[selectedStandpunt]!.inhoud.split('\n\n').map((paragraph, i) => (
                       <p 
                         key={i} 
@@ -328,7 +328,7 @@ export default function Standpunten() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-24">
+        <div className="layout-shell py-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

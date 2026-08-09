@@ -107,7 +107,7 @@ export function VideoShowcase() {
   const opacity = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
 
   return (
-    <section ref={containerRef} className="py-24 md:py-32 px-6 md:px-12 lg:px-24 relative z-10 overflow-hidden min-h-screen flex items-center">
+    <section ref={containerRef} className="py-24 md:py-32 relative z-10 overflow-hidden min-h-screen flex items-center">
        {/* Background Image with Overlay */}
        <AnimatePresence>
          <motion.div 
@@ -126,7 +126,7 @@ export function VideoShowcase() {
        <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-red-600/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3 z-0"></div>
        <div className="absolute bottom-0 left-0 w-[40vw] h-[40vw] bg-zinc-800/20 rounded-full blur-[100px] pointer-events-none translate-y-1/3 -translate-x-1/3 z-0"></div>
 
-       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full">
+      <div className="layout-shell grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Typography */}
           <div className="lg:col-span-6 lg:col-start-7 flex flex-col justify-center order-2 lg:order-2 relative z-20 py-12">

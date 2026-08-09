@@ -9,7 +9,7 @@ export function HomeHero() {
   const yWatermark = useTransform(scrollY, [0, 1000], [0, -300]);
 
   return (
-      <section className="hidden lg:flex relative min-h-screen pt-32 lg:pt-48 pb-24 px-6 md:px-12 lg:px-24 flex-col justify-center overflow-hidden bg-white">
+      <section className="hidden lg:flex relative min-h-screen pt-32 lg:pt-48 pb-24 flex-col justify-center overflow-hidden bg-white">
         
         {/* Kaart van Oostende — geanimeerde achtergrond (ken-burns / drift), identiek aan footer */}
         <motion.div
@@ -49,7 +49,7 @@ export function HomeHero() {
           OOSTENDE OOSTENDE OOSTENDE
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center relative z-10">
+        <div className="layout-shell-wide grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center relative z-10">
           
           {/* Typography Left */}
           <div className="lg:col-span-6 flex flex-col justify-center px-6 md:px-0">

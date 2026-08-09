@@ -45,7 +45,7 @@ export default function Nieuws() {
           </motion.div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 mb-20 relative z-10">
+        <div className="layout-shell-wide mb-20 relative z-10">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -56,7 +56,7 @@ export default function Nieuws() {
           </motion.div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
-            <h1 className="relative text-6xl md:text-8xl lg:text-[100px] font-black uppercase tracking-tighter leading-[0.85] text-zinc-900 drop-shadow-sm font-heading flex flex-col w-max z-10">
+            <h1 className="widescreen-display relative font-black uppercase tracking-tighter text-zinc-900 drop-shadow-sm font-heading flex flex-col w-max z-10">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] text-[120px] md:text-[180px] lg:text-[220px] text-red-600/15 -z-10 pointer-events-none select-none">
                 <StaggerText text="&" delay={0.08} />
               </div>
@@ -67,7 +67,7 @@ export default function Nieuws() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="max-w-sm pl-0 md:pl-8 md:border-l-4 md:border-red-100"
+              className="max-w-md pl-0 md:pl-8 md:border-l-4 md:border-red-100"
             >
               <p className="text-zinc-600 font-medium text-lg leading-relaxed">
                 Volg de laatste ontwikkelingen en realisaties voor een diervriendelijk en digitaal Oostende.
@@ -76,7 +76,7 @@ export default function Nieuws() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+        <div className="layout-shell-wide">
           
           {/* Featured Article Layout */}
           <motion.article 
@@ -88,7 +88,7 @@ export default function Nieuws() {
               <div className="w-full lg:w-[55%] aspect-[4/3] overflow-hidden rounded-2xl md:rounded-[2rem] relative shrink-0 shadow-xl">
                 <img src={featuredArticle.image} alt={featuredArticle.titel} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" fetchPriority="high" width={1000} height={700} />
               </div>
-              <div className="w-full lg:w-[45%] flex flex-col justify-center">
+              <div className="w-full lg:w-[45%] flex flex-col justify-center editorial-measure">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-8 h-[2px] bg-red-600"></div>
                   <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">
@@ -113,7 +113,7 @@ export default function Nieuws() {
           </motion.article>
 
           {/* Minimal Grid for older articles */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
+          <div className="catalog-grid gap-x-10 gap-y-16">
             {visibleArticles.map((article, index) => (
                <motion.article 
                  key={article.slug}

@@ -3,8 +3,8 @@ import { StaggerText } from './StaggerText';
 
 export function HomeBio() {
   return (
-      <section className="py-16 lg:py-32 px-6 md:px-12 lg:px-24 bg-white relative z-10 border-t border-zinc-100 overflow-hidden">
-         <div className="max-w-[90rem] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
+      <section className="py-16 lg:py-32 bg-white relative z-10 border-t border-zinc-100 overflow-hidden">
+        <div className="layout-shell-wide grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
             {/* Image Side */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.95, rotate: -2 }}

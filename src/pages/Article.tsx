@@ -44,7 +44,7 @@ export default function Article() {
         type="article"
       />
       <article className="min-h-screen pt-24 lg:pt-32 pb-24 bg-white relative">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 xl:px-24">
+        <div className="layout-shell-wide">
           
           {/* Breadcrumb Navigation */}
           <Link to="/nieuws" className="group flex items-center gap-3 text-sm font-black uppercase tracking-[0.2em] text-zinc-500 hover:text-red-600 transition-colors w-max mb-12 lg:mb-20">
@@ -54,10 +54,10 @@ export default function Article() {
             Terug naar overzicht
           </Link>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+          <div className="article-layout gap-12 lg:gap-20">
             
             {/* Main Content Column */}
-            <div className="lg:col-span-8 xl:col-span-8">
+            <div className="article-main min-w-0">
               
               <div className="mb-10">
                 <span className="inline-flex items-center gap-2 px-3 py-1 bg-red-50 text-red-600 font-black text-xs uppercase tracking-widest rounded-sm mb-6">
@@ -85,13 +85,13 @@ export default function Article() {
                 <div className="flex items-center gap-4">
                   <span className="text-xs font-black uppercase tracking-widest text-zinc-400">Deel dit artikel</span>
                   <div className="flex items-center gap-2">
-                    <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodedShareUrl}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-[#1877F2] hover:text-white transition-colors">
+                    <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodedShareUrl}`} target="_blank" rel="noopener noreferrer" className="touch-target rounded-full bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-[#1877F2] hover:text-white transition-colors">
                       <Facebook className="w-4 h-4" />
                     </a>
-                    <a href={`https://twitter.com/intent/tweet?url=${encodedShareUrl}&text=${encodedTitle}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-[#1DA1F2] hover:text-white transition-colors">
+                    <a href={`https://twitter.com/intent/tweet?url=${encodedShareUrl}&text=${encodedTitle}`} target="_blank" rel="noopener noreferrer" className="touch-target rounded-full bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-[#1DA1F2] hover:text-white transition-colors">
                       <Twitter className="w-4 h-4" />
                     </a>
-                    <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodedShareUrl}&title=${encodedTitle}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-[#0A66C2] hover:text-white transition-colors">
+                    <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodedShareUrl}&title=${encodedTitle}`} target="_blank" rel="noopener noreferrer" className="touch-target rounded-full bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-[#0A66C2] hover:text-white transition-colors">
                       <Linkedin className="w-4 h-4" />
                     </a>
                   </div>
@@ -103,7 +103,7 @@ export default function Article() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="w-full rounded-3xl overflow-hidden mb-16 relative bg-zinc-50 flex items-center justify-center border border-zinc-100"
+                className="detail-media w-full rounded-3xl overflow-hidden mb-16 relative bg-zinc-50 flex items-center justify-center border border-zinc-100"
               >
                 <img src={article.image} alt={article.titel} className="w-full h-auto max-h-[75vh] object-contain" loading="lazy" />
               </motion.div>
@@ -113,7 +113,7 @@ export default function Article() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="prose prose-lg prose-zinc max-w-none text-zinc-700 font-medium leading-relaxed"
+                className="editorial-measure editorial-copy prose prose-lg prose-zinc text-zinc-700 font-medium"
               >
                 {article.fullText.map((paragraph, idx) => (
                   <p key={idx} className={idx === 0 ? "text-2xl md:text-3xl font-bold text-zinc-900 mb-10 leading-snug" : "mb-6 text-[17px] md:text-lg"}>
@@ -146,7 +146,7 @@ export default function Article() {
             </div>
 
             {/* Sidebar Column */}
-            <aside className="lg:col-span-4 xl:col-span-4 hidden lg:block">
+            <aside className="article-aside hidden lg:block min-w-0">
               <div className="sticky top-32">
                 <div className="mb-8 flex items-center gap-4">
                   <div className="w-8 h-[2px] bg-red-600"></div>

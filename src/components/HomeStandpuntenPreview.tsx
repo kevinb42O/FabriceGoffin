@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'motion/react';
-import { useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { StaggerText } from './StaggerText';
@@ -8,21 +8,48 @@ import { standpunten } from '../data/standpunten';
 
 export function HomeStandpuntenPreview() {
   const targetRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [travelPx, setTravelPx] = useState(0);
+
+  useLayoutEffect(() => {
+    const viewport = viewportRef.current;
+    const track = trackRef.current;
+    if (!viewport || !track) return;
+
+    const measure = () => {
+      const nextTravel = Math.max(0, track.scrollWidth - viewport.clientWidth);
+      setTravelPx(previous => Math.abs(previous - nextTravel) > 1 ? nextTravel : previous);
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(viewport);
+    observer.observe(track);
+    document.fonts.ready.then(measure);
+
+    return () => observer.disconnect();
+  }, []);
+
+  const captureEnabled = travelPx > 2;
 
   // Map vertical scroll progress to horizontal translation of the card track.
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ['start start', 'end end'],
   });
-  const x = useTransform(scrollYProgress, [0, 1], ['calc(0% - 0vw)', 'calc(-100% + 100vw)']);
+  const x = useTransform(scrollYProgress, [0, 1], [0, -travelPx]);
 
   return (
     <section
       ref={targetRef}
-      // Minder hoge pin (250vh i.p.v. 450vh) zorgt ervoor dat het sneller scrollt en minder irritant is
-      className="hidden lg:block relative h-[250vh] bg-zinc-50 border-t border-zinc-200 z-10"
+      className="hidden lg:block relative bg-zinc-50 border-t border-zinc-200 z-10"
+      style={{ height: captureEnabled ? `calc(100vh + ${travelPx / 1.35}px)` : 'auto' }}
     >
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+      <div
+        ref={viewportRef}
+        className={`${captureEnabled ? 'sticky top-0 h-screen' : 'relative min-h-screen py-20'} flex flex-col justify-center overflow-hidden`}
+      >
         <div className="px-6 md:px-12 lg:px-24 flex flex-col md:flex-row justify-between md:items-end mb-16 gap-8 shrink-0">
           <h2 className="text-5xl md:text-7xl font-medium uppercase tracking-tighter text-zinc-900 font-heading">
             <StaggerText text="Speerpunten" />
@@ -39,8 +66,9 @@ export function HomeStandpuntenPreview() {
         </div>
 
         <motion.div
-          style={{ x }}
-          className="flex gap-6 px-6 md:px-12 lg:px-24 w-max shrink-0"
+          ref={trackRef}
+          style={{ x: captureEnabled ? x : 0 }}
+          className={`flex gap-6 px-6 md:px-12 lg:px-24 shrink-0 ${captureEnabled ? 'w-max' : 'w-full justify-center'}`}
         >
           {standpunten.map((item) => (
             <Link
