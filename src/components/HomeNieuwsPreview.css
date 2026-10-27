@@ -1,0 +1,21 @@
+.home-news {
+  scroll-margin-top: 76px;
+  overflow: clip;
+}
+
+/* The actual news surface covers the held gallery. Equal overlap and tail
+   preserve both the document position of News and the total page height. */
+.home-news--connected {
+  margin-top: -100svh;
+  border-top: 0;
+  box-shadow: 0 -20px 48px -28px rgb(45 30 22 / .18);
+}
+
+.home-news a:focus-visible, .home-news button:focus-visible {
+  outline: 2px solid #bc252a;
+  outline-offset: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-news .animate-pulse { animation: none; }
+}

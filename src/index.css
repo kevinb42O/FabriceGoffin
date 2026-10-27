@@ -186,3 +186,10 @@
     scroll-behavior: auto !important;
   }
 }
+
+@media (max-width: 1023px) {
+  footer .layout-shell-wide > .grid { row-gap: 28px; }
+  footer nav[aria-label='Footer navigatie'] { display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; row-gap: 4px; }
+  footer a[href^='mailto:'], footer a[href^='tel:'] { min-height: 44px; align-items: center; overflow-wrap: anywhere; }
+  #mobile-menu > div { overflow-y: auto; overscroll-behavior: contain; }
+}

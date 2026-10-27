@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, ArrowUpRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import { contact } from '../data/contact';
 
@@ -172,6 +172,32 @@ export function Footer() {
             </ul>
           </div>
         </div>
+        <div className="mt-8 flex justify-center md:justify-end">
+          <a
+            href="https://www.webaanzee.be/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Design & development by Webaanzee (opent in een nieuw tabblad)"
+            className="group inline-flex min-h-11 flex-wrap items-center justify-center gap-x-3 gap-y-2 rounded-sm py-1 text-zinc-600 transition-colors duration-200 hover:text-zinc-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-600"
+          >
+            <span className="text-[11px] leading-relaxed">Design &amp; development by :</span>
+            <span className="inline-flex items-center gap-2">
+              <img
+                src="/images/branding/webaanzee-wordmark.png"
+                alt="Webaanzee"
+                width={1823}
+                height={220}
+                loading="lazy"
+                decoding="async"
+                className="h-auto w-[148px]"
+              />
+              <ArrowUpRight
+                aria-hidden="true"
+                className="h-3.5 w-3.5 text-zinc-400 transition-colors duration-200 group-hover:text-red-600 group-focus-visible:text-red-600"
+              />
+            </span>
+          </a>
+        </div>
       </div>
 
       {/* ===== BOTTOM BAR ===== */}
@@ -211,6 +237,7 @@ export function Footer() {
             </Link>
           </nav>
         </div>
+
       </div>
     </footer>
   );

@@ -1,135 +1,86 @@
-import { motion, AnimatePresence } from 'motion/react';
-import { useState } from 'react';
+import { motion, useMotionValue, useMotionValueEvent, useScroll, useTransform, type MotionValue, type MotionStyle } from 'motion/react';
+import { useLayoutEffect, useRef, useSyncExternalStore, type RefObject } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight, Instagram } from 'lucide-react';
 import { instagramPosts } from '../data/instagram';
-import { Heart, MessageCircle, Instagram, Plus, Minus } from 'lucide-react';
-import { StaggerText } from './StaggerText';
 import { contact } from '../data/contact';
+import './SocialWall.css';
 
-export function SocialWall() {
-  const [isExpanded, setIsExpanded] = useState(false);
-  
-  // Show 8 items initially, which spans roughly 2-3 rows on desktop
-  const visiblePosts = isExpanded ? instagramPosts : instagramPosts.slice(0, 8);
+const photographs = [
+  { post: 0, left: 3.5, top: 9, width: 20, height: 25, rotate: -9 },
+  { post: 13, left: 77, top: 12, width: 18, height: 27, rotate: 9 },
+  { post: 5, left: 3, top: 65, width: 23, height: 27, rotate: -6 },
+  { post: 15, left: 77, top: 66, width: 20, height: 28, rotate: 8 },
+  { post: 1, left: 39, top: 79, width: 22, height: 29, rotate: -4 },
+];
 
-  return (
-    <div className="w-full">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-12">
-        <div>
-          <motion.div
-             initial={{ opacity: 0, x: -30 }}
-             whileInView={{ opacity: 1, x: 0 }}
-             viewport={{ once: true }}
-             className="flex items-center gap-4 mb-4"
-          >
-             <Instagram className="w-6 h-6 text-red-600" />
-             <span className="text-red-600 font-bold uppercase tracking-[0.2em] text-xs">Volg mee online</span>
-          </motion.div>
+const mobilePhotographs = [
+  { post: 0, left: 6, top: 10, width: 30, height: 22, rotate: -9 },
+  { post: 13, left: 66, top: 12, width: 28, height: 22, rotate: 9 },
+  { post: 5, left: 4, top: 69, width: 30, height: 22, rotate: -6 },
+  { post: 15, left: 68, top: 68, width: 28, height: 22, rotate: 8 },
+  { post: 1, left: 38, top: 78, width: 26, height: 18, rotate: -4 },
+];
+const subscribeMobile = (callback: () => void) => {
+  const media = matchMedia('(max-width: 1023px)');
+  media.addEventListener('change', callback);
+  return () => media.removeEventListener('change', callback);
+};
 
-          <h3 className="text-4xl md:text-5xl font-medium uppercase tracking-tighter text-zinc-900 leading-none font-heading">
-            <StaggerText text="@goffinfabrice" />
-          </h3>
-        </div>
-        
-        <motion.a 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          href={contact.socials.instagram}
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="mt-6 md:mt-0 px-8 py-4 bg-zinc-900 text-white font-bold uppercase tracking-widest text-sm rounded-full hover:bg-red-600 transition-colors duration-300"
-        >
-          Volg op Instagram
-        </motion.a>
-      </div>
+function Photograph({ item, progress, mobile = false }: { item: typeof photographs[number]; progress: MotionValue<number>; mobile?: boolean }) {
+  const x = useTransform(progress, [mobile ? .12 : .3, mobile ? .78 : 1], [`${50 - item.left - item.width / 2}vw`, '0vw']);
+  const y = useTransform(progress, [mobile ? .12 : .3, mobile ? .78 : 1], [`${80 - item.top - item.height / 2}svh`, '0svh']);
+  const rotate = useTransform(progress, [mobile ? .12 : .3, mobile ? .78 : 1], [item.rotate * -.3, item.rotate]);
+  const scale = useTransform(progress, [mobile ? .12 : .3, mobile ? .78 : 1], [.72, 1]);
+  return <motion.figure inherit={false} initial={false} className="social-photograph"
+    style={{ '--photo-left': `${item.left}%`, '--photo-top': `${item.top}%`, '--photo-width': `${item.width}%`, '--photo-height': `${item.height}%`, x, y, rotate, scale } as MotionStyle}>
+    <img src={instagramPosts[item.post]!.image} alt="" loading="lazy" decoding="async" />
+  </motion.figure>;
+}
 
-      <div className="relative">
-        <motion.div 
-           layout
-           className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[250px]"
-        >
-          <AnimatePresence>
-            {visiblePosts.map((post) => (
-              <motion.a
-                layout
-                key={post.id}
-                href={contact.socials.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                transition={{ duration: 0.4 }}
-                className={`group relative overflow-hidden rounded-2xl bg-zinc-100 ${post.span} block cursor-pointer shadow-sm hover:shadow-xl transition-shadow`}
-              >
-                <img 
-                  src={post.image} 
-                  alt={post.caption}
-                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
+function ContactInvitation({ animated }: { animated: boolean }) {
+  const root = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: root, offset: ['start end', 'start start'] });
+  const progress = useMotionValue(1);
+  useMotionValueEvent(scrollYProgress, 'change', value => progress.set(animated ? value : 1));
+  useLayoutEffect(() => { progress.set(animated ? scrollYProgress.get() : 1); }, [animated, progress, scrollYProgress]);
+  const y = useTransform(progress, [0, .8], [32, 0]);
+  const opacity = useTransform(progress, [.08, .68], [.5, 1]);
 
-                {/* Mobile/touch: always-visible info strip — desktop hides this in favor of the hover overlay below */}
-                <div className="lg:hidden absolute inset-x-0 bottom-0 pointer-events-none">
-                   <div className="h-24 bg-gradient-to-t from-zinc-950/85 via-zinc-950/40 to-transparent" />
-                   <div className="absolute inset-x-0 bottom-0 px-3 pb-3 flex items-center justify-between gap-2 text-white">
-                     <div className="flex items-center gap-1.5 text-xs font-bold drop-shadow-md">
-                       <Heart className="w-3.5 h-3.5 fill-white" />
-                       <span className="tabular-nums">{post.likes}</span>
-                     </div>
-                     <div className="w-7 h-7 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center">
-                       <Instagram className="w-3.5 h-3.5 text-white" />
-                     </div>
-                   </div>
-                </div>
+  return <div ref={root} className="social-invitation-surface" onFocusCapture={() => {
+    if (animated && scrollYProgress.get() < 1) root.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
+  }}>
+    <motion.div inherit={false} initial={false} className="social-invitation" style={{ y, opacity }}>
+      <div><h3>Spreek me<br />gerust aan<span>.</span></h3><p>Hebt u een vraag, een idee of een bezorgdheid?<br />Mijn kabinet staat open.</p></div>
+      <Link className="social-contact" to="/contact"><span>Neem contact op</span><span className="social-contact-arrow"><ArrowUpRight strokeWidth={1} aria-hidden="true" /></span></Link>
+    </motion.div>
+  </div>;
+}
 
-                {/* Desktop hover overlay — full immersive caption */}
-                <div className="hidden lg:flex absolute inset-0 bg-zinc-900/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-col justify-center items-center p-6 text-center">
-                   <Instagram className="w-8 h-8 text-white/50 mb-4 absolute top-6 right-6" />
-                   
-                   <div className="flex gap-6 mb-4 text-white">
-                     <div className="flex items-center gap-2 font-bold text-lg">
-                       <Heart className="w-6 h-6 fill-white" />
-                       <span>{post.likes}</span>
-                     </div>
-                     <div className="flex items-center gap-2 font-bold text-lg">
-                       <MessageCircle className="w-6 h-6 fill-white" />
-                       <span>{post.comments}</span>
-                     </div>
-                   </div>
-                   
-                   <p className="text-white/90 text-sm md:text-base font-medium line-clamp-3 md:line-clamp-4 leading-snug max-w-[80%]">
-                     {post.caption}
-                   </p>
-                </div>
-              </motion.a>
-            ))}
-          </AnimatePresence>
+export function SocialWall({ sceneRef, progress, animated = false, surface }: { sceneRef?: RefObject<HTMLDivElement | null>; progress?: MotionValue<number>; animated?: boolean; surface: MotionValue<string> }) {
+  const mobile = useSyncExternalStore(subscribeMobile, () => matchMedia('(max-width: 1023px)').matches, () => false);
+  const complete = useMotionValue(1);
+  const position = progress ?? complete;
+  const titleY = useTransform(position, [.18, .88], [42, 0]);
+  const titleScale = useTransform(position, [.18, .88], [1.06, 1]);
+  const titleOpacity = useTransform(position, mobile ? [.62, .86] : [.12, .48], mobile ? [0, 1] : [.15, 1]);
+  return <section id="home-social" className={`social-finale ${animated ? 'social-finale--animated' : ''}`} aria-labelledby="social-heading">
+    <div className="social-introduction-shell" onFocusCapture={() => {
+      const node = sceneRef?.current;
+      if (animated && node && (position.get() < 1 || node.getBoundingClientRect().bottom < innerHeight - 1)) window.scrollTo({ top: scrollY + node.getBoundingClientRect().top + node.offsetHeight - innerHeight, behavior: 'instant' });
+    }}>
+      <div ref={sceneRef} className="social-introduction" aria-hidden="true" />
+      <motion.div inherit={false} initial={false} className="social-stage" style={{ backgroundColor: surface }}>
+        <div className="social-photographs" aria-hidden="true">{(mobile ? mobilePhotographs : photographs).map(item => <Photograph key={item.post} item={item} progress={position} mobile={mobile} />)}</div>
+        <motion.div inherit={false} initial={false} className="social-intro-copy" style={{ y: titleY, scale: titleScale, opacity: titleOpacity }}>
+          <h2 id="social-heading"><span>Oostende.</span><span>Van dichtbij.</span></h2>
+          <a className="social-follow" href={contact.socials.instagram} target="_blank" rel="noopener noreferrer" aria-label="Volg @goffinfabrice op Instagram (opent in een nieuw tabblad)">
+            <Instagram size={19} strokeWidth={1.5} /><span>@goffinfabrice</span><ArrowUpRight size={20} strokeWidth={1.5} />
+          </a>
         </motion.div>
-
-        {/* Premium Fade Out Overlay when collapsed */}
-        {!isExpanded && (
-          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none z-10 rounded-b-2xl"></div>
-        )}
-      </div>
-
-      {/* Expand/Collapse Button */}
-      <motion.div layout className="mt-8 flex justify-center z-20 relative">
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="group flex items-center gap-3 px-8 py-4 bg-white border-2 border-zinc-200 hover:border-zinc-900 text-zinc-900 font-black uppercase tracking-widest text-sm hover:bg-zinc-900 hover:text-white transition-all duration-300 rounded-full shadow-sm hover:shadow-xl"
-        >
-          {isExpanded ? (
-            <>
-              Minder tonen <Minus className="w-5 h-5 transition-transform group-hover:-translate-y-1" />
-            </>
-          ) : (
-            <>
-              Toon meer foto's <Plus className="w-5 h-5 transition-transform group-hover:translate-y-1" />
-            </>
-          )}
-        </button>
       </motion.div>
     </div>
-  );
+
+    <ContactInvitation animated={animated} />
+  </section>;
 }

@@ -81,7 +81,7 @@ export function Navbar() {
             <motion.div 
               animate={{ opacity: isOpen ? 0 : 1, filter: isOpen ? 'blur(4px)' : 'blur(0px)', pointerEvents: isOpen ? 'none' : 'auto' }}
               transition={{ duration: 0.3 }}
-              className="hidden md:flex items-center gap-8 lg:gap-12"
+              className="hidden lg:flex items-center gap-8 lg:gap-12"
             >
               {links.map((link) => {
                 const isActive = location.pathname === link.path;

@@ -1,0 +1,76 @@
+.social-finale { position: relative; z-index: 11; background: #f5f1e8; color: #292b24; scroll-margin-top: 72px; overflow: clip; }
+.social-introduction-shell { position: relative; height: 100svh; min-height: 650px; }
+.social-introduction { position: absolute; inset: 0; pointer-events: none; }
+.social-stage { position: relative; height: 100%; overflow: clip; isolation: isolate; color: #fff8ed; }
+/* The measuring target retains the approved 170svh entrance. Only the shell
+   extends to hold that unchanged composition behind the incoming contact paper. */
+.social-finale--animated .social-introduction-shell { height: 270svh; }
+.social-finale--animated .social-introduction { height: 170svh; bottom: auto; }
+.social-finale--animated .social-stage { position: sticky; top: 0; height: 100svh; }
+.social-photographs { position: absolute; inset: 0; pointer-events: none; }
+.social-photograph { position: absolute; left: var(--photo-left); top: var(--photo-top); width: var(--photo-width); height: var(--photo-height); margin: 0; padding: 5px; background: #fff8ed; box-shadow: 0 20px 44px rgb(36 14 12 / .24); }
+.social-photograph img { width: 100%; height: 100%; object-fit: cover; }
+.social-intro-copy { position: absolute; z-index: 2; left: 12%; right: 12%; top: 31%; text-align: center; }
+.social-intro-copy h2 { margin: 0; font-weight: 500; line-height: 1.02; letter-spacing: -.04em; }
+.social-intro-copy h2 span { display: block; }
+.social-intro-copy h2 span:first-child { font-size: clamp(52px, 6.8vw, 116px); }
+.social-intro-copy h2 span:last-child { font-size: clamp(68px, 9vw, 152px); margin-top: 4px; }
+.social-follow { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 52px; margin-top: 24px; padding: 10px 8px; border-bottom: 1px solid rgb(255 248 237 / .65); font-size: 15px; }
+.social-follow > svg:last-child { margin-left: 12px; transition: transform .2s; }
+.social-follow:hover > svg:last-child { transform: translate(3px, -3px); }
+.social-invitation-surface { position: relative; z-index: 3; background: #f5f1e8; }
+.social-finale--animated .social-invitation-surface { margin-top: -100svh; box-shadow: 0 -20px 48px -28px rgb(36 14 12 / .16); }
+.social-invitation h3 span { color: #b63232; }
+.social-invitation { display: flex; align-items: center; justify-content: space-between; gap: 48px; width: min(90%, 1680px); margin-inline: auto; padding-block: 80px 100px; }
+.social-invitation h3 { margin: 0; font-size: clamp(44px, 6.2vw, 104px); font-weight: 500; line-height: 1.03; letter-spacing: -.04em; }
+.social-invitation p { margin-top: 28px; color: #5f5c52; font-size: 14px; line-height: 1.8; }
+.social-contact { display: flex; flex-direction: column-reverse; align-items: center; gap: 20px; padding: 10px; font-size: 12px; }
+.social-contact-arrow { display: grid; place-items: center; width: clamp(104px, 13vw, 200px); aspect-ratio: 1; border-radius: 50%; color: #fff8ed; background: #b63232; transition: background .2s, transform .35s cubic-bezier(.16, 1, .3, 1); }
+.social-contact-arrow svg { width: 48%; height: 48%; }
+.social-contact:hover .social-contact-arrow { background: #972628; transform: rotate(8deg); }
+.social-finale a:focus-visible, .social-finale button:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+@media (max-width: 1023px) {
+  .social-introduction-shell { height: 740px; min-height: 0; }
+  .social-intro-copy { left: 5%; right: 5%; top: 34%; }
+  .social-intro-copy h2 span:first-child { font-size: clamp(48px, 9vw, 88px); }
+  .social-intro-copy h2 span:last-child { font-size: clamp(48px, 10vw, 96px); }
+  .social-photograph { padding: 4px; }
+  .social-photograph:nth-child(1) { left: 6%; top: 8%; width: 29%; height: 22%; }
+  .social-photograph:nth-child(2) { left: 69%; top: 10%; width: 26%; height: 23%; }
+  .social-photograph:nth-child(3) { left: -3%; top: 73%; width: 35%; height: 25%; }
+  .social-photograph:nth-child(4) { left: 74%; top: 72%; width: 30%; height: 24%; }
+  .social-photograph:nth-child(5) { left: 36%; top: 83%; width: 30%; height: 24%; }
+  .social-invitation { width: calc(100% - 48px); gap: 24px; padding-block: 48px 64px; align-items: start; }
+  .social-invitation h3 { font-size: clamp(38px, 7vw, 72px); }
+  .social-invitation p { font-size: 12px; }
+  .social-contact { font-size: 10px; text-align: center; gap: 14px; }
+  .social-contact-arrow { width: clamp(76px, 17vw, 140px); }
+}
+@media (max-width: 600px) {
+  .social-introduction-shell { height: 660px; }
+  .social-intro-copy { top: 35%; }
+  .social-follow { font-size: 13px; margin-top: 22px; }
+  .social-invitation { display: block; }
+  .social-invitation h3 { font-size: clamp(44px, 11vw, 64px); }
+  .social-contact { margin-top: 24px; flex-direction: row; justify-content: space-between; padding: 0; font-size: 13px; }
+  .social-contact-arrow { width: 80px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .social-follow svg, .social-contact-arrow { transition: none; }
+  .social-contact:hover .social-contact-arrow { transform: none; }
+}
+
+@media (max-width: 1023px) {
+  /* Same three-part desktop finale, measured against the mobile sticky stage. */
+  .social-finale--animated .social-introduction-shell { height: 270svh; min-height: 0; }
+  .social-finale--animated .social-introduction { height: 170svh; }
+  .social-finale--animated .social-stage { height: 100svh; }
+  .social-finale--animated .social-photograph {
+    left: var(--photo-left); top: var(--photo-top); width: var(--photo-width); height: var(--photo-height);
+  }
+  .social-finale--animated .social-intro-copy { top: 37%; }
+  .social-finale--animated .social-intro-copy h2 span:first-child { font-size: clamp(43px, 10vw, 82px); }
+  .social-finale--animated .social-intro-copy h2 span:last-child { font-size: clamp(42px, 10.5vw, 88px); }
+  .social-finale--animated .social-invitation-surface { margin-top: -100svh; }
+  .social-invitation p { font-size: 14px; }
+}

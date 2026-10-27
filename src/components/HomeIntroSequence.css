@@ -1,0 +1,12 @@
+.intro-sequence { position: relative; background: #f5f4f0; }
+.intro-anchor { position: absolute; left: 0; width: 1px; height: 1px; pointer-events: none; }
+.intro-sequence--unified > .intro-stage { position: sticky; top: 0; height: 100svh; isolation: isolate; }
+.intro-sequence--unified .home-opening { position: absolute; inset: 0; z-index: 2; background: transparent; }
+.intro-sequence--unified .home-opening .opening-sequence { position: absolute; inset: 0; height: 100%; }
+.intro-sequence--unified .home-opening .opening-stage { position: relative; height: 100%; background: transparent; }
+.intro-sequence--unified .standpoints { position: absolute; inset: 0; height: 100%; background: transparent; }
+.intro-sequence--unified .standpoints .standpoints-stage { position: absolute; inset: 0; height: 100%; }
+.intro-sequence--unified .standpoints-overlay { z-index: 8; pointer-events: none; }
+.standpoints-overlay a, .standpoints-overlay button { pointer-events: auto; }
+.opening-surface { position: absolute; inset: 0; z-index: 0; background: #f5f4f0; pointer-events: none; }
+.intro-sequence--unified .opening-biography { pointer-events: none; }

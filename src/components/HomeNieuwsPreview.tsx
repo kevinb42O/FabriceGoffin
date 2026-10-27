@@ -1,11 +1,22 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { motion, useMotionValue, useReducedMotion, useTransform } from 'motion/react';
 import { ArrowRight, ChevronLeft, ChevronRight, Hand } from 'lucide-react';
 import { articles } from '../data/articles';
-import { StaggerText } from './StaggerText';
+import { introDistance, newsTransferDistance, useIntroSequence } from '../lib/introSequence';
+import { standpunten } from '../data/standpunten';
+import './HomeNieuwsPreview.css';
 
 export function HomeNieuwsPreview() {
+  const shared = useIntroSequence();
+  const reduced = useReducedMotion();
+  const complete = useMotionValue(1);
+  const connected = !!shared?.enabled;
+  const progress = connected ? shared.newsProgress : complete;
+  const headingY = useTransform(progress, [0, .8], [28, 0]);
+  const headingOpacity = useTransform(progress, [.08, .62], [.35, 1]);
+  const cardsY = useTransform(progress, [.12, .92], [44, 0]);
+  const cardsOpacity = useTransform(progress, [.18, .78], [.45, 1]);
   // Filter out 'regenbooghuis' and get top 8 articles
   const topArticles = articles
     .filter(article => !article.slug.includes('regenbooghuis') && !article.titel.toLowerCase().includes('regenboog'))
@@ -18,40 +29,31 @@ export function HomeNieuwsPreview() {
       const scrollAmount = clientWidth * 0.8; // Scroll 80% of container width
       scrollContainerRef.current.scrollTo({
         left: direction === 'left' ? scrollLeft - scrollAmount : scrollLeft + scrollAmount,
-        behavior: 'smooth'
+        behavior: reduced ? 'instant' : 'smooth'
       });
     }
   };
 
   return (
-    <section className="py-24 bg-white relative z-10 border-t border-zinc-100 overflow-hidden">
+    <section id="home-news" aria-labelledby="home-news-heading" className={`home-news py-24 bg-white relative z-10 border-t border-zinc-100 ${connected ? 'home-news--connected' : ''}`} onFocusCapture={() => {
+      if (connected && progress.get() < .85) shared.navigate(introDistance(standpunten.length) + newsTransferDistance);
+    }}>
       <div className="layout-shell-wide relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-12 lg:mb-16">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
+        <motion.div inherit={false} initial={false} style={{ y: headingY, opacity: headingOpacity }} className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-12 lg:mb-16">
+          <div>
             <div className="flex items-center gap-4 mb-4">
               <div className="w-8 h-[2px] bg-red-600"></div>
               <span className="text-red-600 font-bold uppercase tracking-[0.2em] text-xs">
                 Actueel
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium uppercase tracking-tight text-zinc-900 font-heading">
+            <h2 id="home-news-heading" className="text-4xl md:text-5xl lg:text-6xl font-medium uppercase tracking-tight text-zinc-900 font-heading">
               Laatste Nieuws
             </h2>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center gap-6"
-          >
+          </div>
+          <div className="flex flex-col sm:flex-row items-center gap-6">
             <Link 
               to="/nieuws" 
               className="group flex items-center gap-3 text-sm font-black uppercase tracking-[0.2em] text-zinc-900 hover:text-red-600 transition-colors w-max"
@@ -61,8 +63,8 @@ export function HomeNieuwsPreview() {
                 <ArrowRight className="w-4 h-4" />
               </div>
             </Link>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
 
         {/* Mobile Swipe Indicator */}
         <div className="lg:hidden flex items-center gap-2 mb-6 text-zinc-500 font-medium text-sm">
@@ -71,7 +73,7 @@ export function HomeNieuwsPreview() {
         </div>
 
         {/* Horizontal Scroll Carousel with Side Navigation */}
-        <div className="relative group/carousel">
+        <motion.div inherit={false} initial={false} style={{ y: cardsY, opacity: cardsOpacity }} className="relative group/carousel">
           
           {/* Desktop Navigation Buttons (Absolute Sidebar) */}
           <button 
@@ -94,13 +96,9 @@ export function HomeNieuwsPreview() {
             ref={scrollContainerRef}
             className="flex overflow-x-auto snap-x snap-mandatory gap-6 lg:gap-10 pb-12 pt-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overscroll-x-contain"
           >
-          {topArticles.map((article, index) => (
-             <motion.article 
+          {topArticles.map((article) => (
+             <article
                key={article.slug}
-               initial={{ opacity: 0, scale: 0.95 }}
-               whileInView={{ opacity: 1, scale: 1 }}
-               viewport={{ once: true }}
-               transition={{ delay: 0.1 * index, duration: 0.5 }}
                className="w-[85vw] sm:w-[350px] lg:w-[400px] min-[2400px]:w-[460px] shrink-0 snap-start h-full"
              >
                <Link to={`/nieuws/${article.slug}`} className="group flex flex-col h-full">
@@ -130,10 +128,10 @@ export function HomeNieuwsPreview() {
                    </div>
                  </div>
                </Link>
-             </motion.article>
+             </article>
           ))}
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>
