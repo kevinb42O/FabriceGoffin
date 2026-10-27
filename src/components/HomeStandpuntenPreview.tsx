@@ -29,6 +29,9 @@ export function HomeStandpuntenPreview() {
   const departingScale = useTransform(departure, [0, 1], [1, .94]);
   const departingY = useTransform(departure, [0, 1], [0, 24]);
   const renderedPhase = useMotionValue(0);
+  const heading = useRef<HTMLHeadingElement>(null);
+  const photoTitleMask = useMotionValue('polygon(0px 0px, 0px 0px, 0px 0px, 0px 0px)');
+  const photoTitleOpacity = useMotionValue(0);
   const ink = useTransform(renderedPhase, p => galleryInk(p, galleryInks));
   const titleInkMask = useTransform(renderedPhase, p => {
     const light = chapterProgress(p, [2.62, 2.94]) * (1 - chapterProgress(p, [3.22, 3.48]));
@@ -109,6 +112,14 @@ export function HomeStandpuntenPreview() {
         }
       }, { mapSource: innerWidth >= 1024 ? '/images/kaartoostende.webp' : undefined });
       instance.onPhase = (value: number) => { if (!cancelled) renderedPhase.set(value); };
+      instance.onPhotoFrame = (corners: { x: number; y: number }[], opacity: number) => {
+        if (cancelled || !heading.current || !canvas.current) return;
+        photoTitleOpacity.set(opacity);
+        if (!corners.length) return;
+        const titleBox = heading.current.getBoundingClientRect();
+        const canvasBox = canvas.current.getBoundingClientRect();
+        photoTitleMask.set(`polygon(${corners.map(point => `${point.x + canvasBox.left - titleBox.left}px ${point.y + canvasBox.top - titleBox.top}px`).join(', ')})`);
+      };
       instance.onFirstFrame = () => {
         if (!cancelled) { setReady(true); if (shared?.enabled) shared.canvasReady.set(true); }
       };
@@ -163,6 +174,7 @@ export function HomeStandpuntenPreview() {
       engine.current = null;
       shared?.canvasReady.set(false);
       shared?.canvasPresented.set(false);
+      photoTitleOpacity.set(0);
     };
   }, [animated, near, phase, shared?.enabled]);
 
@@ -185,7 +197,7 @@ export function HomeStandpuntenPreview() {
 
   const controls = <>
         <motion.header inherit={false} initial={false} className="standpoints-header" style={{ opacity: controlsOpacity, y: controlsY }}>
-          <h2 id={animated ? 'standpoints-heading' : undefined}>Speerpunten<span>.</span><motion.span inherit={false} initial={false} className="standpoints-light-title" aria-hidden="true" style={{ clipPath: titleInkMask }}>Speerpunten<span>.</span></motion.span></h2>
+          <h2 ref={heading} id={animated ? 'standpoints-heading' : undefined}>Speerpunten<span>.</span><motion.span inherit={false} initial={false} className="standpoints-light-title" aria-hidden="true" style={{ clipPath: titleInkMask }}>Speerpunten<span>.</span></motion.span><motion.span inherit={false} initial={false} className="standpoints-light-title standpoints-photo-title" aria-hidden="true" style={{ clipPath: photoTitleMask, opacity: photoTitleOpacity }}>Speerpunten<span>.</span></motion.span></h2>
           <Link to="/standpunten">Alle standpunten <ArrowUpRight size={17} strokeWidth={1.6} aria-hidden="true" /></Link>
         </motion.header>
         <Link className={`standpoints-image-link ${imageOnRight ? 'standpoints-image-link--right' : ''}`} to={`/standpunten?p=${item.nummer}`} aria-label={`Lees het standpunt: ${item.titel}`} />

@@ -18,6 +18,7 @@ export class PortfolioEngine {
     this.onError = onError;
     this.options = options;
     this.onPhase = null;
+    this.onPhotoFrame = null;
     this.disposed = false;
     this.initialized = false;
     this.enabled = false;
@@ -256,6 +257,17 @@ export class PortfolioEngine {
       this.camera.updateProjectionMatrix();
     }
     this.renderer.render(this.scene, this.camera);
+    // Report the actual rendered Justice4Animals plane, including camera
+    // damping, pointer tilt and breathing, for the heading's photo ink mask.
+    if (this.onPhotoFrame) {
+      const plane = this.gallery.planes[2];
+      const opacity = this.scene.visible && plane && this.camera.position.z - plane.position.z > this.camera.near ? plane.material.opacity : 0;
+      const corners = opacity > .001 ? [[-1.5, 1.5], [1.5, 1.5], [1.5, -1.5], [-1.5, -1.5]].map(([x, y]) => {
+        const point = new THREE.Vector3(x, y, 0).applyMatrix4(plane.matrixWorld).project(this.camera);
+        return { x: (point.x + 1) * this.canvas.clientWidth / 2, y: (1 - point.y) * this.canvas.clientHeight / 2 };
+      }) : [];
+      this.onPhotoFrame(corners, opacity);
+    }
     if (departure) {
       this.camera.zoom = restingZoom;
       this.camera.position.y = restingY;
